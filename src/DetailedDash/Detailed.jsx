@@ -2,7 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Detailed.css";
 import profileIcon from "../assets/images/profile.png";
-import { FaMap, MdReportProblem, TbSelect, RiTeamFill, FaNoteSticky, IoMdSettings, IoLogOutOutline, IoChevronDown, FaVideo, FaImage, MdOutlineSupportAgent, FaFile, GoFileDirectoryFill, IoIosCloud } from "react-icons/fa";
+// Corrected Icon Imports
+import { FaMap, FaVideo, FaImage, FaFile } from "react-icons/fa";
+import { MdReportProblem, MdOutlineSupportAgent } from "react-icons/md";
+import { TbSelect } from "react-icons/tb";
+import { RiTeamFill } from "react-icons/ri";
+import { FaNoteSticky } from "react-icons/fa6";
+import { IoMdSettings, IoIosCloud } from "react-icons/io";
+import { IoLogOutOutline, IoChevronDown } from "react-icons/io5"; // Corrected import for IoChevronDown
+import { GoFileDirectoryFill } from "react-icons/go";
+
 
 const Detailed = () => {
   const navigate = useNavigate();
@@ -59,15 +68,11 @@ const Detailed = () => {
               </div>
             </div>
             <div className="settings">
-              <ul>
-                {/* Navigation items can be added here */}
-              </ul>
+              {/* This is where your aside bar content can be mapped or placed */}
             </div>
           </div>
           <div className="bottom-profile">
-            <ul>
-              {/* Settings and Logout */}
-            </ul>
+            {/* This is where bottom settings/logout can be placed */}
           </div>
         </div>
       </div>
