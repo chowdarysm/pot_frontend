@@ -1,0 +1,48 @@
+.event-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 4rem;
+}
+.billboard-data {
+  width: 100%;
+}
+table {
+  width: 60%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: #f2f2f2;
+}
+
+th,
+td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+}
+.billboard-data h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.process-video-data h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.back-btn {
+  display: flex;
+  justify-content: left;
+  padding: 1rem;
+}
+.back-btn button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #00b0f0;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}

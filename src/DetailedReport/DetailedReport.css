@@ -1,0 +1,33 @@
+.detailed-report-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 4rem;
+}
+.billboard-data {
+  width: 100%;
+}
+table {
+  width: 60%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: #f2f2f2;
+}
+
+th,
+td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+}
+.billboard-data h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+/* .detailed-report-data h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+   */

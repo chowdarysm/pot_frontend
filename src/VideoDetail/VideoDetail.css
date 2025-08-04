@@ -1,0 +1,48 @@
+.video-detail-page {
+  padding: 2rem;
+}
+.video-detail-page h1 {
+  margin: 1rem;
+}
+.video-detail-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+.video-detail-card {
+  width: 240px;
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+.video-detail-card img {
+  width: 100%;
+  border-radius: 20px;
+}
+.video-card-details {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.video-card-details span {
+  width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+}
+.back-btn {
+  display: flex;
+  justify-content: left;
+  padding: 1rem;
+}
+.back-btn button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #00b0f0;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}

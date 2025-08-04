@@ -1,0 +1,32 @@
+.image-detail-page {
+  padding: 2rem;
+}
+.image-detail-page h1 {
+  margin: 1rem;
+}
+.image-detail-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+.image-detail-card {
+  width: 240px;
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+.image-detail-card img {
+  width: 100%;
+  border-radius: 20px;
+}
+.image-card-details {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.image-card-details span {
+  width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+}
