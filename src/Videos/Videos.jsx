@@ -1,81 +1,81 @@
-import React from "react";
-import billboardImage from "../assets/images/billboard-img.png";
-import "./Videos.css";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './Videos.css';
+
 const Videos = () => {
+  const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const videoData = [
-    {
-      id: 1,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-    {
-      id: 2,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-    {
-      id: 3,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-    {
-      id: 4,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-    {
-      id: 5,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-  ];
-  const handleClick = () => {
-    navigate("/videodetails");
+
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+
+  const fetchVideos = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/videos`);
+      if (response.ok) {
+        const data = await response.json();
+        setVideos(data);
+      } else {
+        console.error('Failed to fetch videos');
+        setVideos([]);
+      }
+    } catch (error) {
+      console.error('Error fetching videos:', error);
+      setVideos([]);
+    } finally {
+      setIsLoading(false);
+    }
   };
-  const goToBack = () => {
-    navigate(-1);
-  };
+
   return (
-    <>
-      <div className="back-btn">
-        <button onClick={goToBack}>Back</button>
-      </div>
-      <div className="video-container">
-        <div className="video-head">
-          <h1>Video Dashboard</h1>
-          <select name="" id="">
-            <option value="">Sort by</option>
-            <option value="">Newest first</option>
+    <div className="video-dashboard-container">
+      <div className="video-dashboard-header">
+        <button onClick={() => navigate(-1)} className="back-button">Back</button>
+        <h1>Video Dashboard</h1>
+        <div className="sort-by-container">
+          <label htmlFor="sort-by">Sort by</label>
+          <select id="sort-by" name="sort-by">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
           </select>
         </div>
-        <div className="video-card-container">
-          {videoData.map((item, id) => (
-            <div
-              className="video-card"
-              onClick={handleClick}
-              style={{ cursor: "pointer" }}
-            >
-              <img src={billboardImage} />
-              <div className="video-card-details" key={id}>
-                <span>Timestamp: {item.timestamp}</span>
-                <span>Coordinates: {item.coordinates}</span>
-                <span>CameraId: {item.cameraId}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="more-video">
-          <button>View More</button>
-        </div>
       </div>
-    </>
+      
+      {isLoading ? (
+        <p>Loading videos...</p>
+      ) : (
+        <>
+          <div className="video-grid-container">
+            {videos.map((video) => (
+              <Link to={`/video/${video.guid}`} key={video.guid} className="video-dashboard-card">
+                <div className="video-thumbnail-wrapper">
+                   <img 
+                     src={video.thumbnail_url || 'https://placehold.co/600x400/e0e0e0/000000?text=Video'} 
+                     alt={video.video_name} 
+                     className="video-thumbnail"
+                   />
+                </div>
+                <div className="video-card-info">
+                  <p><strong>Timestamp:</strong> {new Date(video.created_at).toLocaleString()}</p>
+                  {/* These are placeholders as the data is not in the backend yet */}
+                  <p><strong>Coordinates:</strong> 37.7749, -122.4194</p>
+                  <p><strong>Location:</strong> San Francisco, USA</p>
+                  <p><strong>CameraId:</strong> 1234</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {videos.length > 0 && (
+             <div className="view-more-container">
+                <button className="view-more-button">View More</button>
+             </div>
+          )}
+        </>
+      )}
+    </div>
   );
 };
 
