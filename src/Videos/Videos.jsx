@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Videos.css';
 
 const Videos = () => {
-  const [videos, setVideos] = useState([]);
+  const [allVideos, setAllVideos] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(5);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -17,18 +18,24 @@ const Videos = () => {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/videos`);
       if (response.ok) {
         const data = await response.json();
-        setVideos(data);
+        setAllVideos(data);
       } else {
         console.error('Failed to fetch videos');
-        setVideos([]);
+        setAllVideos([]);
       }
     } catch (error) {
       console.error('Error fetching videos:', error);
-      setVideos([]);
+      setAllVideos([]);
     } finally {
       setIsLoading(false);
     }
   };
+
+  const handleViewMore = () => {
+    setVisibleCount(prevCount => prevCount + 5);
+  };
+
+  const visibleVideos = allVideos.slice(0, visibleCount);
 
   return (
     <div className="video-dashboard-container">
@@ -49,7 +56,7 @@ const Videos = () => {
       ) : (
         <>
           <div className="video-grid-container">
-            {videos.map((video) => (
+            {visibleVideos.map((video) => (
               <Link to={`/video/${video.guid}`} key={video.guid} className="video-dashboard-card">
                 <div className="video-thumbnail-wrapper">
                    <img 
@@ -60,7 +67,6 @@ const Videos = () => {
                 </div>
                 <div className="video-card-info">
                   <p><strong>Timestamp:</strong> {new Date(video.created_at).toLocaleString()}</p>
-                  {/* These are placeholders as the data is not in the backend yet */}
                   <p><strong>Coordinates:</strong> 37.7749, -122.4194</p>
                   <p><strong>Location:</strong> San Francisco, USA</p>
                   <p><strong>CameraId:</strong> 1234</p>
@@ -68,9 +74,9 @@ const Videos = () => {
               </Link>
             ))}
           </div>
-          {videos.length > 0 && (
+          {visibleCount < allVideos.length && (
              <div className="view-more-container">
-                <button className="view-more-button">View More</button>
+                <button onClick={handleViewMore} className="view-more-button">View More</button>
              </div>
           )}
         </>

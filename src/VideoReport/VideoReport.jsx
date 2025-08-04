@@ -1,192 +1,64 @@
-import React from "react";
-import "./VideoReport.css";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import './VideoReport.css';
+
 const VideoReport = () => {
-  const navigate = useNavigate();
-  const goToBack = () => {
-    navigate(-1);
+  const { guid } = useParams();
+  const [report, setReport] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [visibleFrames, setVisibleFrames] = useState(5);
+
+  useEffect(() => {
+    if (guid) {
+      fetchVideoReport();
+    }
+  }, [guid]);
+
+  const fetchVideoReport = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/video_report/${guid}`);
+      if (response.ok) {
+        const data = await response.json();
+        setReport(data);
+      }
+    } catch (error) {
+      console.error('Error fetching video report:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+  
+  const handleViewMoreFrames = () => {
+    setVisibleFrames(prevCount => prevCount + 5);
+  };
+
+  if (isLoading) return <div>Loading video report...</div>;
+  if (!report) return <div>Video report not found.</div>;
+  
+  const framesToShow = report.detected_frames.slice(0, visibleFrames);
+
   return (
-    <>
-      <div className="back-btn">
-        <button onClick={goToBack}>Back</button>
-        <button>Save as PDF</button>
-        <button>Save as Excel</button>
-        <button>Save as CSV</button>
+    <div className="video-report-container">
+      <h1>Video Report: {report.video_info.video_name}</h1>
+      <p>Status: {report.video_info.status}</p>
+      <h2>Detected Frames</h2>
+      <div className="frames-grid">
+        {framesToShow.map((frame) => (
+          <div key={frame.id} className="frame-card">
+            <Link to={`/frame/${frame.id}`}>
+              <img src={frame.frame_image_url} alt={`Frame ${frame.frame_number}`} />
+              <p>Frame #{frame.frame_number}</p>
+            </Link>
+          </div>
+        ))}
       </div>
-      <div className="video-report-container">
-        <h1 style={{ textAlign: "center" }}>
-          Compliance Report of Processed Video
-        </h1>
-        <div className="video-report1">
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={5}>Billboard report</th>
-              </tr>
-              <tr>
-                <th>Total Detected</th>
-                <th>Approved</th>
-                <th>Unapproved</th>
-                <th>Damage</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>7</td>
-                <td>3</td>
-                <td>4</td>
-                <td>0</td>
-                <td>
-                  <button
-                    style={{
-                      width: "150px",
-                      padding: "10px",
-                      backgroundColor: "#00b0f0",
-
-                      color: "white",
-                      border: "none",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    Create Alert
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      {visibleFrames < report.detected_frames.length && (
+        <div className="view-more-container">
+          <button onClick={handleViewMoreFrames} className="view-more-button">View More Frames</button>
         </div>
-        <div className="video-report2">
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={5}>Guardrails Report</th>
-              </tr>
-              <tr>
-                <th>Total Detected</th>
-                <th>Missing</th>
-                {/* <th>Unapproved</th> */}
-                <th>Damaged</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>7</td>
-                <td>3</td>
-                <td>4</td>
-                <td></td>
-                <td>
-                  <button
-                    style={{
-                      width: "150px",
-                      padding: "10px",
-                      backgroundColor: "#00b0f0",
-
-                      color: "white",
-
-                      border: "none",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    Create Alert
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="video-report3">
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={5}>Unsafe Sites Report</th>
-              </tr>
-              <tr>
-                <th>Total Detected</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                {/* <th>Approved</th>
-                <th>Unapproved</th>
-                <th>Damage</th> */}
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>7</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <button
-                    style={{
-                      width: "150px",
-                      padding: "10px",
-                      backgroundColor: "#00b0f0",
-
-                      color: "white",
-                      border: "none",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    Create Alert
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="video-report4">
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={5}>Potholes Report</th>
-              </tr>
-              <tr>
-                <th>Total Detected</th>
-                {/* <th>Approved</th>
-                <th>Unapproved</th>
-                <th>Damage</th> */}
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>7</td>
-                {/* <td>3</td>
-                <td>4</td>
-                <td>0</td> */}
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <button
-                    style={{
-                      width: "150px",
-                      padding: "10px",
-                      backgroundColor: "#00b0f0",
-
-                      color: "white",
-                      border: "none",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    Create Alert
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 
