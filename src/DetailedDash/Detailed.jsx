@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Detailed.css";
+
+// Component-specific assets
 import profileIcon from "../assets/images/profile.png";
-// Corrected Icon Imports
-import { FaMap, FaVideo, FaImage, FaFile } from "react-icons/fa";
+
+// Icon Imports - Corrected and Organized
+import { FaMap, FaVideo, FaImage, FaFile, FaNoteSticky } from "react-icons/fa";
 import { MdReportProblem, MdOutlineSupportAgent } from "react-icons/md";
 import { TbSelect } from "react-icons/tb";
 import { RiTeamFill } from "react-icons/ri";
-import { FaNoteSticky } from "react-icons/fa6";
 import { IoMdSettings, IoIosCloud } from "react-icons/io";
-import { IoLogOutOutline, IoChevronDown } from "react-icons/io5"; // Corrected import for IoChevronDown
+import { IoLogOutOutline, IoChevronDown } from "react-icons/io5";
 import { GoFileDirectoryFill } from "react-icons/go";
-
 
 const Detailed = () => {
   const navigate = useNavigate();
   const [latestReports, setLatestReports] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetch latest reports from the API
   useEffect(() => {
     const fetchLatestReports = async () => {
       setIsLoading(true);
@@ -38,6 +40,7 @@ const Detailed = () => {
     fetchLatestReports();
   }, []);
 
+  // Navigate to the correct detail page when a card is clicked
   const handleCardClick = (report) => {
     if (report.type === "video") {
       navigate(`/video/${report.guid}`);
@@ -46,10 +49,12 @@ const Detailed = () => {
     }
   };
 
+  // User data from local storage
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userName = storedUser ? storedUser.name : "User";
   const userEmail = storedUser ? storedUser.email : "user@example.com";
 
+  // Navigation functions
   const goToForm = () => navigate("/form");
   const goToBillboard = () => navigate("/billboards");
   const goToPotholes = () => navigate("/potholes");
@@ -57,6 +62,9 @@ const Detailed = () => {
 
   return (
     <div className="dash-container">
+      {/* ================================== */}
+      {/* == LEFT SIDEBAR - STATIC UI     == */}
+      {/* ================================== */}
       <div className="left-dash-content">
         <div className="left-dash-container">
           <div className="upper-profile">
@@ -68,39 +76,47 @@ const Detailed = () => {
               </div>
             </div>
             <div className="settings">
-              {/* This is where your aside bar content can be mapped or placed */}
+              <ul>
+                <li><span><FaMap /></span>Overview</li>
+                <li><span><MdReportProblem /></span>Report</li>
+                <li><span><TbSelect /></span>Issues</li>
+                <li><span><RiTeamFill /></span>Team</li>
+                <li><span><FaNoteSticky /></span>Notes</li>
+              </ul>
             </div>
           </div>
           <div className="bottom-profile">
-            {/* This is where bottom settings/logout can be placed */}
+            <ul>
+              <li><span><IoMdSettings /></span>Settings</li>
+              <li><span><IoLogOutOutline /></span>Log out</li>
+            </ul>
           </div>
         </div>
       </div>
 
+      {/* ================================== */}
+      {/* == RIGHT CONTENT AREA          == */}
+      {/* ================================== */}
       <div className="right-dash-container">
         <div className="inner-right-dash">
           <div className="head">Reported Issues 2025</div>
           <div className="filter-tab">
             <div className="left-filter">
               <ul>
-                <li>
-                  Overview{" "}
-                  <span><IoChevronDown /></span>
-                </li>
+                <li>Overview <span><IoChevronDown /></span></li>
               </ul>
             </div>
           </div>
           <div className="report-container">
+            {/* Main content area for reports */}
             <div className="inner-report">
               <div className="lower-report">
                 <div className="lower-head">
                   <ul>
-                    <li>
-                      Latest Reports{" "}
-                      <span><IoChevronDown /></span>
-                    </li>
+                    <li>Latest Reports <span><IoChevronDown /></span></li>
                   </ul>
                 </div>
+                {/* DYNAMIC REPORT GRID */}
                 <div className="lower-card-report">
                   {isLoading ? (
                     <p>Loading reports...</p>
@@ -135,6 +151,8 @@ const Detailed = () => {
                 </div>
               </div>
             </div>
+
+            {/* Right-side filter and action panel - STATIC UI */}
             <div className="inner-report-filter">
               <div className="submit-filter">
                 <button onClick={goToForm}>Upload Images</button>
