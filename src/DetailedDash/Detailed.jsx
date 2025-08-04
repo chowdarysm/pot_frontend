@@ -6,7 +6,8 @@ import "./Detailed.css";
 import profileIcon from "../assets/images/profile.png";
 
 // Icon Imports - Corrected and Organized
-import { FaMap, FaVideo, FaImage, FaFile, FaNoteSticky } from "react-icons/fa";
+import { FaMap, FaVideo, FaImage, FaFile } from "react-icons/fa";
+import { FaNoteSticky } from "react-icons/fa6"; // Corrected import for FaNoteSticky
 import { MdReportProblem, MdOutlineSupportAgent } from "react-icons/md";
 import { TbSelect } from "react-icons/tb";
 import { RiTeamFill } from "react-icons/ri";
