@@ -1,96 +1,30 @@
-.video-details-page {
-  padding: 2rem;
-  background-color: #ffffff;
-  min-height: 100vh;
+table {
+  width: 60%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: #f2f2f2;
 }
 
-.video-details-header {
-  margin-bottom: 1rem;
+th,
+td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
 }
-
-.back-button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-.back-button:hover {
-  background-color: #2980b9;
-}
-
-.video-details-title {
-  font-size: 1.75rem;
-  color: #333;
-  margin-bottom: 2rem;
-}
-
-.video-frames-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.frame-details-card {
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 15px;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.frame-details-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-}
-
-.frame-image-wrapper {
-  width: 100%;
-  padding-top: 75%; /* 4:3 Aspect Ratio */
-  position: relative;
-  background-color: #e0e0e0;
-}
-
-.frame-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.frame-info {
+.back-btn {
+  display: flex;
+  gap: 10px;
+  justify-content: left;
   padding: 1rem;
 }
-
-.frame-info p {
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.frame-info .filename {
-  color: #6c757d;
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  font-size: 1.5rem;
-  color: #6c757d;
+.back-btn button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #00b0f0;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
 }

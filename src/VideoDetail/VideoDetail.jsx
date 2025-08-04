@@ -1,34 +1,60 @@
-import React from "react";
-
-import billboardImage from "../assets/images/billboard-img.png";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./VideoDetail.css";
-import { useNavigate } from "react-router-dom";
+
 const VideoDetail = () => {
-  const videodetailData = [
-    { id: 1, title: "Frame #0001", file: "NH14_280720250.mp4" },
-    { id: 2, title: "Frame #0002", file: "NH14_280720251.mp4" },
-    { id: 3, title: "Frame #0003", file: "NH14_280720252.mp4" },
-    { id: 4, title: "Frame #0004", file: "NH14_280720253.mp4" },
-    { id: 5, title: "Frame #0005", file: "NH14_280720254.mp4" },
-  ];
+  const [videoInfo, setVideoInfo] = useState(null);
+  const [frames, setFrames] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { guid } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchVideoDetails = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/video_report/${guid}`);
+        if (response.ok) {
+          const data = await response.json();
+          setVideoInfo(data.video_info);
+          setFrames(data.detected_frames);
+        } else {
+          console.error("Failed to fetch video details");
+        }
+      } catch (error) {
+        console.error("Error fetching video details:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (guid) {
+      fetchVideoDetails();
+    }
+  }, [guid]);
+
   const goToBack = () => {
     navigate(-1);
   };
+
+  if (isLoading) {
+    return <p>Loading video details...</p>;
+  }
+
   return (
     <>
       <div className="back-btn">
         <button onClick={goToBack}>Back</button>
       </div>
       <div className="video-detail-page">
-        <h1>Video Details</h1>
+        <h1>{videoInfo ? videoInfo.video_name : "Video Details"}</h1>
         <div className="video-detail-container">
-          {videodetailData.map((item, id) => (
-            <div className="video-detail-card">
-              <img src={billboardImage} />
-              <div className="video-card-details" key={id}>
-                <span>{item.title}</span>
-                <span>Filename_{item.file}</span>
+          {frames.map((frame) => (
+            <div className="video-detail-card" key={frame.id}>
+              <img src={frame.frame_image_url} alt={`Frame ${frame.frame_number}`} />
+              <div className="video-card-details">
+                <span>Frame #{frame.frame_number}</span>
+                <span>Filename: {videoInfo ? videoInfo.video_name : ""}</span>
               </div>
             </div>
           ))}
