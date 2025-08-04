@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
 import Detailed from "./DetailedDash/Detailed";
-import Issues from "./Issues/Issues";
-import IssueProfile from "./IssueProfile/IssueProfile";
 import Report from "./Report/Report";
 import ReportForm from "./ReportForm/ReportForm";
 import Signup from "./Signup/Signup";
@@ -12,7 +10,6 @@ import Signin from "./Signin/Signin";
 import Billboards from "./Billboards/Billboards";
 import PotholeReport from "./PotholeReport/PotholeReport";
 import BillboardReport from "./BillboardReport/BillboardReport";
-import { ToastContainer } from "react-toastify";
 import Potholes from "./Potholes/Potholes";
 import Events from "./Events/Events";
 import Videos from "./Videos/Videos";
@@ -24,6 +21,7 @@ import Images from "./Images/Images";
 import ReportDetails from "./ReportDetails/ReportDetails";
 import DetailedReport from "./DetailedReport/DetailedReport";
 import Navbar from "./Navbar/Navbar";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -46,7 +44,6 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/videoreport" element={<VideoReport />} />
           <Route path="/video/:guid" element={<VideoDetail />} />
-          {/* Corrected route for image reports */}
           <Route path="/report/:guid" element={<PotholeReport />} />
           <Route path="/imagedetails" element={<ImageDetail />} />
           <Route path="/images" element={<Images />} />
