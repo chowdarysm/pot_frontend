@@ -1,57 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import './VideoDetail.css';
+import React from "react";
 
+import billboardImage from "../assets/images/billboard-img.png";
+import "./VideoDetail.css";
+import { useNavigate } from "react-router-dom";
 const VideoDetail = () => {
-  const { guid } = useParams();
-  const [videoReport, setVideoReport] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (guid) {
-      fetchVideoReport();
-    }
-  }, [guid]);
-
-  const fetchVideoReport = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/video_report/${guid}`);
-      if (response.ok) {
-        const data = await response.json();
-        setVideoReport(data);
-      } else {
-        console.error('Failed to fetch video report');
-        setVideoReport(null);
-      }
-    } catch (error) {
-      console.error('Error fetching video report:', error);
-    } finally {
-      setIsLoading(false);
-    }
+  const videodetailData = [
+    { id: 1, title: "Frame #0001", file: "NH14_280720250.mp4" },
+    { id: 2, title: "Frame #0002", file: "NH14_280720251.mp4" },
+    { id: 3, title: "Frame #0003", file: "NH14_280720252.mp4" },
+    { id: 4, title: "Frame #0004", file: "NH14_280720253.mp4" },
+    { id: 5, title: "Frame #0005", file: "NH14_280720254.mp4" },
+  ];
+  const navigate = useNavigate();
+  const goToBack = () => {
+    navigate(-1);
   };
-
-  if (isLoading) return <p>Loading video details...</p>;
-  if (!videoReport) return <p>Video report not found.</p>;
-
   return (
-    <div className="video-detail-container">
-      <h1>{videoReport.video_info.video_name}</h1>
-      <p>Status: {videoReport.video_info.status}</p>
-      <h2>Detected Frames (Latest 15)</h2>
-      <div className="frame-grid">
-        {videoReport.detected_frames.length > 0 ? (
-          videoReport.detected_frames.map((frame) => (
-            <div className="frame-item" key={frame.id}>
-              <img src={frame.frame_image_url} alt={`Frame ${frame.frame_number}`} />
-              <p>Frame #{frame.frame_number}</p>
-            </div>
-          ))
-        ) : (
-          <p>No frames with detected potholes in this video yet.</p>
-        )}
+    <>
+      <div className="back-btn">
+        <button onClick={goToBack}>Back</button>
       </div>
-    </div>
+      <div className="video-detail-page">
+        <h1>Video Details</h1>
+        <div className="video-detail-container">
+          {videodetailData.map((item, id) => (
+            <div className="video-detail-card">
+              <img src={billboardImage} />
+              <div className="video-card-details" key={id}>
+                <span>{item.title}</span>
+                <span>Filename_{item.file}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

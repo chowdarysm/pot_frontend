@@ -1,115 +1,176 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import homeImage from "../assets/images/home.png";
+import { MdPhotoCamera } from "react-icons/md";
+import { FaBrain } from "react-icons/fa6";
+import { SiTicktick } from "react-icons/si";
+import { MdReportProblem } from "react-icons/md";
+import { FaFile } from "react-icons/fa";
+import { FaVideo } from "react-icons/fa";
+import { FaImage } from "react-icons/fa";
+import { MdOutlineSupportAgent } from "react-icons/md";
+
+import highwayImage from "../assets/images/highway.png";
+import constructionImage from "../assets/images/construction.png";
+import billboardImage from "../assets/images/billboard-img.png";
+import potholeImage from "../assets/images/pothole.png";
 import "./Home.css";
-import construction from "../assets/images/construction.png";
-import highway from "../assets/images/highway.png";
-
+import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const [imageReports, setImageReports] = useState([]);
-  const [videoReports, setVideoReports] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchReports();
-  }, []);
-
-  const fetchReports = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/home_reports`);
-      if (response.ok) {
-        const data = await response.json();
-        setImageReports(data.image_reports || []);
-        setVideoReports(data.video_reports || []);
-      } else {
-        console.error("Failed to fetch reports");
-        setImageReports([]);
-        setVideoReports([]);
-      }
-    } catch (error) {
-      console.error("Error fetching reports:", error);
-    } finally {
-      setIsLoading(false);
+  const homeData = [
+    {
+      id: 1,
+      title: "Total Billboards Detected",
+      count: 1234,
+    },
+    {
+      id: 2,
+      title: "Unauthorized Billboards",
+      count: 30,
+    },
+    {
+      id: 3,
+      title: "Potholes Identified ",
+      count: 56,
+    },
+    {
+      id: 4,
+      title: "Construction Zones Identified",
+      count: 8,
+    },
+    {
+      id: 5,
+      title: "Missing/Damaged Guardrails Detected",
+      count: 14,
+    },
+  ];
+  const featureData = [
+    { id: 1, icon: MdPhotoCamera, title: "Real-Time Image/Video Capture" },
+    { id: 2, icon: MdReportProblem, title: "Real-Time Reports" },
+    { id: 3, icon: MdOutlineSupportAgent, title: "Events History" },
+    {
+      id: 4,
+      icon: FaVideo,
+      title: "Videos",
+    },
+    { id: 5, icon: FaImage, title: "Images" },
+  ];
+  const updatesData = [
+    {
+      id: 1,
+      image: potholeImage,
+      location: "Downtown Avenue",
+      timestamp: "2023-10-25 14:30",
+      category: "Pothole",
+    },
+    {
+      id: 2,
+      image: billboardImage,
+      location: "Market Street",
+      timestamp: "2023-10-25 10:15",
+      category: "Unauthorised Billboard",
+    },
+    {
+      id: 3,
+      image: highwayImage,
+      location: "Downtown Main Street",
+      timestamp: "2023-10-25 12:00",
+      category: "Construction Zone",
+    },
+    {
+      id: 4,
+      image: constructionImage,
+      location: "Highway 65 Northbound",
+      timestamp: "2023-10-25 09:45",
+      category: "Missing Gaurdrails",
+    },
+  ];
+  const navigate = useNavigate();
+  const handlePage = (Icon) => {
+    if (Icon === MdPhotoCamera) {
+      // console.log("Camera is clicked");
+      navigate("/form");
+    } else if (Icon === MdReportProblem) {
+      navigate("/reportdetails");
+    } else if (Icon === MdOutlineSupportAgent) {
+      navigate("/events");
+    } else if (Icon === FaVideo) {
+      navigate("/videos");
+    } else if (Icon === FaImage) {
+      navigate("/images");
     }
   };
-
   return (
-    <div className="home-container">
-      <div className="main-content">
-        <div className="home-header">
-          <h1>Dashboard</h1>
-          <p>Welcome to the City Monitoring Dashboard</p>
+    <>
+      <div className="homepage-container">
+        <div className="home-img-container">
+          <img src={homeImage} />
+          <h1>AI-Powered Road Monitoring and traffic control</h1>
         </div>
-        <div className="stats-cards">
-          <div className="card">
-            <img src={construction} alt="Construction" />
-            <div>
-              <p>Total Reports</p>
-              <h2>{imageReports.length + videoReports.length}</h2>
+        <div className="home-data-container">
+          {homeData.map((item, id) => (
+            <div className="home-data-card" key={id}>
+              <span
+                style={{ fontSize: "1.1rem", fontWeight: "500", width: "100%" }}
+              >
+                {item.title}
+              </span>
+              <span style={{ fontSize: "1.4rem", fontWeight: "800" }}>
+                {item.count}
+              </span>
             </div>
-          </div>
-          <div className="card">
-            <img src={highway} alt="Highway" />
-            <div>
-              <p>Resolved</p>
-              <h2>{[...imageReports, ...videoReports].filter(r => r.status === 'Closed').length}</h2>
-            </div>
+          ))}
+        </div>
+        <div className="feature-container">
+          <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
+            System Features
+          </h1>
+          <div className="feature-card-container">
+            {featureData.map(({ id, icon: Icon, title }) => (
+              <div
+                className="feature-card"
+                key={id}
+                onClick={() => handlePage(Icon)}
+              >
+                <span
+                  color={"#80E612"}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "1.3rem",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Icon />
+                </span>
+                <span style={{ fontStyle: "1rem", fontWeight: "600" }}>
+                  {title}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="reports-section">
-          <h2>Recent Reports</h2>
-          <div className="reports-table">
-            <div className="table-header">
-              <span>Report ID</span>
-              <span>Type</span>
-              <span>Date</span>
-              <span>Status</span>
-              <span>Details</span>
-            </div>
-            {isLoading ? (
-              <p>Loading reports...</p>
-            ) : (
-              <>
-                {videoReports.map((report) => (
-                  <div className="table-row" key={`video-${report.guid}`}>
-                    <span>{report.guid.substring(0, 8)}...</span>
-                    <span>Video</span>
-                    <span>{new Date(report.created_at).toLocaleDateString()}</span>
-                    <span>
-                      <span className={`status ${report.status?.toLowerCase().replace(" ", "-")}`}>
-                        {report.status || "N/A"}
-                      </span>
-                    </span>
-                    <span>
-                      <Link to={`/videos/${report.guid}`} className="details-link">
-                        View
-                      </Link>
-                    </span>
-                  </div>
-                ))}
-                {imageReports.map((report) => (
-                  <div className="table-row" key={`image-${report.guid}`}>
-                    <span>{report.guid.substring(0, 8)}...</span>
-                    <span>Image</span>
-                    <span>{new Date(report.created_at).toLocaleDateString()}</span>
-                    <span>
-                      <span className={`status ${report.status?.toLowerCase().replace(" ", "-")}`}>
-                        {report.status}
-                      </span>
-                    </span>
-                    <span>
-                      <Link to={`/reports/${report.guid}`} className="details-link">
-                        View
-                      </Link>
-                    </span>
-                  </div>
-                ))}
-              </>
-            )}
+        <div className="updates-container">
+          <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
+            Recent Updates
+          </h1>
+          <div className="update-card-container">
+            {updatesData.map((item, id) => (
+              <div className="update-card" key={id}>
+                <div className="update-img">
+                  <img src={item.image} />
+                </div>
+                <div className="update-card-detail">
+                  <span>Location: {item.location}</span>
+                  <span>Timestamp: {item.timestamp}</span>
+                  <span>Category: {item.category}</span>
+                </div>
+                <p></p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
