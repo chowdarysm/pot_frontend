@@ -32,8 +32,29 @@ const VideoReport = () => {
     }
   };
 
-  if (isLoading) return <div className="loading-container">Loading Video Details...</div>;
-  if (!report || !report.video_info) return <div className="loading-container">Video Report Not Found.</div>;
+  if (isLoading) {
+    return (
+      <div className="video-details-page">
+        <div className="video-details-header">
+          <button onClick={() => navigate(-1)} className="back-button">Back</button>
+        </div>
+        <h1 className="video-details-title">Video Details</h1>
+        <div className="loading-container">Loading Video Details...</div>
+      </div>
+    );
+  }
+
+  if (!report || !report.video_info) {
+    return (
+      <div className="video-details-page">
+        <div className="video-details-header">
+          <button onClick={() => navigate(-1)} className="back-button">Back</button>
+        </div>
+        <h1 className="video-details-title">Video Details</h1>
+        <div className="loading-container">Video Report Not Found.</div>
+      </div>
+    );
+  }
 
   return (
     <div className="video-details-page">
