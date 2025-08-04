@@ -33,7 +33,7 @@ const VideoReport = () => {
   };
 
   if (isLoading) return <div className="loading-container">Loading Video Details...</div>;
-  if (!report) return <div className="loading-container">Video Report Not Found.</div>;
+  if (!report || !report.video_info) return <div className="loading-container">Video Report Not Found.</div>;
 
   return (
     <div className="video-details-page">
