@@ -68,14 +68,10 @@ const ReportForm = () => {
         const result = await response.json();
         toast.success("File submitted successfully! Processing has started.");
         
-        // Navigate to the correct detail page based on file type
-        if (isVideo) {
-            // The video endpoint returns a video_guid
-            navigate(`/video/${result.video_guid}`);
-        } else {
-            // The image endpoint returns a guid
-            navigate(`/report/${result.guid}`);
-        }
+        // --- MODIFIED REDIRECT ---
+        // Navigate to the general video report page as requested
+        navigate("/videoreport");
+
       } else {
         const errorData = await response.json();
         toast.error(`Submission failed: ${errorData.detail || "Unknown error"}`);
