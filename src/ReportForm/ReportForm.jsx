@@ -47,24 +47,35 @@ const ReportForm = () => {
 
     setIsProcessing(true);
 
-    // Create a FormData object to send file and text data together
+    const isVideo = file.type.startsWith('video/');
+    const endpoint = isVideo ? '/upload_video' : '/upload';
     const submissionData = new FormData();
     submissionData.append("file", file);
-    submissionData.append("category", formData.category);
-    submissionData.append("location", formData.location);
-    // Note: Description is not sent as per the requirement
+
+    // Only add category and location for images, as the video endpoint doesn't accept them
+    if (!isVideo) {
+        submissionData.append("category", formData.category);
+        submissionData.append("location", formData.location);
+    }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/upload`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}${endpoint}`, {
         method: "POST",
         body: submissionData,
       });
 
       if (response.ok) {
         const result = await response.json();
-        toast.success("Report submitted successfully!");
-        // Navigate to the detail page of the newly created report
-        navigate(`/report/${result.guid}`);
+        toast.success("File submitted successfully! Processing has started.");
+        
+        // Navigate to the correct detail page based on file type
+        if (isVideo) {
+            // The video endpoint returns a video_guid
+            navigate(`/video/${result.video_guid}`);
+        } else {
+            // The image endpoint returns a guid
+            navigate(`/report/${result.guid}`);
+        }
       } else {
         const errorData = await response.json();
         toast.error(`Submission failed: ${errorData.detail || "Unknown error"}`);
@@ -133,11 +144,18 @@ const ReportForm = () => {
                 value={formData.description}
               ></textarea>
             </div>
+            {/* --- CORRECTED FILE INPUT --- */}
             <div className="upload">
-              <label className="custom-file-input">
+              <label htmlFor="fileInput" className="custom-file-input">
                 Select File
-                <input type="file" id="fileInput" onChange={handleFileChange} accept="image/*,video/*" />
               </label>
+              <input 
+                type="file" 
+                id="fileInput" 
+                onChange={handleFileChange} 
+                accept="image/*,video/*"
+                style={{ display: 'none' }} // Hide the default input
+              />
               <span className="file-name" id="fileName">
                 {fileName}
               </span>
@@ -155,4 +173,3 @@ const ReportForm = () => {
 };
 
 export default ReportForm;
-
