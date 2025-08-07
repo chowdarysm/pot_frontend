@@ -1,47 +1,51 @@
-import React from "react";
-import billboardImage from "../assets/images/billboard-img.png";
-import "./Images.css";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Images.css";
+
 const Images = () => {
   const navigate = useNavigate();
-  const imageData = [
-    {
-      id: 1,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-    {
-      id: 2,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-    {
-      id: 3,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-    {
-      id: 4,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-    {
-      id: 5,
-      timestamp: "2023-10-25 09:45",
-      coordinates: "37.7749, -122.4194 San Francisco, USA",
-      cameraId: 1234,
-    },
-  ];
-  const handleClick = () => {
-    navigate("/imagedetails");
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(5);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/images`);
+        if (response.ok) {
+          const data = await response.json();
+          // The data is already sorted by date from the backend
+          setImages(data);
+        } else {
+          console.error("Failed to fetch images");
+        }
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchImages();
+  }, []);
+
+  const handleCardClick = (guid) => {
+    // Navigate to the specific report detail page for the clicked image
+    navigate(`/report/${guid}`);
   };
+  
+  const handleViewMore = () => {
+    // Increase the number of visible images by 5
+    setVisibleCount(prevCount => prevCount + 5);
+  };
+
   const goToBack = () => {
     navigate(-1);
   };
+  
+  // Create a slice of the images array to only show the visible ones
+  const visibleImages = images.slice(0, visibleCount);
+
   return (
     <>
       <div className="back-btn">
@@ -50,30 +54,40 @@ const Images = () => {
       <div className="image-container">
         <div className="image-head">
           <h1>Images Dashboard</h1>
-          <select name="" id="">
+          <select name="sort" id="sort">
             <option value="">Sort by</option>
-            <option value="">Newest first</option>
+            <option value="newest">Newest first</option>
           </select>
         </div>
-        <div className="image-card-container">
-          {imageData.map((item, id) => (
-            <div
-              className="image-card"
-              onClick={handleClick}
-              style={{ cursor: "pointer" }}
-            >
-              <img src={billboardImage} />
-              <div className="image-card-details" key={id}>
-                <span>Timestamp: {item.timestamp}</span>
-                <span>Coordinates: {item.coordinates}</span>
-                <span>CameraId: {item.cameraId}</span>
+        
+        {isLoading ? (
+          <p>Loading images...</p>
+        ) : (
+          <div className="image-card-container">
+            {visibleImages.map((item) => (
+              <div
+                className="image-card"
+                key={item.guid}
+                onClick={() => handleCardClick(item.guid)}
+                style={{ cursor: "pointer" }}
+              >
+                <img src={item.image_url} alt={item.image_name} />
+                <div className="image-card-details">
+                  <span>Timestamp: {new Date(item.created_at).toLocaleString()}</span>
+                  <span>Location: {item.location_text || "N/A"}</span>
+                  <span>Status: {item.status}</span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-        <div className="more-image">
-          <button>View More</button>
-        </div>
+            ))}
+          </div>
+        )}
+
+        {/* Only show the "View More" button if there are more images to display */}
+        {!isLoading && visibleCount < images.length && (
+          <div className="more-image">
+            <button onClick={handleViewMore}>View More</button>
+          </div>
+        )}
       </div>
     </>
   );
