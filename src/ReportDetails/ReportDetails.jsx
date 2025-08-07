@@ -2,41 +2,36 @@ import React, { useState } from "react";
 import { FaRoad } from "react-icons/fa";
 import piechartImage from "../assets/images/piechart.png";
 import bargraphImage from "../assets/images/bargraph.png";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ReportDetails.css";
+
 const ReportDetails = () => {
   const navigate = useNavigate();
+  const [issueCategory, setIssueCategory] = useState("");
+  const [reportType, setReportType] = useState("");
+
   const reportdashData = [
     { id: 1, title: "Billboards", color: "#E1F2CE" },
     { id: 2, title: "Potholes", color: "#D4F4F9" },
     { id: 3, title: "Construction Sites", color: "#80e517" },
     { id: 4, title: "Guardrails", color: "black" },
   ];
-  const [category, setCategory] = useState("");
+
   const handleGenerate = () => {
-    if (category === "detailed") {
-      navigate("/detailedreport");
+    if (reportType === "detailed" && issueCategory) {
+      // Pass the category as a URL parameter
+      navigate(`/detailedreport?category=${issueCategory}`);
+    } else {
+        alert("Please select an issue category and the 'Detailed' report type.");
     }
   };
+
   const goToBack = () => {
     navigate(-1);
   };
+
   return (
     <>
-      {/* <div className="report-details-navbar">
-        <Link
-          to={"/home"}
-          className="nav"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <span style={{ paddingTop: "3px" }}>
-            <FaRoad />
-          </span>
-          <span>PROACTIX Reports</span>
-        </Link>
-       
-      </div> */}
       <div className="back-btn">
         <button onClick={goToBack}>Back</button>
       </div>
@@ -72,16 +67,18 @@ const ReportDetails = () => {
             <h2>Generate Reports</h2>
             <div className="sort-filter">
               <div className="issue-category">
-                <label htmlFor="Issue Categories">Issue Categories</label>
+                <label htmlFor="issue-categories">Issue Categories</label>
                 <select
                   name="category"
-                  id="category"
+                  id="issue-categories"
                   style={{
                     padding: "10px",
                     border: "none",
                     boxShadow: " 0 0 12px rgba(0, 0, 0, 0.1)",
                     borderRadius: "20px",
                   }}
+                  onChange={(e) => setIssueCategory(e.target.value)}
+                  value={issueCategory}
                 >
                   <option value="">Select category</option>
                   <option value="billboard">Billboards</option>
@@ -91,17 +88,18 @@ const ReportDetails = () => {
                 </select>
               </div>
               <div className="report-category">
-                <label htmlFor="">Report Type</label>
+                <label htmlFor="report-type">Report Type</label>
                 <select
-                  name="category"
-                  id="category"
+                  name="reportType"
+                  id="report-type"
                   style={{
                     padding: "10px",
                     border: "none",
                     boxShadow: " 0 0 12px rgba(0, 0, 0, 0.1)",
                     borderRadius: "20px",
                   }}
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={(e) => setReportType(e.target.value)}
+                  value={reportType}
                 >
                   <option value="">Select Report</option>
                   <option value="summary">Summary</option>
@@ -130,11 +128,10 @@ const ReportDetails = () => {
                 </h2>
                 <div className="report-dash-img">
                   <div className="dash-img">
-                    <img src={piechartImage} />
+                    <img src={piechartImage} alt="pie chart"/>
                   </div>
-
                   <div className="dash-img">
-                    <img src={bargraphImage} />
+                    <img src={bargraphImage} alt="bar graph"/>
                   </div>
                 </div>
               </div>
