@@ -3,8 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./DetailedReport.css";
 
 const DetailedReport = () => {
-  const [reportData, setReportData] = useState(null);
+  const [reportData, setReportData] = useState([]); // Initialize with an empty array
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null); // State to hold any fetch errors
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -13,23 +14,26 @@ const DetailedReport = () => {
   const category = queryParams.get("category");
 
   useEffect(() => {
+    // Only fetch if a category is present
     if (!category) {
+      setError("No category was selected.");
       setIsLoading(false);
       return;
     }
 
     const fetchDetailedReport = async () => {
       setIsLoading(true);
+      setError(null); // Reset error on a new fetch
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/detailed_report_data?category=${category}`);
-        if (response.ok) {
-          const data = await response.json();
-          setReportData(data);
-        } else {
-          console.error("Failed to fetch detailed report");
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status}`);
         }
-      } catch (error) {
-        console.error("Error fetching detailed report:", error);
+        const data = await response.json();
+        setReportData(data);
+      } catch (err) {
+        console.error("Error fetching detailed report:", err);
+        setError(err.message); // Store the error message to display to the user
       } finally {
         setIsLoading(false);
       }
@@ -43,25 +47,30 @@ const DetailedReport = () => {
     return `Detailed ${cat.charAt(0).toUpperCase() + cat.slice(1)} Report`;
   };
 
+  // Show a loading message while fetching data
   if (isLoading) {
-    return <p>Loading detailed report...</p>;
+    return <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading detailed report...</p>;
   }
   
-  if (!category || !reportData) {
+  // Show a clear error message if the fetch failed
+  if (error) {
     return (
-        <div>
-            <p>No category selected or no data found.</p>
-            <button onClick={() => navigate(-1)}>Go Back</button>
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <h2>Could Not Load Report</h2>
+            <p>Error: {error}</p>
+            <button onClick={() => navigate(-1)} style={{marginTop: '1rem'}}>Go Back</button>
         </div>
     );
   }
 
   return (
     <>
+      <div className="back-btn" style={{ padding: '1rem', textAlign: 'left' }}>
+        <button onClick={() => navigate(-1)}>Back</button>
+      </div>
       <div className="detailed-report-container">
         <div className="billboard-data">
           <h1>{getCategoryTitle(category)}</h1>
-          {/* The summary table can be made dynamic later if needed */}
           <table>
             <thead>
               <tr><th colSpan={4}>Summary</th></tr>
@@ -97,14 +106,20 @@ const DetailedReport = () => {
                 </tr>
               </thead>
               <tbody>
-                {reportData.map((item) => (
-                  <tr key={item.guid}>
-                    <td>{new Date(item.created_at).toLocaleDateString()}</td>
-                    <td>{item.image_name}</td>
-                    <td>{item.location_text || "N/A"}</td>
-                    <td><a href={item.image_url} target="_blank" rel="noopener noreferrer">Click Here</a></td>
+                {reportData.length > 0 ? (
+                  reportData.map((item) => (
+                    <tr key={item.guid}>
+                      <td>{new Date(item.created_at).toLocaleDateString()}</td>
+                      <td>{item.image_name}</td>
+                      <td>{item.location_text || "N/A"}</td>
+                      <td><a href={item.image_url} target="_blank" rel="noopener noreferrer">Click Here</a></td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" style={{ textAlign: 'center' }}>No reports found for this category.</td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
