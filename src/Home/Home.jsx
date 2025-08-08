@@ -16,6 +16,7 @@ import "./Home.css";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [reportData, setReportData] = useState([]); // Initialize with an empty array
+  const [reportData2, setReportData2] = useState([]); // Initialize with an empty array
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null); // State to hold any fetch errors
 
@@ -41,7 +42,29 @@ useEffect(() => {
   };
 
     fetchDetailedReport();
+
+ const fetchTotalPotholes = async () => {
+    setIsLoading(true);
+    setError(null); // Reset error on a new fetch
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/get_pothole_reports`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.status}`);
+      }
+      const data = await response.json();
+      setReportData2(data);
+    } catch (err) {
+      console.error("Error fetching detailed report:", err);
+      setError(err.message); // Store the error message to display to the user
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+    fetchTotalPotholes();
   }, []);
+
+
   const homeData = [
     {
       id: 1,
@@ -55,7 +78,7 @@ useEffect(() => {
     {
       id: 3,
       title: "Potholes Identified ",
-      count: 56,
+      count: reportData2.length || 0,
     },
     {
       id: 4,
