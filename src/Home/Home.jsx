@@ -1,4 +1,3 @@
-import React from "react";
 import homeImage from "../assets/images/home.png";
 import { MdPhotoCamera } from "react-icons/md";
 import { FaBrain } from "react-icons/fa6";
@@ -8,7 +7,7 @@ import { FaFile } from "react-icons/fa";
 import { FaVideo } from "react-icons/fa";
 import { FaImage } from "react-icons/fa";
 import { MdOutlineSupportAgent } from "react-icons/md";
-
+import React, { useState, useEffect } from "react";
 import highwayImage from "../assets/images/highway.png";
 import constructionImage from "../assets/images/construction.png";
 import billboardImage from "../assets/images/billboard-img.png";
@@ -16,17 +15,43 @@ import potholeImage from "../assets/images/pothole.png";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const [reportData, setReportData] = useState([]); // Initialize with an empty array
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null); // State to hold any fetch errors
+
+
+useEffect(() => {
+
+  const fetchDetailedReport = async () => {
+    setIsLoading(true);
+    setError(null); // Reset error on a new fetch
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/detailed_report_data?category=${"billboard"}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.status}`);
+      }
+      const data = await response.json();
+      setReportData(data);
+    } catch (err) {
+      console.error("Error fetching detailed report:", err);
+      setError(err.message); // Store the error message to display to the user
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+    fetchDetailedReport();
+  }, []);
   const homeData = [
     {
       id: 1,
       title: "Total Billboards Detected",
-      count: 1234,
+      count: reportData.length || 0, 
     },
     {
       id: 2,
       title: "Unauthorized Billboards",
-      count: 30,
-    },
+    count: reportData.filter(item => item.approved === 0).length,    },
     {
       id: 3,
       title: "Potholes Identified ",
@@ -103,7 +128,7 @@ const Home = () => {
     <>
       <div className="homepage-container">
         <div className="home-img-container">
-          <img src={homeImage} />
+          <img src={homeImage} alt="Home" />
           <h1>AI-Powered Road Monitoring and traffic control</h1>
         </div>
         <div className="home-data-container">
