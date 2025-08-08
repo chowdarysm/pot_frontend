@@ -95,3 +95,9 @@ input[type="file"] {
   color: white;
   cursor: pointer;
 }
+.location-input {
+  width: 30%;
+}
+.location-example {
+  font-size: 14px;
+}

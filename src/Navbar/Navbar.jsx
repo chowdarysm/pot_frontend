@@ -4,12 +4,14 @@ import profileIcon from "../assets/images/profile.png";
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import "./Navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef();
 
@@ -28,6 +30,10 @@ const Navbar = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userName = storedUser.name;
   const userEmail = storedUser.email;
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
   return (
     <>
       <div className="navbar-page">
@@ -103,37 +109,7 @@ const Navbar = () => {
                       </p>
                     </span>
                   </li>
-                  {/* 
-                  
-                  <div className="profile">
-                <img src={profileIcon} />
-                <div className="profile-details">
-                  <p style={{ fontSize: "1rem", fontWeight: "700" }}>
-                    {userName}
-                  </p>
-                  <p style={{ fontSize: "12px", fontWeight: "600" }}>
-                    {userEmail}
-                  </p>
-                </div>
-                
-                .profile {
-    display: flex;
-   
-    margin: 0.8rem;
-    background-color: gray;
-    border-radius: 20px;
-    padding: 10px;
-  }
-  .profile-details {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-  }
-  .profile-img-icon {
-    align-self: center;
-  }
-                
-                  */}
+
                   <li className="dropdown-item">
                     <span className="dropdown-icon">
                       <IoSettingsSharp />
@@ -141,7 +117,7 @@ const Navbar = () => {
 
                     <span>Settings</span>
                   </li>
-                  <li className="dropdown-item">
+                  <li className="dropdown-item" onClick={handleLogout}>
                     <span className="dropdown-icon">
                       <IoLogOutOutline />
                     </span>

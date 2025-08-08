@@ -6,12 +6,12 @@ import "./ReportForm.css";
 
 const ReportForm = () => {
   const navigate = useNavigate();
-  
+
   // State to hold all form data
   const [formData, setFormData] = useState({
     category: "",
     location: "",
-    description: ""
+    description: "",
   });
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("No file chosen");
@@ -20,9 +20,9 @@ const ReportForm = () => {
   // Handle text and select input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -47,34 +47,38 @@ const ReportForm = () => {
 
     setIsProcessing(true);
 
-    const isVideo = file.type.startsWith('video/');
-    const endpoint = isVideo ? '/upload_video' : '/upload';
+    const isVideo = file.type.startsWith("video/");
+    const endpoint = isVideo ? "/upload_video" : "/upload";
     const submissionData = new FormData();
     submissionData.append("file", file);
 
     // Only add category and location for images, as the video endpoint doesn't accept them
     if (!isVideo) {
-        submissionData.append("category", formData.category);
-        submissionData.append("location", formData.location);
+      submissionData.append("category", formData.category);
+      submissionData.append("location", formData.location);
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}${endpoint}`, {
-        method: "POST",
-        body: submissionData,
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}${endpoint}`,
+        {
+          method: "POST",
+          body: submissionData,
+        }
+      );
 
       if (response.ok) {
         const result = await response.json();
         toast.success("File submitted successfully! Processing has started.");
-        
+
         // --- MODIFIED REDIRECT ---
         // Navigate to the general video report page as requested
         navigate("/videoreport");
-
       } else {
         const errorData = await response.json();
-        toast.error(`Submission failed: ${errorData.detail || "Unknown error"}`);
+        toast.error(
+          `Submission failed: ${errorData.detail || "Unknown error"}`
+        );
       }
     } catch (error) {
       toast.error(`An error occurred: ${error.message}`);
@@ -98,11 +102,21 @@ const ReportForm = () => {
             <h1>Submit a New Image/Video</h1>
           </div>
           <div className="input-form">
-            <div className="category" style={{ display: "flex", gap: "3rem", marginTop: "1.2rem" }}>
+            <div
+              className="category"
+              style={{ display: "flex", gap: "3rem", marginTop: "1.2rem" }}
+            >
               <label htmlFor="category" style={{ paddingTop: "5px" }}>
                 Category
               </label>
-              <select name="category" id="category" style={{ padding: "8px" }} onChange={handleChange} value={formData.category} required>
+              <select
+                name="category"
+                id="category"
+                style={{ padding: "8px" }}
+                onChange={handleChange}
+                value={formData.category}
+                required
+              >
                 <option value="">Select category</option>
                 <option value="billboard">Billboards</option>
                 <option value="potholes">Potholes</option>
@@ -111,10 +125,28 @@ const ReportForm = () => {
               </select>
             </div>
             <br />
-            <div className="location" style={{ display: "flex", marginTop: "1rem", gap: "3.1rem" }}>
+            <div
+              className="location"
+              style={{ display: "flex", marginTop: "1rem", gap: "3.1rem" }}
+            >
               <label htmlFor="location" style={{ paddingTop: "5px" }}>
                 Location
               </label>
+              {/* <div className="location-input">
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  placeholder="e.g., 32° 18.385’ N 122° 36.875’ W or street address"
+                  className="form-input"
+                  onChange={handleChange}
+                  value={formData.location}
+                  required
+                />
+                <p className="location-example">
+                  e.g., 32° 18.385’ N 122° 36.875 W
+                </p>
+              </div> */}
               <input
                 type="text"
                 id="location"
@@ -126,7 +158,10 @@ const ReportForm = () => {
               />
             </div>
             <br />
-            <div className="description" style={{ display: "flex", gap: "2rem" }}>
+            <div
+              className="description"
+              style={{ display: "flex", gap: "2rem" }}
+            >
               <label htmlFor="description" style={{ paddingTop: "5px" }}>
                 Description
               </label>
@@ -145,12 +180,12 @@ const ReportForm = () => {
               <label htmlFor="fileInput" className="custom-file-input">
                 Select File
               </label>
-              <input 
-                type="file" 
-                id="fileInput" 
-                onChange={handleFileChange} 
+              <input
+                type="file"
+                id="fileInput"
+                onChange={handleFileChange}
                 accept="image/*,video/*"
-                style={{ display: 'none' }} // Hide the default input
+                style={{ display: "none" }} // Hide the default input
               />
               <span className="file-name" id="fileName">
                 {fileName}
