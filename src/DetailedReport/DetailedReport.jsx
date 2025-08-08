@@ -96,7 +96,7 @@ const DetailedReport = () => {
             <table>
               <thead>
                 <tr>
-                  <th colSpan={4}>Detail (Showing 5 Most Recent)</th>
+                  <th colSpan={4}>Detailed </th>
                 </tr>
                 <tr>
                   <th>Last processed date</th>
