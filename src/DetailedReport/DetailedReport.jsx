@@ -226,6 +226,7 @@ const DetailedReport = () => {
                   <th>Last processed date</th>
                   <th>File name</th>
                   <th>Location</th>
+                  <th>Is Approved</th>
                   <th>Image File</th>
                 </tr>
               </thead>
@@ -235,6 +236,7 @@ const DetailedReport = () => {
                     <tr key={item.guid}>
                       <td>{new Date(item.created_at).toLocaleDateString()}</td>
                       <td>{item.image_name}</td>
+                       <td>Yes</td>
                       <td>{item.location_text || "N/A"}</td>
                       <td>
                         <a
