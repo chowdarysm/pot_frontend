@@ -236,8 +236,8 @@ const DetailedReport = () => {
                     <tr key={item.guid}>
                       <td>{new Date(item.created_at).toLocaleDateString()}</td>
                       <td>{item.image_name}</td>
-                       <td>Yes</td>
                       <td>{item.location_text || "N/A"}</td>
+                      <td>{item.approved === 1 ? "Yes" : "No"}</td>
                       <td>
                         <a
                           href={item.image_url}
