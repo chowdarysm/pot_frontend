@@ -46,6 +46,7 @@ const DetailedReport = () => {
 
   const getCategoryTitle = (cat) => {
     if (!cat) return "Detailed Report";
+
     return `Detailed ${cat.charAt(0).toUpperCase() + cat.slice(1)} Report`;
   };
 
@@ -57,7 +58,7 @@ const DetailedReport = () => {
       </p>
     );
   }
-
+  console.log(getCategoryTitle(category));
   // Show a clear error message if the fetch failed
   if (error) {
     return (
@@ -75,16 +76,144 @@ const DetailedReport = () => {
     <>
       <div className="back-btn" style={{ padding: "1rem", textAlign: "left" }}>
         <button onClick={() => navigate(-1)}>Back</button>
-      </div>       
+      </div>
 
       <div className="detailed-report-container">
-         if (getCategoryTitle(category) == "Potholes" )
-         {<h1>{getCategoryTitle(category)}1</h1>}
-         else
-         { <h1>{getCategoryTitle(category)}2</h1>}         
-
         <div className="billboard-data">
-         <h1>{getCategoryTitle(category)}...</h1>
+          <h1>getCategoryTitle(category)</h1>
+          {getCategoryTitle(category) === "Potholes" ||
+          getCategoryTitle === "Construction" ? (
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={1}>Summary</th>
+                </tr>
+                <tr>
+                  <th>Total Detected</th>
+                  {/* <th>Approved</th>
+                  <th>Unapproved</th>
+                  <th>Damage</th> */}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{reportData.length}</td>
+                  {/* <td>
+                    {reportData.filter((item) => item.approved === 1).length}
+                  </td>
+                  <td>
+                    {reportData.filter((item) => item.approved === 0).length}
+                  </td>
+                  <td>0</td> */}
+                </tr>
+              </tbody>
+            </table>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={4}>Summary</th>
+                </tr>
+                <tr>
+                  <th>Total Detected</th>
+                  <th>Approved</th>
+                  <th>Unapproved</th>
+                  <th>Damage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{reportData.length}</td>
+                  <td>
+                    {reportData.filter((item) => item.approved === 1).length}
+                  </td>
+                  <td>
+                    {reportData.filter((item) => item.approved === 0).length}
+                  </td>
+                  <td>0</td>
+                </tr>
+              </tbody>
+            </table>
+          )}
+          {/* <h1>getCategoryTitle(category)</h1> */}
+          {/* {getCategoryTitle(category) === "Pothole" ||
+          getCategoryTitle(category) === "Construction" ? (
+            <>
+            <h1>{getCategoryTitle(category)}</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={1}>Summary</th>
+                </tr>
+                <tr>
+                  <th>Total Detected</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{reportData.length}</td>
+                  
+                </tr>
+              </tbody>
+            </table></>
+            
+          ) : (
+            <>
+            <h1>{getCategoryTitle(category)}</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={4}>Summary</th>
+                </tr>
+                <tr>
+                  <th>Total Detected</th>
+                  <th>Approved</th>
+                  <th>Unapproved</th>
+                  <th>Damage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{reportData.length}</td>
+                  <td>
+                    {reportData.filter((item) => item.approved === 1).length}
+                  </td>
+                  <td>
+                    {reportData.filter((item) => item.approved === 0).length}
+                  </td>
+                  <td>0</td>
+                </tr>
+              </tbody>
+            </table>
+            </>
+            
+          )} */}
+          {/* <table>
+            <thead>
+              <tr>
+                <th colSpan={4}>Summary</th>
+              </tr>
+              <tr>
+                <th>Total Detected</th>
+                <th>Approved</th>
+                <th>Unapproved</th>
+                <th>Damage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{reportData.length}</td>
+                <td>
+                  {reportData.filter((item) => item.approved === 1).length}
+                </td>
+                <td>
+                  {reportData.filter((item) => item.approved === 0).length}
+                </td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table> */}
         </div>
         <div className="detailed-report-data-container">
           <div className="detailed-report-data">
