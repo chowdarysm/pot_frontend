@@ -46,7 +46,7 @@ const DetailedReport = () => {
 
   const getCategoryTitle = (cat) => {
     if (!cat) return "Detailed Report";
-    console.log(getCategoryTitle(category));
+    // console.log(getCategoryTitle(category));
     return `Detailed ${cat.charAt(0).toUpperCase() + cat.slice(1)} Report`;
   };
 
