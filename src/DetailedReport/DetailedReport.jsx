@@ -81,8 +81,8 @@ const DetailedReport = () => {
 
       <div className="detailed-report-container">
         <div className="billboard-data">
-          <h1>getCategoryTitle(category)</h1>
-          {category === "Potholes" || category === "Construction Sites" ? (
+          <h1>{getCategoryTitle(category)}</h1>
+          {category === "potholes" || category === "construction" ? (
             <>
               console.log("Potholes/Construction table")
               <table>
