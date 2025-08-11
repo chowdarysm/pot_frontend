@@ -184,17 +184,29 @@ const Home = () => {
           </div>
           <div className="home-data-stats">
             <div className="home-proccessed-data">
-              <h3>Total Files Processed Today</h3>
-              <span
-                style={{
-                  textAlign: "center",
-                  margin: "0.7rem",
-                  fontSize: "1.5rem",
-                  fontWeight: "700",
-                }}
-              >
-                152
-              </span>
+              <div>
+                <h3>Total Files Processed Today</h3>
+                <span
+                  style={{
+                    textAlign: "center",
+                    margin: "0.7rem",
+                    fontSize: "1.5rem",
+                    fontWeight: "700",
+                  }}
+                >
+                  152
+                </span>
+              </div>
+              <div className="scan-data">
+                <div className="road-scan">
+                  <h3>No. of Roads scanned</h3>
+                  <span>20</span>
+                </div>
+                <div className="ticket-review">
+                  <h3>No. of Tickets reviewed</h3>
+                  <span>20</span>
+                </div>
+              </div>
             </div>
             <div className="home-view-files">
               <h3>View Files</h3>

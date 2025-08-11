@@ -147,3 +147,9 @@
   gap: 12px;
   align-self: center;
 }
+.scan-data {
+  display: flex;
+  gap: 10px;
+  margin: 1rem 0;
+  background-color: #35b9c7;
+}
