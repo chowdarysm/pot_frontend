@@ -25,7 +25,9 @@ const DetailedReport = () => {
       setIsLoading(true);
       setError(null); // Reset error on a new fetch
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/detailed_report_data?category=${category}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/detailed_report_data?category=${category}`
+        );
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
@@ -49,31 +51,97 @@ const DetailedReport = () => {
 
   // Show a loading message while fetching data
   if (isLoading) {
-    return <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading detailed report...</p>;
+    return (
+      <p style={{ textAlign: "center", marginTop: "2rem" }}>
+        Loading detailed report...
+      </p>
+    );
   }
-  
+
   // Show a clear error message if the fetch failed
   if (error) {
     return (
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <h2>Could Not Load Report</h2>
-            <p>Error: {error}</p>
-            <button onClick={() => navigate(-1)} style={{marginTop: '1rem'}}>Go Back</button>
-        </div>
+      <div style={{ textAlign: "center", marginTop: "2rem" }}>
+        <h2>Could Not Load Report</h2>
+        <p>Error: {error}</p>
+        <button onClick={() => navigate(-1)} style={{ marginTop: "1rem" }}>
+          Go Back
+        </button>
+      </div>
     );
   }
 
   return (
     <>
-      <div className="back-btn" style={{ padding: '1rem', textAlign: 'left' }}>
+      <div className="back-btn" style={{ padding: "1rem", textAlign: "left" }}>
         <button onClick={() => navigate(-1)}>Back</button>
       </div>
+
       <div className="detailed-report-container">
         <div className="billboard-data">
-          <h1>{getCategoryTitle(category)}</h1>
-          <table>
+          {getCategoryTitle(category) === "Pothole" ? (
+            <h1>getCategoryTitle(category)</h1>
+          ) : (
+            <h1>getCategoryTitle(category)</h1>
+          )}
+          {/* {getCategoryTitle(category) === "Pothole" ||
+          getCategoryTitle(category) === "Construction Sites" ? (
+            <>
+            <h1>{getCategoryTitle(category)}</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={1}>Summary</th>
+                </tr>
+                <tr>
+                  <th>Total Detected</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{reportData.length}</td>
+                  
+                </tr>
+              </tbody>
+            </table></>
+            
+          ) : (
+            <>
+            <h1>{getCategoryTitle(category)}</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={4}>Summary</th>
+                </tr>
+                <tr>
+                  <th>Total Detected</th>
+                  <th>Approved</th>
+                  <th>Unapproved</th>
+                  <th>Damage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{reportData.length}</td>
+                  <td>
+                    {reportData.filter((item) => item.approved === 1).length}
+                  </td>
+                  <td>
+                    {reportData.filter((item) => item.approved === 0).length}
+                  </td>
+                  <td>0</td>
+                </tr>
+              </tbody>
+            </table>
+            </>
+            
+          )} */}
+          {/* <table>
             <thead>
-              <tr><th colSpan={4}>Summary</th></tr>
+              <tr>
+                <th colSpan={4}>Summary</th>
+              </tr>
               <tr>
                 <th>Total Detected</th>
                 <th>Approved</th>
@@ -84,12 +152,16 @@ const DetailedReport = () => {
             <tbody>
               <tr>
                 <td>{reportData.length}</td>
-                <td>{reportData.filter(item => item.approved === 1).length}</td>
-                <td>{reportData.filter(item => item.approved === 0).length}</td>
+                <td>
+                  {reportData.filter((item) => item.approved === 1).length}
+                </td>
+                <td>
+                  {reportData.filter((item) => item.approved === 0).length}
+                </td>
                 <td>0</td>
               </tr>
             </tbody>
-          </table>
+          </table> */}
         </div>
         <div className="detailed-report-data-container">
           <div className="detailed-report-data">
@@ -112,12 +184,22 @@ const DetailedReport = () => {
                       <td>{new Date(item.created_at).toLocaleDateString()}</td>
                       <td>{item.image_name}</td>
                       <td>{item.location_text || "N/A"}</td>
-                      <td><a href={item.image_url} target="_blank" rel="noopener noreferrer">Click Here</a></td>
+                      <td>
+                        <a
+                          href={item.image_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Click Here
+                        </a>
+                      </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="4" style={{ textAlign: 'center' }}>No reports found for this category.</td>
+                    <td colSpan="4" style={{ textAlign: "center" }}>
+                      No reports found for this category.
+                    </td>
                   </tr>
                 )}
               </tbody>
