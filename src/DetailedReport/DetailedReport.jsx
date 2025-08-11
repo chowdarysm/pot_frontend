@@ -75,15 +75,18 @@ const DetailedReport = () => {
     <>
       <div className="back-btn" style={{ padding: "1rem", textAlign: "left" }}>
         <button onClick={() => navigate(-1)}>Back</button>
-      </div>
+      </div>       
 
       <div className="detailed-report-container">
-        <div className="billboard-data">
-          {getCategoryTitle(category) === "Potholes" ? (
-                <h1>{getCategoryTitle(category)}..</h1>
+
+        {getCategoryTitle(category) === "Potholes" ? (
+                <h1>{getCategoryTitle(category)}1</h1>
           ) : (
-                 <h1>{getCategoryTitle(category)}...</h1>
-          )}          
+                 <h1>{getCategoryTitle(category)}2</h1>
+          )}     
+
+        <div className="billboard-data">
+         <h1>{getCategoryTitle(category)}...</h1>
         </div>
         <div className="detailed-report-data-container">
           <div className="detailed-report-data">
