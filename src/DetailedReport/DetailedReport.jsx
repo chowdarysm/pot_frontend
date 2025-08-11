@@ -46,7 +46,7 @@ const DetailedReport = () => {
 
   const getCategoryTitle = (cat) => {
     if (!cat) return "Detailed Report";
-
+    console.log(getCategoryTitle(category));
     return `Detailed ${cat.charAt(0).toUpperCase() + cat.slice(1)} Report`;
   };
 
@@ -80,7 +80,7 @@ const DetailedReport = () => {
 
       <div className="detailed-report-container">
         <div className="billboard-data">
-          <h1>getCategoryTitle(category)</h1>
+          <h1>{getCategoryTitle(category)}</h1>
           {getCategoryTitle(category) === "Potholes" ||
           getCategoryTitle === "Construction" ? (
             <>
