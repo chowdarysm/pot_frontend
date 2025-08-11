@@ -24,7 +24,7 @@ function Signin() {
       // alert("Login successful!");
       toast.success("Login successful!");
       console.log("formData is", formData);
-      navigate("/home");
+      navigate("/landing");
     } else {
       // alert("Invalid email or password");
       toast.error("Invalid email or password");

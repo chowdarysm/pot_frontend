@@ -94,17 +94,22 @@ const Home = () => {
       title: "Missing/Damaged Guardrails Detected",
       count: 14,
     },
+    {
+      id: 6,
+      title: "Damaged Guardrails Detected",
+      count: 14,
+    },
   ];
   const featureData = [
-    { id: 1, icon: MdPhotoCamera, title: "Real-Time Image/Video Capture" },
-    { id: 2, icon: MdReportProblem, title: "Real-Time Reports" },
-    { id: 3, icon: MdOutlineSupportAgent, title: "Events History" },
+    // { id: 1, icon: MdPhotoCamera, title: "Real-Time Image/Video Capture" },
+    // { id: 2, icon: MdReportProblem, title: "Real-Time Reports" },
+    { id: 1, icon: MdOutlineSupportAgent, title: "Events History" },
     {
-      id: 4,
+      id: 2,
       icon: FaVideo,
       title: "Videos",
     },
-    { id: 5, icon: FaImage, title: "Images" },
+    { id: 3, icon: FaImage, title: "Images" },
   ];
   const updatesData = [
     {
@@ -158,21 +163,70 @@ const Home = () => {
           <img src={homeImage} alt="Home" />
           <h1>AI-Powered Road Monitoring System</h1>
         </div>
-        <div className="home-data-container">
-          {homeData.map((item, id) => (
-            <div className="home-data-card" key={id}>
+        <div className="parent-home-data-container">
+          <div className="home-data-container">
+            {homeData.map((item, id) => (
+              <div className="home-data-card" key={id}>
+                <span
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "500",
+                    width: "100%",
+                  }}
+                >
+                  {item.title}
+                </span>
+                <span style={{ fontSize: "1.4rem", fontWeight: "800" }}>
+                  {item.count}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="home-data-stats">
+            <div className="home-proccessed-data">
+              <h3>Total Files Processed Today</h3>
               <span
-                style={{ fontSize: "1.1rem", fontWeight: "500", width: "100%" }}
+                style={{
+                  textAlign: "center",
+                  margin: "0.7rem",
+                  fontSize: "1.5rem",
+                  fontWeight: "700",
+                }}
               >
-                {item.title}
-              </span>
-              <span style={{ fontSize: "1.4rem", fontWeight: "800" }}>
-                {item.count}
+                152
               </span>
             </div>
-          ))}
+            <div className="home-view-files">
+              <h3>View Files</h3>
+              <ul style={{ textAlign: "center", margin: "0.7rem" }}>
+                {featureData.map(({ id, icon: Icon, title }) => (
+                  <li
+                    className="view-files-card"
+                    key={id}
+                    onClick={() => handlePage(Icon)}
+                  >
+                    <span
+                      color={"#80E612"}
+                      style={{
+                        cursor: "pointer",
+                        fontSize: "1.3rem",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Icon />
+                    </span>
+                    <span style={{ fontStyle: "1rem", fontWeight: "600" }}>
+                      {title}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="feature-container">
+
+        {/* <div className="feature-container">
           <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
             System Features
           </h1>
@@ -194,13 +248,19 @@ const Home = () => {
                 >
                   <Icon />
                 </span>
-                <span style={{ fontStyle: "1rem", fontWeight: "600" }}>
+                <span
+                  style={{
+                    fontStyle: "1rem",
+                    fontWeight: "600",
+                    textAlign: "left",
+                  }}
+                >
                   {title}
                 </span>
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
         <div className="updates-container">
           <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
             Recent Updates

@@ -22,6 +22,7 @@ import ReportDetails from "./ReportDetails/ReportDetails";
 import DetailedReport from "./DetailedReport/DetailedReport";
 import Navbar from "./Navbar/Navbar";
 import { ToastContainer } from "react-toastify";
+import LandingPage from "./LandingPage/LandingPage";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="/images" element={<Images />} />
           <Route path="/reportdetails" element={<ReportDetails />} />
           <Route path="/detailedreport" element={<DetailedReport />} />
+          <Route path="/landing" element={<LandingPage />} />
         </Route>
       </Routes>
       <ToastContainer />

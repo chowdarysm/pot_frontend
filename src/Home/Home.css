@@ -30,12 +30,19 @@
   font-weight: 800;
   text-align: center;
 }
-.home-data-container {
-  background-color: #f9f9f9;
+.parent-home-data-container {
   display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.home-data-container {
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   padding: 1rem;
   justify-content: space-around;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .home-data-card {
   width: 250px;
@@ -54,6 +61,22 @@
 .home-data-card span {
   width: 100%;
   text-align: center;
+}
+.home-data-stats {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.home-proccessed-data {
+  display: flex;
+  flex-direction: column;
+}
+.view-files-card {
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  cursor: pointer;
 }
 .feature-container {
   display: flex;

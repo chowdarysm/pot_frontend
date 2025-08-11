@@ -63,6 +63,7 @@ const Navbar = () => {
             <img src={profileIcon} />    
             </span></li>
           </ul> */}
+
           <ul className="navbar-list">
             <Link
               to={"/home"}
@@ -75,6 +76,25 @@ const Navbar = () => {
               <li>Dashboard</li>
             </Link>
             <Link
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                cursor: "pointer",
+              }}
+            >
+              <li>Map View</li>
+            </Link>
+
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                cursor: "pointer",
+              }}
+            >
+              <li>Ticket Review</li>
+            </Link>
+            <Link
               to={"/reportdetails"}
               style={{
                 textDecoration: "none",
@@ -84,7 +104,16 @@ const Navbar = () => {
             >
               <li>Reports</li>
             </Link>
-
+            <Link
+              to={"/form"}
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                cursor: "pointer",
+              }}
+            >
+              <li>Upload</li>
+            </Link>
             <li
               className="profile-wrapper"
               ref={dropdownRef}
