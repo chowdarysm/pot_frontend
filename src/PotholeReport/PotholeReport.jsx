@@ -15,7 +15,9 @@ const PotholeReport = () => {
       if (!guid) return;
       setIsLoading(true);
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/report/${guid}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/report/${guid}`
+        );
         if (response.ok) {
           const data = await response.json();
           setReport(data);
@@ -36,18 +38,24 @@ const PotholeReport = () => {
     if (!report) return;
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/report/${guid}/status`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status: newStatus }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/report/${guid}/status`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
 
       if (response.ok) {
         const responseData = await response.json();
         // Update the local state to reflect the change immediately
-        setReport(prevReport => ({ ...prevReport, status: responseData.data[0].status }));
+        setReport((prevReport) => ({
+          ...prevReport,
+          status: responseData.data[0].status,
+        }));
       } else {
         console.error("Failed to update status");
       }
@@ -63,12 +71,12 @@ const PotholeReport = () => {
   if (!report) {
     return <p>Report not found.</p>;
   }
-  
-  const actionButtons = [
-    { id: 1, title: "Follow-up Inspection" },
-    { id: 2, title: "Send Repair Crew" },
-    { id: 3, title: "Close Report" },
-  ];
+
+  // const actionButtons = [
+  //   { id: 1, title: "Follow-up Inspection" },
+  //   { id: 2, title: "Send Repair Crew" },
+  //   { id: 3, title: "Close Report" },
+  // ];
 
   return (
     <>
@@ -83,17 +91,26 @@ const PotholeReport = () => {
               <img src={report.image_url} alt={report.image_name} />
             </div>
             <div className="pothole-report-desc">
-              <p><strong>Reported by:</strong> Dhananjay</p>
-              <p><strong>Location:</strong> {report.location_text || "N/A"}</p>
-              <p><strong>Date:</strong> {new Date(report.created_at).toLocaleDateString()}</p>
-              <p><strong>Status:</strong> {report.status}</p>
+              <p>
+                <strong>Reported by:</strong> Dhananjay
+              </p>
+              <p>
+                <strong>Location:</strong> {report.location_text || "N/A"}
+              </p>
+              <p>
+                <strong>Date:</strong>{" "}
+                {new Date(report.created_at).toLocaleDateString()}
+              </p>
+              <p>
+                <strong>Status:</strong> {report.status}
+              </p>
             </div>
           </div>
           <div className="pothole-report-map">
             <img src={mapImage} alt="Map location" />
           </div>
         </div>
-        <div className="right-pothole-report">
+        {/* <div className="right-pothole-report">
           <h1>Related Actions</h1>
           <div className="pothole-button">
             {actionButtons.map((btn) => (
@@ -106,7 +123,7 @@ const PotholeReport = () => {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
