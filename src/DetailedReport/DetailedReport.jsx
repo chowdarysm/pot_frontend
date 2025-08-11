@@ -82,7 +82,7 @@ const DetailedReport = () => {
         <div className="billboard-data">
           <h1>{getCategoryTitle(category)}</h1>
           {getCategoryTitle(category) === "Potholes" ||
-          getCategoryTitle === "Construction" ? (
+          getCategoryTitle(category) === "Construction" ? (
             <>
               console.log("Potholes/Construction table")
               <table>
