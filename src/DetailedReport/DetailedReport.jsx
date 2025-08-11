@@ -78,12 +78,10 @@ const DetailedReport = () => {
       </div>       
 
       <div className="detailed-report-container">
-
-        {getCategoryTitle(category) === "Potholes" ? (
-                <h1>{getCategoryTitle(category)}1</h1>
-          ) : (
-                 <h1>{getCategoryTitle(category)}2</h1>
-          )}     
+         if (getCategoryTitle(category) == "Potholes" )
+         {<h1>{getCategoryTitle(category)}1</h1>}
+         else
+         { <h1>{getCategoryTitle(category)}2</h1>}         
 
         <div className="billboard-data">
          <h1>{getCategoryTitle(category)}...</h1>
