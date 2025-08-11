@@ -58,7 +58,8 @@ const DetailedReport = () => {
       </p>
     );
   }
-  console.log(getCategoryTitle(category));
+  console.log(category);
+  // console.log(getCategoryTitle(category));
   // Show a clear error message if the fetch failed
   if (error) {
     return (
