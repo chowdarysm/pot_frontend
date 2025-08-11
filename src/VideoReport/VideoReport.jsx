@@ -11,7 +11,9 @@ const VideoReport = () => {
     const fetchSummary = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/report_summary`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/report_summary`
+        );
         if (response.ok) {
           const data = await response.json();
           setSummaryData(data);
@@ -30,7 +32,7 @@ const VideoReport = () => {
   const goToBack = () => {
     navigate(-1);
   };
-  
+
   if (isLoading) {
     return <p>Loading compliance report...</p>;
   }
@@ -49,14 +51,16 @@ const VideoReport = () => {
       </div>
       <div className="video-report-container">
         <h1 style={{ textAlign: "center" }}>
-          Compliance Report of Processed Video
+          Compliance Report of Processed Image/Video
         </h1>
-        
+
         {/* Billboard Report Table */}
         <div className="video-report1">
           <table>
             <thead>
-              <tr><th colSpan={5}>Billboard report</th></tr>
+              <tr>
+                <th colSpan={5}>Billboard report</th>
+              </tr>
               <tr>
                 <th>Total Detected</th>
                 <th>Approved</th>
@@ -71,7 +75,21 @@ const VideoReport = () => {
                 <td>{summaryData.billboard.approved}</td>
                 <td>{summaryData.billboard.unapproved}</td>
                 <td>{summaryData.billboard.damage}</td>
-                <td><button className="create-alert-btn">Create Alert</button></td>
+                <td style={{ textAlign: "end" }}>
+                  <button
+                    style={{
+                      width: "150px",
+                      padding: "10px",
+                      backgroundColor: "#00b0f0",
+
+                      color: "white",
+                      border: "none",
+                      borderRadius: "20px",
+                    }}
+                  >
+                    Create Alert
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -81,13 +99,15 @@ const VideoReport = () => {
         <div className="video-report2">
           <table>
             <thead>
-              <tr><th colSpan={5}>Guardrails Report</th></tr>
+              <tr>
+                <th colSpan={4}>Guardrails Report</th>
+              </tr>
               <tr>
                 <th>Total Detected</th>
                 <th>Missing</th>
                 <th>Damaged</th>
-                <th></th>
-                <th></th>
+                {/* <th></th>
+                <th></th> */}
               </tr>
             </thead>
             <tbody>
@@ -95,28 +115,63 @@ const VideoReport = () => {
                 <td>{summaryData.guardrails.total}</td>
                 <td>{summaryData.guardrails.missing}</td>
                 <td>{summaryData.guardrails.damaged}</td>
-                <td></td>
-                <td><button className="create-alert-btn">Create Alert</button></td>
+                {/* <td></td> */}
+                <td style={{ textAlign: "end" }}>
+                  <button
+                    style={{
+                      width: "150px",
+                      padding: "10px",
+                      backgroundColor: "#00b0f0",
+
+                      color: "white",
+                      border: "none",
+                      borderRadius: "20px",
+                    }}
+                  >
+                    Create Alert
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-        
+
         {/* Unsafe Sites Report Table */}
         <div className="video-report3">
           <table>
             <thead>
-              <tr><th colSpan={5}>Unsafe Sites Report</th></tr>
+              <tr>
+                <th colSpan={2}>Unsafe Sites Report</th>
+              </tr>
               <tr>
                 <th>Total Detected</th>
-                <th></th><th></th><th></th><th></th>
+                {/* <th></th>
+                <th></th>
+                <th></th>
+                <th></th> */}
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{summaryData.construction.total}</td>
-                <td></td><td></td><td></td>
-                <td><button className="create-alert-btn">Create Alert</button></td>
+                {/* <td></td>
+                <td></td>
+                <td></td> */}
+                <td style={{ textAlign: "end" }}>
+                  <button
+                    style={{
+                      width: "150px",
+                      padding: "10px",
+                      backgroundColor: "#00b0f0",
+
+                      color: "white",
+                      border: "none",
+                      borderRadius: "20px",
+                    }}
+                  >
+                    Create Alert
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -126,12 +181,14 @@ const VideoReport = () => {
         <div className="video-report4">
           <table>
             <thead>
-              <tr><th colSpan={5}>Potholes Report</th></tr>
+              <tr>
+                <th colSpan={4}>Potholes Report</th>
+              </tr>
               <tr>
                 <th>Total Detected</th>
                 <th>Approved</th>
                 <th>Unapproved</th>
-                <th></th>
+                {/* <th></th> */}
                 <th></th>
               </tr>
             </thead>
@@ -140,8 +197,22 @@ const VideoReport = () => {
                 <td>{summaryData.potholes.total}</td>
                 <td>{summaryData.potholes.approved}</td>
                 <td>{summaryData.potholes.unapproved}</td>
-                <td></td>
-                <td><button className="create-alert-btn">Create Alert</button></td>
+                {/* <td></td> */}
+                <td style={{ textAlign: "end" }}>
+                  <button
+                    style={{
+                      width: "150px",
+                      padding: "10px",
+                      backgroundColor: "#00b0f0",
+
+                      color: "white",
+                      border: "none",
+                      borderRadius: "20px",
+                    }}
+                  >
+                    Create Alert
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
