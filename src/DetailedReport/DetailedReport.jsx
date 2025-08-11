@@ -83,31 +83,34 @@ const DetailedReport = () => {
           <h1>getCategoryTitle(category)</h1>
           {getCategoryTitle(category) === "Potholes" ||
           getCategoryTitle === "Construction" ? (
-            <table>
-              <thead>
-                <tr>
-                  <th colSpan={1}>Summary</th>
-                </tr>
-                <tr>
-                  <th>Total Detected</th>
-                  {/* <th>Approved</th>
+            <>
+              console.log("Potholes/Construction table")
+              <table>
+                <thead>
+                  <tr>
+                    <th colSpan={1}>Summary</th>
+                  </tr>
+                  <tr>
+                    <th>Total Detected</th>
+                    {/* <th>Approved</th>
                   <th>Unapproved</th>
                   <th>Damage</th> */}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{reportData.length}</td>
-                  {/* <td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{reportData.length}</td>
+                    {/* <td>
                     {reportData.filter((item) => item.approved === 1).length}
                   </td>
                   <td>
                     {reportData.filter((item) => item.approved === 0).length}
                   </td>
                   <td>0</td> */}
-                </tr>
-              </tbody>
-            </table>
+                  </tr>
+                </tbody>
+              </table>
+            </>
           ) : (
             <table>
               <thead>
