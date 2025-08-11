@@ -220,7 +220,7 @@ const DetailedReport = () => {
             <table>
               <thead>
                 <tr>
-                  <th colSpan={4}>Detailed </th>
+                  <th colSpan={5}>Detailed </th>
                 </tr>
                 <tr>
                   <th>Last processed date</th>
