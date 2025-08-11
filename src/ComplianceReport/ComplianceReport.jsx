@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./VideoReport.css";
+import "./ComplianceReport.css";
 import { useNavigate } from "react-router-dom";
 
-const VideoReport = () => {
+const ComplianceReport = () => {
   const navigate = useNavigate();
   const [summaryData, setSummaryData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -222,4 +222,4 @@ const VideoReport = () => {
   );
 };
 
-export default VideoReport;
+export default ComplianceReport;

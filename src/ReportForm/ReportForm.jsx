@@ -73,7 +73,7 @@ const ReportForm = () => {
 
         // --- MODIFIED REDIRECT ---
         // Navigate to the general video report page as requested
-        navigate("/videoreport");
+        navigate("/compliancereport");
       } else {
         const errorData = await response.json();
         toast.error(

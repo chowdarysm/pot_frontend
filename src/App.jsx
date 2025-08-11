@@ -14,7 +14,7 @@ import Potholes from "./Potholes/Potholes";
 import Events from "./Events/Events";
 import Videos from "./Videos/Videos";
 import Home from "./Home/Home";
-import VideoReport from "./VideoReport/VideoReport";
+import VideoReport from "./ComplianceReport/ComplianceReport";
 import VideoDetail from "./VideoDetail/VideoDetail";
 import ImageDetail from "./ImageDetail/ImageDetail";
 import Images from "./Images/Images";
@@ -23,6 +23,7 @@ import DetailedReport from "./DetailedReport/DetailedReport";
 import Navbar from "./Navbar/Navbar";
 import { ToastContainer } from "react-toastify";
 import LandingPage from "./LandingPage/LandingPage";
+import ComplianceReport from "./ComplianceReport/ComplianceReport";
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/videoreport" element={<VideoReport />} />
+          <Route path="/compliancereport" element={<ComplianceReport />} />
           <Route path="/video/:guid" element={<VideoDetail />} />
           <Route path="/report/:guid" element={<PotholeReport />} />
           <Route path="/imagedetails" element={<ImageDetail />} />
