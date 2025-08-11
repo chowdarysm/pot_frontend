@@ -79,7 +79,7 @@ const DetailedReport = () => {
 
       <div className="detailed-report-container">
         <div className="billboard-data">
-          {getCategoryTitle(category) === "Pothole" ? (
+          {getCategoryTitle(category) === "Potholes" ? (
                 <h1>{getCategoryTitle(category)}..</h1>
           ) : (
                  <h1>{getCategoryTitle(category)}...</h1>
