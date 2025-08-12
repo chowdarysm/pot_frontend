@@ -15,7 +15,7 @@ const Events = () => {
       setError(null); // Reset error on a new fetch
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/get_today_processed_reports`
+          `${process.env.REACT_APP_API_URL}/get_total_processed_reports`
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.status}`);
