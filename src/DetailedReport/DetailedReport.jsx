@@ -226,7 +226,7 @@ const DetailedReport = () => {
                   <th>Last processed date</th>
                   <th>File name</th>
                   <th>Location</th>
-                  <th>Is Approved</th>
+                  <th>Status</th>
                   <th>Image File</th>
                 </tr>
               </thead>
@@ -237,7 +237,7 @@ const DetailedReport = () => {
                       <td>{new Date(item.created_at).toLocaleDateString()}</td>
                       <td>{item.image_name}</td>
                       <td>{item.location_text || "N/A"}</td>
-                      <td>{item.approved === 1 ? "Yes" : "No"}</td>
+                      <td>{item.approved === 1 ? "Approved" : "Unapproved"}</td>
                       <td>
                         <a
                           href={item.image_url}
