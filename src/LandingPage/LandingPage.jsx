@@ -22,7 +22,10 @@ const LandingPage = () => {
     <>
       <div className="landing-page-container">
         <div className="landing-container">
-          <img src={landingPage} />
+          <div className="landing-bg">
+            <img src={landingPage} />
+          </div>
+
           <div className="landing-text">
             <h1>
               Smart Infrastructure Monitoring <br />{" "}
@@ -39,7 +42,12 @@ const LandingPage = () => {
             >
               View Dashboard
             </button>
-            <button onClick={goToUpload}>Upload Evidence</button>
+            <button
+              onClick={goToUpload}
+              style={{ backgroundColor: "#00b0f0", color: "white" }}
+            >
+              Upload Evidence
+            </button>
           </div>
         </div>
         {/* <div className="landing-details">
