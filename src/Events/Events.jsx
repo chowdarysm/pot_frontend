@@ -2,6 +2,7 @@ import React from "react";
 import "./Events.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 const Events = () => {
   const navigate = useNavigate();
   const [reportData, setReportData] = useState([]); // Initialize with an empty array
