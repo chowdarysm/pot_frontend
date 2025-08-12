@@ -221,7 +221,7 @@ const Home = () => {
             </div>
             <div className="home-view-files">
               <h3>View Files</h3>
-              <ul style={{ textAlign: "center", margin: "0.7rem" }}>
+              <ul style={{ textAlign: "center", margin: "1rem 0" }}>
                 {featureData.map(({ id, icon: Icon, title }) => (
                   <li
                     className="view-files-card"
@@ -232,7 +232,7 @@ const Home = () => {
                       color={"#80E612"}
                       style={{
                         cursor: "pointer",
-                        fontSize: "1.3rem",
+                        fontSize: "1rem",
                         display: "flex",
                         justifyContent: "center",
                       }}

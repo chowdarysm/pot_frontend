@@ -69,6 +69,7 @@
   padding: 1rem;
 }
 .home-proccessed-data {
+  width: 65%;
   display: flex;
   flex-direction: column;
 }
