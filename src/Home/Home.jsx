@@ -67,8 +67,8 @@ const Home = () => {
 
     fetchTotalPotholes();
   }, []);
-  const today = new Date().toISOString().split('T')[0];
-  const totalProcessed = reportData.filter((item) => item.created_at == today.toString).length;
+  const today = new Date().toISOString().slice(0, 10);
+  const totalProcessed = reportData.filter(item => item.created_at.slice(0, 10) === today).length;
   //+ reportData2.filter((item) => item.created_at == today).length;
   const homeData = [
     {
