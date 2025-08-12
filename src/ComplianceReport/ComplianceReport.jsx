@@ -106,6 +106,7 @@ const ComplianceReport = () => {
                 <th>Total Detected</th>
                 <th>Missing</th>
                 <th>Damaged</th>
+                <th></th>
                 {/* <th></th>
                 <th></th> */}
               </tr>
@@ -145,6 +146,7 @@ const ComplianceReport = () => {
               </tr>
               <tr>
                 <th>Total Detected</th>
+                <th></th>
                 {/* <th></th>
                 <th></th>
                 <th></th>
