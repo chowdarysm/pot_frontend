@@ -10,27 +10,7 @@ const Events = () => {
     navigate(-1);
   };
 
-  const fetchTotalProcessed = async () => {
-      setIsLoading(true);
-      setError(null); // Reset error on a new fetch
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/get_total_processed_reports():`
-        );
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data: ${response.status}`);
-        }
-        const data = await response.json();
-        setReportData(data);
-      } catch (err) {
-        console.error("Error fetching detailed report:", err);
-        setError(err.message); // Store the error message to display to the user
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchTotalProcessed();
+ 
 
   return (
     <>
