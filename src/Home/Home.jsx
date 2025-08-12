@@ -67,7 +67,8 @@ const Home = () => {
 
     fetchTotalPotholes();
   }, []);
-  const totalProcessed = reportData.length + reportData2.length;
+  const today = new Date().toISOString().split('T')[0];
+  const totalProcessed = reportData.filter((item) => item.created_at == today).length + reportData2.filter((item) => item.created_at == today).length;
   const homeData = [
     {
       id: 1,
@@ -194,7 +195,7 @@ const Home = () => {
                     fontWeight: "700",
                   }}
                 >
-                  {totalProcessed}
+                  {today} - {totalProcessed}
                 </span>
               </div>
               <div className="scan-data">
