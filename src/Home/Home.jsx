@@ -92,10 +92,7 @@ const Home = () => {
     fetchTodayTotalProcessed();
 
   }, []);
-  const today = new Date().toISOString().slice(0, 10);
-  const totalProcessed = reportData.length + reportData2.length;
-  //filter(item => item.created_at.slice(0, 10).toISOString() === today).length;
-  //+ reportData2.filter((item) => item.created_at == today).length;
+
   const homeData = [
     {
       id: 1,
@@ -237,7 +234,7 @@ const Home = () => {
                     // textAlign: "right",
                   }}
                 >
-                  {totalProcessed} - {reportData3.length}
+                 {reportData3.length}
                 </p>
               </div>
               {/* <div className="scan-data"> */}
