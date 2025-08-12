@@ -236,7 +236,7 @@ const DetailedReport = () => {
                     reportData.map((item) => (
                       <tr key={item.guid}>
                         <td>
-                          { item.created_at.toLocaleDateString('en-GB')}
+                          {new Date(item.created_at).toLocaleDateString('en-GB')}
                         </td>
                         <td>{item.image_name}</td>
                         <td>{item.location_text || "N/A"}</td>
