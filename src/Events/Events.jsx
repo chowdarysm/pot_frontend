@@ -1,11 +1,15 @@
 import "./Events.css";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
 const Events = () => {
   const navigate = useNavigate();
-  const [reportData, setReportData] = useState([]); // Initialize with an empty array
 
-useEffect(() => {    
+  const [reportData, setReportData] = useState([]); // Initialize with an empty array
+  const [isLoading, setIsLoading] = useState(false); //  Added state for loading
+  const [error, setError] = useState(null);          //  Added state for error
+
+  useEffect(() => {    
     const fetchTodayTotalProcessed = async () => {
       setIsLoading(true);
       setError(null); // Reset error on a new fetch
@@ -27,12 +31,12 @@ useEffect(() => {
     };
 
     fetchTodayTotalProcessed();
-
   }, []);
 
   const goToBack = () => {
     navigate(-1);
   };
+
   return (
     <>
       <div className="event-container">
@@ -42,6 +46,10 @@ useEffect(() => {
         <div className="video-container">
           <div className="process-video-data">
             <h1>Processed File Data</h1>
+
+            {isLoading && <p>Loading...</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
+
             <table>
               <thead>
                 <tr>
@@ -53,12 +61,22 @@ useEffect(() => {
                   <th>Location</th>                 
                 </tr>
               </thead>
-              <tbody>                 
-                <tr>
-                  <td>27-Jul-25</td>
-                  <td>NH14_2807202505100000.mp4</td>
-                  <td>236.687.867.802</td>                 
-                </tr>
+              <tbody>
+                {reportData.length > 0 ? (
+                  reportData.map((item, index) => (
+                    <tr key={index}>
+                      <td> {new Date(item.created_at).toLocaleDateString('en-GB')}</td>
+                      <td>{item.image_name}</td>
+                      <td>{item.location_text || "N/A"}</td>
+                    </tr>
+                  ))
+                ) : (
+                  !isLoading && (
+                    <tr>
+                      <td colSpan="3">No records found</td>
+                    </tr>
+                  )
+                )}
               </tbody>
             </table>
           </div>
