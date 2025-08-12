@@ -195,7 +195,7 @@ const Home = () => {
                     fontWeight: "700",
                   }}
                 >
-                  {today} - {totalProcessed}
+                  {totalProcessed}
                 </span>
               </div>
               <div className="scan-data">
