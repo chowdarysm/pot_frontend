@@ -67,7 +67,7 @@ const Home = () => {
 
     fetchTotalPotholes();
   }, []);
-
+  const totalProcessed = reportData.length + reportData2.length;
   const homeData = [
     {
       id: 1,
@@ -194,7 +194,7 @@ const Home = () => {
                     fontWeight: "700",
                   }}
                 >
-                  152
+                  {totalProcessed}
                 </span>
               </div>
               <div className="scan-data">
