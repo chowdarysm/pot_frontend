@@ -187,7 +187,15 @@ const Home = () => {
           </div>
           <div className="home-data-stats">
             <div className="home-proccessed-data">
-              <div>
+              <div
+                style={{
+                  padding: "10px",
+                  backgroundColor: "#35b9c7",
+                  color: "white",
+                  fontWeight: "700",
+                  borderRadius: "20px",
+                }}
+              >
                 <h3>Total Files Processed Today</h3>
                 <span
                   style={{
@@ -197,7 +205,7 @@ const Home = () => {
                     fontWeight: "700",
                   }}
                 >
-                 {totalProcessed}
+                  {totalProcessed}
                 </span>
               </div>
               <div className="scan-data">
