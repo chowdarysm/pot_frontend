@@ -26,7 +26,7 @@ const DetailedReport = () => {
       setError(null); // Reset error on a new fetch
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/detailed_report_data?category=${category}`
+          `${process.env.REACT_APP_API_URL}/detailed_report_data?category=${'billboard'}`
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.status}`);
