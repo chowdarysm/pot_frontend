@@ -144,3 +144,18 @@
   color: white;
   cursor: pointer;
 }
+.apply-filter-btn {
+  display: flex;
+  justify-content: end;
+}
+.apply-filter-btn button {
+  width: 180px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #00b0f0;
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}

@@ -22,7 +22,7 @@ const ReportDetails = () => {
       // Pass the category as a URL parameter
       navigate(`/detailedreport?category=${issueCategory}`);
     } else {
-        alert("Please select an issue category and the 'Detailed' report type.");
+      alert("Please select an issue category and the 'Detailed' report type.");
     }
   };
 
@@ -61,6 +61,9 @@ const ReportDetails = () => {
                   }}
                 />
               </div>
+            </div>
+            <div className="apply-filter-btn">
+              <button>Apply Filter</button>
             </div>
           </div>
           <div className="report-sort">
@@ -128,10 +131,10 @@ const ReportDetails = () => {
                 </h2>
                 <div className="report-dash-img">
                   <div className="dash-img">
-                    <img src={piechartImage} alt="pie chart"/>
+                    <img src={piechartImage} alt="pie chart" />
                   </div>
                   <div className="dash-img">
-                    <img src={bargraphImage} alt="bar graph"/>
+                    <img src={bargraphImage} alt="bar graph" />
                   </div>
                 </div>
               </div>

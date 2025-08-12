@@ -6,6 +6,7 @@ import { MdReportProblem } from "react-icons/md";
 import { FaFile } from "react-icons/fa";
 import { FaVideo } from "react-icons/fa";
 import { FaImage } from "react-icons/fa";
+import { GoFileSubmodule } from "react-icons/go";
 import { MdOutlineSupportAgent } from "react-icons/md";
 import React, { useState, useEffect } from "react";
 import highwayImage from "../assets/images/highway.png";
@@ -17,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [reportData, setReportData] = useState([]); // Initialize with an empty array
   const [reportData2, setReportData2] = useState([]); // Initialize with an empty array
+  const [reportData3, setReportDataToday] = useState([]); // Initialize with an empty array
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null); // State to hold any fetch errors
 
@@ -66,6 +68,29 @@ const Home = () => {
     };
 
     fetchTotalPotholes();
+
+    const fetchTodayTotalProcessed = async () => {
+      setIsLoading(true);
+      setError(null); // Reset error on a new fetch
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/get_today_processed_reports`
+        );
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status}`);
+        }
+        const data = await response.json();
+        setReportDataToday(data);
+      } catch (err) {
+        console.error("Error fetching detailed report:", err);
+        setError(err.message); // Store the error message to display to the user
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTodayTotalProcessed();
+
   }, []);
   const today = new Date().toISOString().slice(0, 10);
   const totalProcessed = reportData.length + reportData2.length;
@@ -94,7 +119,7 @@ const Home = () => {
     },
     {
       id: 5,
-      title: "Missing/Damaged Guardrails Detected",
+      title: "Missing Guardrails Detected",
       count: 14,
     },
     {
@@ -164,7 +189,10 @@ const Home = () => {
       <div className="homepage-container">
         <div className="home-img-container">
           <img src={homeImage} alt="Home" />
-          <h1>AI-Powered Road Monitoring System</h1>
+          <h1>
+            {" "}
+            AI-powered detection, real-time alerts, and actionable insights
+          </h1>
         </div>
         <div className="parent-home-data-container">
           <div className="home-data-container">
@@ -172,14 +200,14 @@ const Home = () => {
               <div className="home-data-card" key={id}>
                 <span
                   style={{
-                    fontSize: "1.1rem",
-                    fontWeight: "500",
+                    fontSize: "1.4rem",
+                    fontWeight: "600",
                     width: "100%",
                   }}
                 >
                   {item.title}
                 </span>
-                <span style={{ fontSize: "1.4rem", fontWeight: "800" }}>
+                <span style={{ fontSize: "1.8rem", fontWeight: "800" }}>
                   {item.count}
                 </span>
               </div>
@@ -190,36 +218,74 @@ const Home = () => {
               <div
                 style={{
                   padding: "10px",
-                  backgroundColor: "#35b9c7",
-                  color: "white",
+                  // backgroundColor: "#35b9c7",
+                  // color: "white",
                   fontWeight: "700",
                   borderRadius: "20px",
                 }}
               >
-                <h3>Total Files Processed Today</h3>
-                <span
+                <h3 style={{ textAlign: "right" }}>
+                  Total Files Processed Today
+                </h3>
+                <p
                   style={{
-                    textAlign: "center",
-                    margin: "0.7rem",
-                    fontSize: "1.5rem",
+                    textAlign: "right",
+
+                    fontSize: "2.5rem",
                     fontWeight: "700",
+                    color: "green",
+                    // textAlign: "right",
                   }}
                 >
-                  {totalProcessed}
-                </span>
+                  {totalProcessed} - {reportData3.length}
+                </p>
               </div>
-              <div className="scan-data">
-                <div className="road-scan">
-                  <h3>No. of Roads scanned</h3>
-                  <span>20</span>
-                </div>
-                <div className="ticket-review">
-                  <h3>No. of Tickets reviewed</h3>
-                  <span>20</span>
-                </div>
+              {/* <div className="scan-data"> */}
+              <div className="road-scan">
+                <h3
+                  style={{
+                    fontSize: "2rem",
+                    fontWeight: "700",
+                    textAlign: "right",
+                  }}
+                >
+                  No. of Roads Scanned
+                </h3>
+                <p
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "700",
+                    color: "blue",
+                    textAlign: "right",
+                  }}
+                >
+                  20
+                </p>
               </div>
+              <div className="ticket-review">
+                <h3
+                  style={{
+                    fontSize: "2rem",
+                    fontWeight: "700",
+                    textAlign: "right",
+                  }}
+                >
+                  No. of Critical Tickets
+                </h3>
+                <p
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "700",
+                    color: "red",
+                    textAlign: "right",
+                  }}
+                >
+                  20
+                </p>
+              </div>
+              {/* </div> */}
             </div>
-            <div className="home-view-files">
+            {/* <div className="home-view-files">
               <h3>View Files</h3>
               <ul style={{ textAlign: "center", margin: "1rem 0" }}>
                 {featureData.map(({ id, icon: Icon, title }) => (
@@ -245,7 +311,7 @@ const Home = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -285,23 +351,97 @@ const Home = () => {
           </div>
         </div> */}
         <div className="updates-container">
-          <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
-            Recent Updates
-          </h1>
-          <div className="update-card-container">
-            {updatesData.map((item, id) => (
-              <div className="update-card" key={id}>
-                <div className="update-img">
-                  <img src={item.image} />
+          <div className=".left-update">
+            <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
+              Recent Updates
+            </h1>
+            <div className="update-card-container">
+              {updatesData.map((item, id) => (
+                <div className="update-card" key={id}>
+                  <div className="update-img">
+                    <img src={item.image} />
+                  </div>
+                  <div className="update-card-detail">
+                    <table style={{ width: "100%", background: "inherit" }}>
+                      <thead>
+                        <tr>
+                          <th style={{ border: "none", textAlign: "left" }}>
+                            Location:{" "}
+                          </th>
+                          <th style={{ border: "none", textAlign: "left" }}>
+                            Timestamp:{" "}
+                          </th>
+                          <th style={{ border: "none", textAlign: "left" }}>
+                            Category:{" "}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style={{ border: "none", textAlign: "left" }}>
+                            {item.location}
+                          </td>
+                          <td style={{ border: "none", textAlign: "left" }}>
+                            {item.timestamp}
+                          </td>
+                          <td style={{ border: "none", textAlign: "left" }}>
+                            {item.category}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    {/* <div className="update-span">
+                    <span>Location:</span>
+                    <span>{item.location}</span>
+                  </div>
+                 
+                  <div className="update-span">
+                    <span>Timestamp:</span>
+                    <span>{item.timestamp}</span>
+                  </div>
+                  <div className="update-span">
+                    <span>Category:</span>
+                    <span>{item.category}</span>
+                  </div> */}
+                  </div>
                 </div>
-                <div className="update-card-detail">
-                  <span>Location: {item.location}</span>
-                  <span>Timestamp: {item.timestamp}</span>
-                  <span>Category: {item.category}</span>
-                </div>
-                <p></p>
+              ))}
+            </div>
+          </div>
+          <div className="right-update">
+            <div className="home-view-files">
+              <div className="view-file-head">
+                <span style={{ alignSelf: "center" }}>
+                  <GoFileSubmodule />
+                </span>
+                <h3>View Files</h3>
               </div>
-            ))}
+
+              <ul style={{ textAlign: "center", margin: "1rem 0" }}>
+                {featureData.map(({ id, icon: Icon, title }) => (
+                  <li
+                    className="view-files-card"
+                    key={id}
+                    onClick={() => handlePage(Icon)}
+                  >
+                    <span
+                      color={"#80E612"}
+                      style={{
+                        cursor: "pointer",
+                        fontSize: "1rem",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Icon />
+                    </span>
+                    <span style={{ fontStyle: "1rem", fontWeight: "600" }}>
+                      {title}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

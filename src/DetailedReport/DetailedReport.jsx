@@ -217,7 +217,98 @@ const DetailedReport = () => {
         </div>
         <div className="detailed-report-data-container">
           <div className="detailed-report-data">
-            <table>
+            {category === "potholes" || category === "construction" ? (
+              <table>
+                <thead>
+                  <tr>
+                    <th colSpan={5}>Detailed </th>
+                  </tr>
+                  <tr>
+                    <th>Last processed date</th>
+                    <th>File name</th>
+                    <th>Location</th>
+                    {/* <th>Status</th> */}
+                    <th>Image File</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reportData.length > 0 ? (
+                    reportData.map((item) => (
+                      <tr key={item.guid}>
+                        <td>
+                          {new Date(item.created_at).toLocaleDateString()}
+                        </td>
+                        <td>{item.image_name}</td>
+                        <td>{item.location_text || "N/A"}</td>
+                        {/* <td>{item.approved === 1 ? "Approved" : "Unapproved"}</td> */}
+                        <td>
+                          <a
+                            href={item.image_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Click Here
+                          </a>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4" style={{ textAlign: "center" }}>
+                        No reports found for this category.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <th colSpan={5}>Detailed </th>
+                  </tr>
+                  <tr>
+                    <th>Last processed date</th>
+                    <th>File name</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Image File</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reportData.length > 0 ? (
+                    reportData.map((item) => (
+                      <tr key={item.guid}>
+                        <td>
+                          {new Date(item.created_at).toLocaleDateString()}
+                        </td>
+                        <td>{item.image_name}</td>
+                        <td>{item.location_text || "N/A"}</td>
+                        <td>
+                          {item.approved === 1 ? "Approved" : "Unapproved"}
+                        </td>
+                        <td>
+                          <a
+                            href={item.image_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Click Here
+                          </a>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4" style={{ textAlign: "center" }}>
+                        No reports found for this category.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            )}
+            {/* <table>
               <thead>
                 <tr>
                   <th colSpan={5}>Detailed </th>
@@ -257,7 +348,7 @@ const DetailedReport = () => {
                   </tr>
                 )}
               </tbody>
-            </table>
+            </table> */}
           </div>
         </div>
       </div>
