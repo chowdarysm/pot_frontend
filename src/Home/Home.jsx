@@ -102,8 +102,8 @@ const Home = () => {
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
-        const data = await response.json();
-        setReportRecentUpdates(data);
+        const data = await response.json();      
+        setReportRecentUpdates(data.slice(0, 4));
       } catch (err) {
         console.error("Error fetching detailed report:", err);
         setError(err.message); // Store the error message to display to the user
@@ -374,7 +374,7 @@ const Home = () => {
         <div className="updates-container">
           <div className="left-update">
             <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
-              Recent Updates
+              Recent Updates - {reportData4.length}
             </h1>
             <div className="update-card-container">
               {updatesData.map((item, id) => (
