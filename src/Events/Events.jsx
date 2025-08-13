@@ -53,7 +53,7 @@ const Events = () => {
             <table>
               <thead>
                 <tr>
-                  <th colSpan={3}>Detail</th>
+                  <th colSpan={4}>Detail</th>
                 </tr>
                 <tr>
                   <th>Last processed date</th>
