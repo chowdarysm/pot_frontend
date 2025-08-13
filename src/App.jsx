@@ -24,6 +24,7 @@ import Navbar from "./Navbar/Navbar";
 import { ToastContainer } from "react-toastify";
 import LandingPage from "./LandingPage/LandingPage";
 import ComplianceReport from "./ComplianceReport/ComplianceReport";
+import Graph from "./Graph/Graph";
 
 function App() {
   return (
@@ -52,6 +53,8 @@ function App() {
           <Route path="/reportdetails" element={<ReportDetails />} />
           <Route path="/detailedreport" element={<DetailedReport />} />
           <Route path="/landing" element={<LandingPage />} />
+          <Route path="/graph/:title" element={<Graph />} />
+          {/* <Route path="/graph/:title" element={<DetailsPage />} /> */}
         </Route>
       </Routes>
       <ToastContainer />

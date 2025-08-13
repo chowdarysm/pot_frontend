@@ -29,6 +29,9 @@ const ReportDetails = () => {
   const goToBack = () => {
     navigate(-1);
   };
+  const generateGraph = (title) => {
+    navigate(`/graph/${title}`);
+  };
 
   return (
     <>
@@ -125,6 +128,7 @@ const ReportDetails = () => {
                 className="report-dash-card"
                 key={id}
                 style={{ backgroundColor: item.color }}
+                onClick={() => generateGraph(item.title)}
               >
                 <h2 style={{ color: item.id === 4 ? "white" : "black" }}>
                   {item.title}
