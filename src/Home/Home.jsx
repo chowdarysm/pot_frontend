@@ -380,7 +380,7 @@ const Home = () => {
               {reportData4.map((item, index) => (
                 <div className="update-card" key={index}>
                   <div className="update-img">
-                    <img src={item.image_name } alt="Report" />
+                    <img src={item.image_url} alt="Report" />
                   </div>
                   <div className="update-card-detail">
                     <table style={{ width: "100%", background: "inherit" }}>
