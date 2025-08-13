@@ -58,7 +58,8 @@ const Events = () => {
                 <tr>
                   <th>Last processed date</th>
                   <th>File name</th>
-                  <th>Location</th>                 
+                  <th>Location</th>  
+                  <th>Image File</th>                  
                 </tr>
               </thead>
               <tbody>
@@ -68,6 +69,13 @@ const Events = () => {
                       <td> {new Date(item.created_at).toLocaleDateString('en-GB')}</td>
                       <td>{item.image_name}</td>
                       <td>{item.location_text || "N/A"}</td>
+                      <td> <a
+                          href={item.image_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Click Here
+                        </a></td>
                     </tr>
                   ))
                 ) : (
