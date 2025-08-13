@@ -376,11 +376,45 @@ const Home = () => {
             <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
               Recent Updates - {reportData4.length}
             </h1>
-            <div className="update-card-container">
-              {updatesData.map((item, id) => (
-                <div className="update-card" key={id}>
+             <div className="update-card-container">
+              {reportData4.map((item, index) => (
+                <div className="update-card" key={index}>
                   <div className="update-img">
-                    <img src={item.image} />
+                    <img src={item.image_name } alt="Report" />
+                  </div>
+                  <div className="update-card-detail">
+                    <table style={{ width: "100%", background: "inherit" }}>
+                      <thead>
+                        <tr>
+                          <th style={{ border: "none", textAlign: "left" }}>Location:</th>
+                          <th style={{ border: "none", textAlign: "left" }}>Timestamp:</th>
+                          <th style={{ border: "none", textAlign: "left" }}>Category:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style={{ border: "none", textAlign: "left" }}>
+                            {item.location_text}
+                          </td>
+                          <td style={{ border: "none", textAlign: "left" }}>
+                            {new Date(item.created_at).toLocaleString()}
+                          </td>
+                          <td style={{ border: "none", textAlign: "left" }}>
+                            {item.category}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+{/*
+            <div className="update-card-container">             
+                <div className="update-card" >
+                  <div className="update-img">
+                    <img src={image} />
                   </div>
                   <div className="update-card-detail">
                     <table style={{ width: "100%", background: "inherit" }}>
@@ -400,34 +434,22 @@ const Home = () => {
                       <tbody>
                         <tr>
                           <td style={{ border: "none", textAlign: "left" }}>
-                            {item.location}
+                            {location}
                           </td>
                           <td style={{ border: "none", textAlign: "left" }}>
-                            {item.timestamp}
+                            {timestamp}
                           </td>
                           <td style={{ border: "none", textAlign: "left" }}>
-                            {item.category}
+                            {category}
                           </td>
                         </tr>
                       </tbody>
-                    </table>
-                    {/* <div className="update-span">
-                    <span>Location:</span>
-                    <span>{item.location}</span>
+                    </table>                   
                   </div>
-                 
-                  <div className="update-span">
-                    <span>Timestamp:</span>
-                    <span>{item.timestamp}</span>
-                  </div>
-                  <div className="update-span">
-                    <span>Category:</span>
-                    <span>{item.category}</span>
-                  </div> */}
-                  </div>
-                </div>
-              ))}
+                </div>           
             </div>
+
+*/}
           </div>
           <div className="right-update">
             <div className="home-view-files">
