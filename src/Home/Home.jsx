@@ -19,6 +19,7 @@ const Home = () => {
   const [reportData, setReportData] = useState([]); // Initialize with an empty array
   const [reportData2, setReportData2] = useState([]); // Initialize with an empty array
   const [reportData3, setReportDataToday] = useState([]); // Initialize with an empty array
+  const [reportData4, setReportRecentUpdates] = useState([]); // Initialize with an empty array
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null); // State to hold any fetch errors
 
@@ -90,6 +91,30 @@ const Home = () => {
     };
 
     fetchTodayTotalProcessed();
+
+    const fetchRecentUpdates = async () => {
+      setIsLoading(true);
+      setError(null); // Reset error on a new fetch
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/get_total_processed_reports`
+        );
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status}`);
+        }
+        const data = await response.json();
+        setReportRecentUpdates(data);
+      } catch (err) {
+        console.error("Error fetching detailed report:", err);
+        setError(err.message); // Store the error message to display to the user
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRecentUpdates();
+
+
   }, []);
 
   const homeData = [
