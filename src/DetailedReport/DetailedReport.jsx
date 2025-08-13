@@ -72,6 +72,8 @@ const DetailedReport = () => {
       </div>
     );
   }
+  const show1 = category !== "potholes" && category !== "construction;";
+  const show2 = category !== "potholes" && category !== "construction;";
 
   return (
     <>
@@ -82,7 +84,37 @@ const DetailedReport = () => {
       <div className="detailed-report-container">
         <div className="billboard-data">
           <h1>{getCategoryTitle(category)}</h1>
-          {category === "potholes" || category === "construction" ? (
+          <table>
+            <thead>
+              <tr>
+                <th colSpan={show1 ? 4 : 1}>Summary</th>
+              </tr>
+              <tr>
+                <th>Total Detected</th>
+                {show1 && <th>Approved</th>}
+                {show1 && <th>Unapproved</th>}
+                {show1 && <th>Damage</th>}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{reportData.length}</td>
+                {show1 && (
+                  <td>
+                    {reportData.filter((item) => item.approved === 1).length}
+                  </td>
+                )}
+                {show1 && (
+                  <td>
+                    {reportData.filter((item) => item.approved === 0).length}
+                  </td>
+                )}
+
+                {show1 && <td>0</td>}
+              </tr>
+            </tbody>
+          </table>
+          {/* {category === "potholes" || category === "construction" ? (
             <table>
               <thead>
                 <tr>
@@ -92,7 +124,7 @@ const DetailedReport = () => {
                   <th>Total Detected</th>
                   {/* <th>Approved</th>
                   <th>Unapproved</th>
-                  <th>Damage</th> */}
+                  <th>Damage</th> 
                 </tr>
               </thead>
               <tbody>
@@ -104,7 +136,7 @@ const DetailedReport = () => {
                   <td>
                     {reportData.filter((item) => item.approved === 0).length}
                   </td>
-                  <td>0</td> */}
+                  <td>0</td> 
                 </tr>
               </tbody>
             </table>
@@ -134,7 +166,7 @@ const DetailedReport = () => {
                 </tr>
               </tbody>
             </table>
-          )}
+          )} */}
           {/* <h1>getCategoryTitle(category)</h1> */}
           {/* {getCategoryTitle(category) === "Pothole" ||
           getCategoryTitle(category) === "Construction" ? (
@@ -236,7 +268,9 @@ const DetailedReport = () => {
                     reportData.map((item) => (
                       <tr key={item.guid}>
                         <td>
-                          {new Date(item.created_at).toLocaleDateString('en-GB')}
+                          {new Date(item.created_at).toLocaleDateString(
+                            "en-GB"
+                          )}
                         </td>
                         <td>{item.image_name}</td>
                         <td>{item.location_text || "N/A"}</td>

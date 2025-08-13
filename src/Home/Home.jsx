@@ -90,7 +90,6 @@ const Home = () => {
     };
 
     fetchTodayTotalProcessed();
-
   }, []);
 
   const homeData = [
@@ -234,7 +233,7 @@ const Home = () => {
                     // textAlign: "right",
                   }}
                 >
-                 {reportData3.length}
+                  {reportData3.length}
                 </p>
               </div>
               {/* <div className="scan-data"> */}
@@ -348,7 +347,7 @@ const Home = () => {
           </div>
         </div> */}
         <div className="updates-container">
-          <div className=".left-update">
+          <div className="left-update">
             <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
               Recent Updates
             </h1>
@@ -407,8 +406,14 @@ const Home = () => {
           </div>
           <div className="right-update">
             <div className="home-view-files">
-              <div className="view-file-head">
-                <span style={{ alignSelf: "center" }}>
+              <div
+                className="view-file-head"
+                style={{
+                  paddingBottom: "3px",
+                  borderBottom: "1px solid grey",
+                }}
+              >
+                <span style={{ alignSelf: "center", paddingTop: "4px" }}>
                   <GoFileSubmodule />
                 </span>
                 <h3>View Files</h3>
