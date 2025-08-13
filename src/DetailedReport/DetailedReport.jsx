@@ -249,7 +249,7 @@ const DetailedReport = () => {
         </div>
         <div className="detailed-report-data-container">
           <div className="detailed-report-data">
-            {category === "potholes" || category === "construction" ? (
+            {/* {category === "potholes" || category === "construction" ? (
               <table>
                 <thead>
                   <tr>
@@ -259,7 +259,7 @@ const DetailedReport = () => {
                     <th>Last processed date</th>
                     <th>File name</th>
                     <th>Location</th>
-                    {/* <th>Status</th> */}
+                   
                     <th>Image File</th>
                   </tr>
                 </thead>
@@ -274,7 +274,7 @@ const DetailedReport = () => {
                         </td>
                         <td>{item.image_name}</td>
                         <td>{item.location_text || "N/A"}</td>
-                        {/* <td>{item.approved === 1 ? "Approved" : "Unapproved"}</td> */}
+                       
                         <td>
                           <a
                             href={item.image_url}
@@ -341,17 +341,17 @@ const DetailedReport = () => {
                   )}
                 </tbody>
               </table>
-            )}
-            {/* <table>
+            )} */}
+            <table>
               <thead>
                 <tr>
-                  <th colSpan={5}>Detailed </th>
+                  <th colSpan={show2 ? 5 : 4}>Detailed </th>
                 </tr>
                 <tr>
                   <th>Last processed date</th>
                   <th>File name</th>
                   <th>Location</th>
-                  <th>Status</th>
+                  {show2 && <th>Status</th>}
                   <th>Image File</th>
                 </tr>
               </thead>
@@ -362,7 +362,11 @@ const DetailedReport = () => {
                       <td>{new Date(item.created_at).toLocaleDateString()}</td>
                       <td>{item.image_name}</td>
                       <td>{item.location_text || "N/A"}</td>
-                      <td>{item.approved === 1 ? "Approved" : "Unapproved"}</td>
+                      {show2 && (
+                        <td>
+                          {item.approved === 1 ? "Approved" : "Unapproved"}
+                        </td>
+                      )}
                       <td>
                         <a
                           href={item.image_url}
@@ -382,7 +386,7 @@ const DetailedReport = () => {
                   </tr>
                 )}
               </tbody>
-            </table> */}
+            </table>
           </div>
         </div>
       </div>
