@@ -58,7 +58,7 @@ const ReportDetails = () => {
       <div className="report-details-container">
         <div className="report-filter-sort">
           <div className="report-filter">
-            <h2>Filters</h2>
+            <h2 style={{ fontSize: "1.5rem", fontWeight: "700" }}>Filters</h2>
             <div className="filter-search">
               <div className="location-filter">
                 <label
@@ -139,7 +139,9 @@ const ReportDetails = () => {
             </div>
           </div>
           <div className="report-sort">
-            <h2>Generate Reports</h2>
+            <h2 style={{ fontSize: "1.5rem", fontWeight: "700" }}>
+              Generate Reports
+            </h2>
             <div className="sort-filter">
               <div className="issue-category">
                 <label
@@ -200,7 +202,9 @@ const ReportDetails = () => {
           </div>
         </div>
         <div className="report-dashboard-container">
-          <h1 style={{ fontSize: "1.6rem" }}>Real Time Report Dashboard</h1>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: "700" }}>
+            Real Time Report Dashboard
+          </h1>
           <div className="report-dashboard">
             {reportdashData.map((item, id) => (
               <div
@@ -214,13 +218,8 @@ const ReportDetails = () => {
                 </h2> */}
                 <div className="report-dash-img">
                   <div className="chart-data">
-                    <Graph category={item.title} chart={"pie"} id={item.id} />
-                    {/* <img src={piechartImage} alt="pie chart" /> */}
+                    <Graph category={item.title} />
                   </div>
-                  {/* <div className="bar-chart">
-                    <Graph category={item.title} chart={"bar"} />
-                   
-                  </div> */}
                 </div>
               </div>
             ))}
