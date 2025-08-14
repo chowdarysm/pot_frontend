@@ -1,3 +1,12 @@
 .graph-container {
   display: flex;
+  justify-content: space-around;
+}
+.bar-chart {
+  padding: 1rem;
+  border: 0.6px solid grey;
+}
+.pie-chart {
+  padding: 1rem;
+  border: 0.6px solid grey;
 }

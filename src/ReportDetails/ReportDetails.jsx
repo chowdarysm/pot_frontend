@@ -4,17 +4,34 @@ import piechartImage from "../assets/images/piechart.png";
 import bargraphImage from "../assets/images/bargraph.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./ReportDetails.css";
+import Graph from "../Graph/Graph";
 
 const ReportDetails = () => {
   const navigate = useNavigate();
   const [issueCategory, setIssueCategory] = useState("");
   const [reportType, setReportType] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
 
   const reportdashData = [
     { id: 1, title: "Billboards", color: "#E1F2CE" },
     { id: 2, title: "Potholes", color: "#D4F4F9" },
     { id: 3, title: "Construction Sites", color: "#80e517" },
     { id: 4, title: "Guardrails", color: "black" },
+  ];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const handleGenerate = () => {
@@ -44,7 +61,12 @@ const ReportDetails = () => {
             <h2>Filters</h2>
             <div className="filter-search">
               <div className="location-filter">
-                <label htmlFor="">Location</label>
+                <label
+                  htmlFor=""
+                  style={{ fontSize: "1.1rem", fontWeight: "600" }}
+                >
+                  Location
+                </label>
                 <input
                   type="text"
                   placeholder="State, City, Highway, GPS Coordinates"
@@ -52,17 +74,64 @@ const ReportDetails = () => {
                 />
               </div>
               <div className="date-filter">
-                <label htmlFor="">Date Range</label>
+                <label
+                  htmlFor=""
+                  style={{ fontSize: "1.1rem", fontWeight: "600" }}
+                >
+                  Month
+                </label>
+
+                <select
+                  value={month}
+                  onChange={(e) => setMonth(e.target.value)}
+                  style={{ boxShadow: " 0 0 12px rgba(0, 0, 0, 0.1)" }}
+                >
+                  <option value="">Month</option>
+                  {months.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="year-filter">
+                <label
+                  htmlFor=""
+                  style={{ fontSize: "1.1rem", fontWeight: "600" }}
+                >
+                  Year
+                </label>
                 <input
-                  type="date"
-                  name=""
-                  id=""
-                  style={{
-                    padding: "12px",
-                    borderRadius: "20px",
-                    boxShadow: " 0 0 12px rgba(0, 0, 0, 0.1)",
-                  }}
+                  type="number"
+                  placeholder="YYYY"
+                  value={year}
+                  min="2025"
+                  max="2030"
+                  step="1"
+                  onChange={(e) => setYear(e.target.value)}
                 />
+              </div>
+              <div className="status-filter">
+                <label
+                  htmlFor="status-filter"
+                  style={{ fontSize: "1.1rem", fontWeight: "600" }}
+                >
+                  Status
+                </label>
+                <select
+                  name="category"
+                  style={{
+                    padding: "10px",
+                    border: "none",
+                    boxShadow: " 0 0 12px rgba(0, 0, 0, 0.1)",
+                    borderRadius: "20px",
+                  }}
+                >
+                  <option value="">Select Status</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Unapproved">Unapproved</option>
+                  <option value="Identified">Identified</option>
+                </select>
               </div>
             </div>
             <div className="apply-filter-btn">
@@ -73,7 +142,12 @@ const ReportDetails = () => {
             <h2>Generate Reports</h2>
             <div className="sort-filter">
               <div className="issue-category">
-                <label htmlFor="issue-categories">Issue Categories</label>
+                <label
+                  htmlFor="issue-categories"
+                  style={{ fontSize: "1.1rem", fontWeight: "600" }}
+                >
+                  Issue Categories
+                </label>
                 <select
                   name="category"
                   id="issue-categories"
@@ -94,7 +168,12 @@ const ReportDetails = () => {
                 </select>
               </div>
               <div className="report-category">
-                <label htmlFor="report-type">Report Type</label>
+                <label
+                  htmlFor="report-type"
+                  style={{ fontSize: "1.1rem", fontWeight: "600" }}
+                >
+                  Report Type
+                </label>
                 <select
                   name="reportType"
                   id="report-type"
@@ -121,25 +200,27 @@ const ReportDetails = () => {
           </div>
         </div>
         <div className="report-dashboard-container">
-          <h1>Real Time Report Dashboard</h1>
+          <h1 style={{ fontSize: "1.6rem" }}>Real Time Report Dashboard</h1>
           <div className="report-dashboard">
             {reportdashData.map((item, id) => (
               <div
                 className="report-dash-card"
                 key={id}
-                style={{ backgroundColor: item.color }}
+                // style={{ backgroundColor: item.color }}
                 onClick={() => generateGraph(item.title)}
               >
-                <h2 style={{ color: item.id === 4 ? "white" : "black" }}>
+                {/* <h2 style={{ color: item.id === 4 ? "white" : "black" }}>
                   {item.title}
-                </h2>
+                </h2> */}
                 <div className="report-dash-img">
-                  <div className="dash-img">
-                    <img src={piechartImage} alt="pie chart" />
+                  <div className="chart-data">
+                    <Graph category={item.title} chart={"pie"} id={item.id} />
+                    {/* <img src={piechartImage} alt="pie chart" /> */}
                   </div>
-                  <div className="dash-img">
-                    <img src={bargraphImage} alt="bar graph" />
-                  </div>
+                  {/* <div className="bar-chart">
+                    <Graph category={item.title} chart={"bar"} />
+                   
+                  </div> */}
                 </div>
               </div>
             ))}

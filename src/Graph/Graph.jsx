@@ -14,7 +14,7 @@ import {
   Cell,
 } from "recharts";
 
-const Graph = () => {
+const Graph = ({ category }) => {
   const barData = [
     { month: "Jun", value: 400 },
     { month: "Jul", value: 300 },
@@ -47,10 +47,25 @@ const Graph = () => {
         marginTop: "50px",
       }}
     >
-      <h1>{title} Analytics</h1>
+      <h1
+        style={{ fontSize: "1.4rem", fontWeight: "700", textAlign: "center" }}
+      >
+        {category} Analytics
+      </h1>
       <div className="graph-container">
         <div className="bar-chart">
-          <BarChart width={300} height={300} data={barData}>
+          <p
+            style={{
+              fontSize: "1.1rem",
+              fontWeight: "600",
+              textAlign: "center",
+              margin: "10px",
+            }}
+          >
+            {category === "Potholes" ? "Unapproved" : ""} {category} Identified
+            Monthwise
+          </p>
+          <BarChart width={400} height={300} data={barData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
             <YAxis />
@@ -60,9 +75,21 @@ const Graph = () => {
           </BarChart>
         </div>
         <div className="pie-chart">
+          <p
+            style={{
+              fontSize: "1.1rem",
+              fontWeight: "600",
+              textAlign: "center",
+              margin: "10px",
+            }}
+          >
+            {category} Summary Data
+          </p>
           <PieChart width={400} height={300}>
             <Pie
-              data={title === "Potholes" ? piePotholesData : pieBillboardData}
+              data={
+                category === "Potholes" ? piePotholesData : pieBillboardData
+              }
               cx="50%"
               cy="50%"
               labelLine={false}
@@ -72,14 +99,15 @@ const Graph = () => {
               nameKey="status"
               label={false}
             >
-              {(title === "Potholes" ? piePotholesData : pieBillboardData).map(
-                (entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                )
-              )}
+              {(category === "Potholes"
+                ? piePotholesData
+                : pieBillboardData
+              ).map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
             </Pie>
             <Tooltip />
             <Legend />
