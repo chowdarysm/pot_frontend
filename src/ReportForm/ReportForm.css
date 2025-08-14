@@ -90,8 +90,8 @@ input[type="file"] {
   border: none;
   border-radius: 20px;
   background-color: #00b0f0;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 800;
   color: white;
   cursor: pointer;
 }
