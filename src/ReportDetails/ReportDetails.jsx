@@ -202,7 +202,7 @@ const ReportDetails = () => {
           </div>
         </div>
         <div className="report-dashboard-container">
-          <h1 style={{ fontSize: "1.5rem", fontWeight: "700" }}>
+          <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
             Real Time Report Dashboard
           </h1>
           <div className="report-dashboard">
