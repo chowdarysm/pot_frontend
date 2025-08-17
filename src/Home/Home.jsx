@@ -1,4 +1,4 @@
-import homeImage from "../assets/images/home.png";
+import homeImage from "../assets/images/homeIcon.png";
 import { MdPhotoCamera } from "react-icons/md";
 import { FaBrain } from "react-icons/fa6";
 import { SiTicktick } from "react-icons/si";
@@ -102,7 +102,7 @@ const Home = () => {
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
-        const data = await response.json();      
+        const data = await response.json();
         setReportRecentUpdates(data.slice(0, 4));
       } catch (err) {
         console.error("Error fetching detailed report:", err);
@@ -113,8 +113,6 @@ const Home = () => {
     };
 
     fetchRecentUpdates();
-
-
   }, []);
 
   const homeData = [
@@ -376,7 +374,7 @@ const Home = () => {
             <h1 style={{ fontSize: "1.6rem", fontWeight: "700" }}>
               Recent Updates - {reportData4.length}
             </h1>
-             <div className="update-card-container">
+            <div className="update-card-container">
               {reportData4.map((item, index) => (
                 <div className="update-card" key={index}>
                   <div className="update-img">
@@ -386,9 +384,15 @@ const Home = () => {
                     <table style={{ width: "100%", background: "inherit" }}>
                       <thead>
                         <tr>
-                          <th style={{ border: "none", textAlign: "left" }}>Location:</th>
-                          <th style={{ border: "none", textAlign: "left" }}>Timestamp:</th>
-                          <th style={{ border: "none", textAlign: "left" }}>Category:</th>
+                          <th style={{ border: "none", textAlign: "left" }}>
+                            Location:
+                          </th>
+                          <th style={{ border: "none", textAlign: "left" }}>
+                            Timestamp:
+                          </th>
+                          <th style={{ border: "none", textAlign: "left" }}>
+                            Category:
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -409,8 +413,8 @@ const Home = () => {
                 </div>
               ))}
             </div>
-            
-{/*
+
+            {/*
             <div className="update-card-container">             
                 <div className="update-card" >
                   <div className="update-img">

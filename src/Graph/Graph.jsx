@@ -14,13 +14,35 @@ import {
   Cell,
 } from "recharts";
 
-const Graph = ({ category }) => {
-  const barData = [
-    { month: "Jun", value: 400 },
-    { month: "Jul", value: 300 },
-    { month: "Aug", value: 500 },
-    // { month: "D", value: 200 },
-  ];
+const Graph = ({
+  category,
+  billboardPie,
+  potholesPie,
+  selectedBillboardStatus,
+  setSelectedBillboardStatus,
+  billboardData,
+  potholesData,
+  selectedPotholeStatus,
+  setSelectedPotholeStatus,
+}) => {
+  // const barData = [
+  //   { month: "Jun", value: 400 },
+  //   { month: "Jul", value: 300 },
+  //   { month: "Aug", value: 500 },
+
+  // ]; previous data
+  //new data
+  //   const barData = billboardData
+  //     .filter(item => item.status === selectedBillboardStatus)
+  //     .map(item => ({ month: item.month, value: item.value }));
+
+  // }
+  const filteredBillboardBarData = billboardData.filter(
+    (item) => item.status === selectedBillboardStatus
+  );
+  const filteredPotholeBarData = potholesData.filter(
+    (item) => item.status === selectedPotholeStatus
+  );
 
   const pieBillboardData = [
     { status: "Approved", value: 400 },
@@ -36,6 +58,12 @@ const Graph = ({ category }) => {
 
   const COLORS = ["red", "blue", "green", "navy"];
   const { title } = useParams();
+  const categoryData = [
+    { id: 1, cat: "billboards" },
+    { id: 2, cat: "potholes" },
+    { id: 3, cat: "construction" },
+    { id: 4, cat: "guardrails" },
+  ];
 
   return (
     <div
@@ -65,7 +93,12 @@ const Graph = ({ category }) => {
             {category === "Potholes" ? "Unapproved" : ""} {category} Identified
             Monthwise
           </p>
-          <BarChart width={400} height={300} data={barData}>
+          <BarChart
+            width={400}
+            height={300}
+            //  data={barData}
+            data={filteredBillboardBarData}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
             <YAxis />
@@ -87,9 +120,10 @@ const Graph = ({ category }) => {
           </p>
           <PieChart width={400} height={300}>
             <Pie
-              data={
-                category === "Potholes" ? piePotholesData : pieBillboardData
-              }
+              // data={
+              //   category === "Potholes" ? piePotholesData : pieBillboardData
+              // }
+              data={billboardPie}
               cx="50%"
               cy="50%"
               labelLine={false}
@@ -98,11 +132,18 @@ const Graph = ({ category }) => {
               dataKey="value"
               nameKey="status"
               label={false}
+              onClick={(data) => setSelectedBillboardStatus(data.status)}
             >
-              {(category === "Potholes"
+              {/* {(category === "Potholes"
                 ? piePotholesData
                 : pieBillboardData
               ).map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))} */}
+              {billboardPie.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}
@@ -113,6 +154,8 @@ const Graph = ({ category }) => {
             <Legend />
           </PieChart>
         </div>
+
+        {/* Potholes */}
       </div>
     </div>
   );

@@ -12,6 +12,53 @@ const ReportDetails = () => {
   const [reportType, setReportType] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
+  const [city, setCity] = useState("");
+  // const [selectedStatus, setSelectedStatus] = useState(null);
+  const [billboardPie, setBillboardPie] = useState([]);
+  const [potholesPie, setPotholesPie] = useState([]);
+  const [selectedBillboardStatus, setSelectedBillboardStatus] =
+    useState("approved");
+  const [selectedPotholeStatus, setSelectedPotholeStatus] = useState("Low");
+  const [filteredPotholesData, setFilteredPotholesData] = useState([]);
+  // const billboardData = [
+  //   { city: "Pune", year: 2025, month: "Jun", status: "Approved", value: 400 },
+  //   {
+  //     city: "Pune",
+  //     year: 2025,
+  //     month: "Jul",
+  //     status: "Unapproved",
+  //     value: 200,
+  //   },
+  //   {
+  //     city: "Mumbai",
+  //     year: 2025,
+  //     month: "Jun",
+  //     status: "Approved",
+  //     value: 300,
+  //   },
+  //   { city: "Mumbai", year: 2025, month: "Aug", status: "Damaged", value: 500 },
+  // ];
+  // const potholesData = [
+  //   { city: "Pune", year: 2025, month: "Jun", status: "low", value: 150 },
+  //   { city: "Pune", year: 2025, month: "Jul", status: "high", value: 250 },
+  //   { city: "Mumbai", year: 2025, month: "Jun", status: "mid", value: 300 },
+  //   { city: "Mumbai", year: 2025, month: "Aug", status: "high", value: 200 },
+  // ];
+  const billboardData = [
+    { city: "Pune", status: "Approved", month: "June", value: 10 },
+    { city: "Pune", status: "Approved", month: "July", value: 5 },
+    { city: "Pune", status: "Unapproved", month: "June", value: 3 },
+    { city: "Mumbai", status: "Approved", month: "June", value: 8 },
+    { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
+  ];
+
+  const potholeData = [
+    { city: "Pune", status: "Low", month: "June", value: 15 },
+    { city: "Pune", status: "Mid", month: "July", value: 8 },
+    { city: "Pune", status: "High", month: "June", value: 5 },
+    { city: "Mumbai", status: "Low", month: "June", value: 12 },
+    { city: "Mumbai", status: "High", month: "July", value: 7 },
+  ];
 
   const reportdashData = [
     { id: 1, title: "Billboards", color: "#E1F2CE" },
@@ -46,9 +93,54 @@ const ReportDetails = () => {
   const goToBack = () => {
     navigate(-1);
   };
-  const generateGraph = (title) => {
-    navigate(`/graph/${title}`);
+  // const generateGraph = (title) => {
+  //   navigate(`/graph/${title}`);
+  // };
+  const handleInputChange = (e) => {
+    setCity(e.target.value);
+    console.log("City:-", e.target.value);
+    // setSelectedStatus(null);
   };
+  const generateGraph = () => {
+    const filteredBillboards = billboardData.filter(
+      (item) => item.city.toLowerCase() === city.toLowerCase()
+    );
+
+    const filteredPotholes = potholeData.filter(
+      (item) => item.city.toLowerCase() === city.toLowerCase()
+    );
+
+    const pieDataBillboard = filteredBillboards.reduce((acc, curr) => {
+      const found = acc.find((item) => item.status === curr.status);
+      if (found) {
+        found.value += curr.value;
+      } else {
+        acc.push({ status: curr.status, value: curr.value });
+      }
+      return acc;
+    }, []);
+
+    const pieDataPotholes = filteredPotholes.reduce((acc, curr) => {
+      const found = acc.find((item) => item.status === curr.status);
+      if (found) {
+        found.value += curr.value;
+      } else {
+        acc.push({ status: curr.status, value: curr.value });
+      }
+      return acc;
+    }, []);
+
+    setBillboardPie(pieDataBillboard);
+    setPotholesPie(pieDataPotholes);
+    setFilteredPotholesData(filteredPotholes);
+  };
+  // const filteredBillboards = billboardData.filter(
+  //   (item) => item.city.toLowerCase() === city.toLowerCase()
+  // );
+
+  // const filteredPotholes = potholeData.filter(
+  //   (item) => item.city.toLowerCase() === city.toLowerCase()
+  // );
 
   return (
     <>
@@ -71,6 +163,7 @@ const ReportDetails = () => {
                   type="text"
                   placeholder="State, City, Highway, GPS Coordinates"
                   style={{ boxShadow: " 0 0 12px rgba(0, 0, 0, 0.1)" }}
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="date-filter">
@@ -135,7 +228,7 @@ const ReportDetails = () => {
               </div>
             </div>
             <div className="apply-filter-btn">
-              <button>Apply Filter</button>
+              <button onClick={generateGraph}>Apply Filter</button>
             </div>
           </div>
           <div className="report-sort">
@@ -210,15 +303,29 @@ const ReportDetails = () => {
               <div
                 className="report-dash-card"
                 key={id}
-                // style={{ backgroundColor: item.color }}
-                onClick={() => generateGraph(item.title)}
+                // onClick={() => generateGraph(item.title)}
               >
-                {/* <h2 style={{ color: item.id === 4 ? "white" : "black" }}>
-                  {item.title}
-                </h2> */}
                 <div className="report-dash-img">
                   <div className="chart-data">
-                    <Graph category={item.title} />
+                    {item.title === "Construction Sites" ||
+                    item.title === "Guardrails" ? (
+                      <>
+                        <h1>{item.title} Analytics</h1>
+                        <p>Coming Soon</p>
+                      </>
+                    ) : (
+                      <Graph
+                        category={item.title}
+                        billboardPie={billboardPie}
+                        potholesPie={potholesPie}
+                        selectedBillboardStatus={selectedBillboardStatus}
+                        setSelectedBillboardStatus={setSelectedBillboardStatus}
+                        billboardData={billboardData}
+                        potholesData={filteredPotholesData}
+                        selectedPotholeStatus={selectedPotholeStatus}
+                        setSelectedPotholeStatus={setSelectedPotholeStatus}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
