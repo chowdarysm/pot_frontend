@@ -210,7 +210,7 @@ const Home = () => {
           <img src={homeImage} alt="Home" />
           <h1>
             {" "}
-            AI-Powered Detection, Real-time alerts and Actionable Insights
+            AI-Powered Detection, Real-time Alerts and Actionable Insights
           </h1>
         </div>
         <div className="parent-home-data-container">
