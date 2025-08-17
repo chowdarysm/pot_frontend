@@ -40,7 +40,7 @@ const Graph = ({
   const filteredBillboardBarData = billboardData.filter(
     (item) => item.status === selectedBillboardStatus
   );
-  const filteredPotholeBarData = potholesData.filter(
+  const filteredPotholesBarData = potholesData.filter(
     (item) => item.status === selectedPotholeStatus
   );
 
@@ -64,6 +64,14 @@ const Graph = ({
     { id: 3, cat: "construction" },
     { id: 4, cat: "guardrails" },
   ];
+  const isPothole = category === "Potholes";
+  const pieData = isPothole ? potholesPie : billboardPie;
+  const barData = isPothole
+    ? filteredPotholesBarData
+    : filteredBillboardBarData;
+  const setStatus = isPothole
+    ? setSelectedPotholeStatus
+    : setSelectedBillboardStatus;
 
   return (
     <div
@@ -90,14 +98,15 @@ const Graph = ({
               margin: "10px",
             }}
           >
-            {category === "Potholes" ? "Unapproved" : ""} {category} Identified
-            Monthwise
+            {/* {category === "Potholes" ? "Unapproved" : ""} {category} Identified
+            Monthwise */}
+            {isPothole ? "Unapproved" : ""} {category} Identified Monthwise
           </p>
           <BarChart
             width={400}
             height={300}
-            //  data={barData}
-            data={filteredBillboardBarData}
+            data={barData}
+            // data={filteredBillboardBarData}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
@@ -123,7 +132,8 @@ const Graph = ({
               // data={
               //   category === "Potholes" ? piePotholesData : pieBillboardData
               // }
-              data={billboardPie}
+              // data={billboardPie}
+              data={pieData}
               cx="50%"
               cy="50%"
               labelLine={false}
@@ -132,7 +142,8 @@ const Graph = ({
               dataKey="value"
               nameKey="status"
               label={false}
-              onClick={(data) => setSelectedBillboardStatus(data.status)}
+              // onClick={(data) => setSelectedBillboardStatus(data.status)}
+              onClick={(data) => setStatus(data.status)}
             >
               {/* {(category === "Potholes"
                 ? piePotholesData
@@ -154,8 +165,6 @@ const Graph = ({
             <Legend />
           </PieChart>
         </div>
-
-        {/* Potholes */}
       </div>
     </div>
   );
