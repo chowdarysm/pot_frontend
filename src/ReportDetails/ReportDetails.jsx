@@ -20,6 +20,7 @@ const ReportDetails = () => {
     useState("approved");
   const [selectedPotholeStatus, setSelectedPotholeStatus] = useState("Low");
   const [filteredPotholesData, setFilteredPotholesData] = useState([]);
+  const [dummy, setDummy] = useState(true);
   // const billboardData = [
   //   { city: "Pune", year: 2025, month: "Jun", status: "Approved", value: 400 },
   //   {
@@ -51,8 +52,21 @@ const ReportDetails = () => {
     { city: "Mumbai", status: "Approved", month: "June", value: 8 },
     { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
   ];
-
+  const dummybillboardData = [
+    { city: "Pune", status: "Approved", month: "June", value: 10 },
+    { city: "Pune", status: "Approved", month: "July", value: 5 },
+    { city: "Pune", status: "Unapproved", month: "June", value: 3 },
+    { city: "Mumbai", status: "Approved", month: "June", value: 8 },
+    { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
+  ];
   const potholeData = [
+    { city: "Pune", status: "Low", month: "June", value: 15 },
+    { city: "Pune", status: "Mid", month: "July", value: 8 },
+    { city: "Pune", status: "High", month: "June", value: 5 },
+    { city: "Mumbai", status: "Low", month: "June", value: 12 },
+    { city: "Mumbai", status: "High", month: "July", value: 7 },
+  ];
+  const dummypotholeData = [
     { city: "Pune", status: "Low", month: "June", value: 15 },
     { city: "Pune", status: "Mid", month: "July", value: 8 },
     { city: "Pune", status: "High", month: "June", value: 5 },
@@ -133,6 +147,7 @@ const ReportDetails = () => {
     setBillboardPie(pieDataBillboard);
     setPotholesPie(pieDataPotholes);
     setFilteredPotholesData(filteredPotholes);
+    setDummy(false);
   };
   // const filteredBillboards = billboardData.filter(
   //   (item) => item.city.toLowerCase() === city.toLowerCase()
@@ -324,6 +339,8 @@ const ReportDetails = () => {
                         potholesData={filteredPotholesData}
                         selectedPotholeStatus={selectedPotholeStatus}
                         setSelectedPotholeStatus={setSelectedPotholeStatus}
+                        dummy={dummy}
+                        setDummy={setDummy}
                       />
                     )}
                   </div>
