@@ -83,7 +83,7 @@ const Videos = () => {
                     <strong>Coordinates:</strong>  {video.location}
                   </p>
                   <p>
-                    <strong>Location:</strong> {video.location}
+                    <strong>Location:</strong> {video.location_text}
                   </p>
                   <p>
                     <strong>FileName:</strong> {video.video_name}
