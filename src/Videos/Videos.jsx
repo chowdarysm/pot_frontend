@@ -80,7 +80,7 @@ const Videos = () => {
                     {new Date(video.created_at).toLocaleString()}
                   </p>
                   <p>
-                    <strong>Coordinates:</strong> 37.7749, -122.4194
+                    <strong>Coordinates:</strong>  {video.location}
                   </p>
                   <p>
                     <strong>Location:</strong> {video.location}
