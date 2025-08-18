@@ -83,10 +83,10 @@ const Videos = () => {
                     <strong>Coordinates:</strong> 37.7749, -122.4194
                   </p>
                   <p>
-                    <strong>Location:</strong> San Francisco, USA
+                    <strong>Location:</strong> {video.location}
                   </p>
                   <p>
-                    <strong>FileName:</strong> 1234
+                    <strong>FileName:</strong> {video.video_name}
                   </p>
                 </div>
               </Link>
