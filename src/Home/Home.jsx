@@ -397,8 +397,8 @@ const Home = () => {
                       </thead>
                       <tbody>
                         <tr>
-                          <td style={{ border: "none", textAlign: "left" }}>
-                            {item.location_text}
+                          <td style={{ border: "none", textAlign: "left" }}>                            
+                            {item.location ? item.location : item.location_text}
                           </td>
                           <td style={{ border: "none", textAlign: "left" }}>
                             {new Date(item.created_at).toLocaleString()}

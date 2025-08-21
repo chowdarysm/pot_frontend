@@ -52,13 +52,7 @@ const ReportDetails = () => {
     { city: "Mumbai", status: "Approved", month: "June", value: 8 },
     { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
   ];
-  const dummybillboardData = [
-    { city: "Pune", status: "Approved", month: "June", value: 10 },
-    { city: "Pune", status: "Approved", month: "July", value: 5 },
-    { city: "Pune", status: "Unapproved", month: "June", value: 3 },
-    { city: "Mumbai", status: "Approved", month: "June", value: 8 },
-    { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
-  ];
+  
   const potholeData = [
     { city: "Pune", status: "Low", month: "June", value: 15 },
     { city: "Pune", status: "Mid", month: "July", value: 8 },
@@ -66,13 +60,7 @@ const ReportDetails = () => {
     { city: "Mumbai", status: "Low", month: "June", value: 12 },
     { city: "Mumbai", status: "High", month: "July", value: 7 },
   ];
-  const dummypotholeData = [
-    { city: "Pune", status: "Low", month: "June", value: 15 },
-    { city: "Pune", status: "Mid", month: "July", value: 8 },
-    { city: "Pune", status: "High", month: "June", value: 5 },
-    { city: "Mumbai", status: "Low", month: "June", value: 12 },
-    { city: "Mumbai", status: "High", month: "July", value: 7 },
-  ];
+  
 
   const reportdashData = [
     { id: 1, title: "Billboards", color: "#E1F2CE" },
