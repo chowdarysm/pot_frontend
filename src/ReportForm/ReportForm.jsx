@@ -51,11 +51,12 @@ const ReportForm = () => {
     const endpoint = isVideo ? "/upload_video" : "/upload";
     const submissionData = new FormData();
     submissionData.append("file", file);
+    submissionData.append("category", formData.category);
+    submissionData.append("location", formData.location);
 
     // Only add category and location for images, as the video endpoint doesn't accept them
     //if (!isVideo) {
-      submissionData.append("category", formData.category);
-      submissionData.append("location", formData.location);
+      
     //}
 
     try {
