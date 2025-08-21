@@ -15,6 +15,8 @@ import billboardImage from "../assets/images/billboard-img.png";
 import potholeImage from "../assets/images/pothole.png";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import wkx from "wkx"
+
 const Home = () => {
   const [reportData, setReportData] = useState([]); // Initialize with an empty array
   const [reportData2, setReportData2] = useState([]); // Initialize with an empty array
@@ -69,6 +71,20 @@ const Home = () => {
     };
 
     fetchTotalPotholes();
+
+    function convertLocation(ewkb) {
+    if (!ewkb) return null;
+    try {
+      // Convert hex to buffer
+      const buffer = Buffer.from(ewkb, "hex");
+      const geom = wkx.Geometry.parse(buffer);
+      const [lon, lat] = geom.toGeoJSON().coordinates;
+      return `${lat.toFixed(6)}, ${lon.toFixed(6)}`;
+    } catch (err) {
+      console.error("Failed to parse location:", err);
+      return null;
+    }
+    }
 
     const fetchTodayTotalProcessed = async () => {
       setIsLoading(true);
@@ -398,7 +414,9 @@ const Home = () => {
                       <tbody>
                         <tr>
                           <td style={{ border: "none", textAlign: "left" }}>                            
-                            {item.location ? item.location : item.location_text}
+                            {item.location 
+                            ? convertLocation(item.location) 
+                            : item.location_text}
                           </td>
                           <td style={{ border: "none", textAlign: "left" }}>
                             {new Date(item.created_at).toLocaleString()}
