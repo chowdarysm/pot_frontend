@@ -399,7 +399,7 @@ const Home = () => {
                       <tbody>
                         <tr>
                           <td style={{ border: "none", textAlign: "left" }}>                            
-                            {item.location ? item.location : item.location_text}
+                            {item.location_text}
                           </td>
                           <td style={{ border: "none", textAlign: "left" }}>
                             {new Date(item.created_at).toLocaleString()}
