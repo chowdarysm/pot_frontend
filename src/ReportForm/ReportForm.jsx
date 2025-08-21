@@ -53,10 +53,10 @@ const ReportForm = () => {
     submissionData.append("file", file);
 
     // Only add category and location for images, as the video endpoint doesn't accept them
-    if (!isVideo) {
+    //if (!isVideo) {
       submissionData.append("category", formData.category);
       submissionData.append("location", formData.location);
-    }
+    //}
 
     try {
       const response = await fetch(
