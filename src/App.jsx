@@ -25,6 +25,7 @@ import { ToastContainer } from "react-toastify";
 import LandingPage from "./LandingPage/LandingPage";
 import ComplianceReport from "./ComplianceReport/ComplianceReport";
 import Graph from "./Graph/Graph";
+import Maps from "./Maps/Maps";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/detailedreport" element={<DetailedReport />} />
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/graph/:title" element={<Graph />} />
+          <Route path="/maps" element={<Maps />} />
           {/* <Route path="/graph/:title" element={<DetailsPage />} /> */}
         </Route>
       </Routes>

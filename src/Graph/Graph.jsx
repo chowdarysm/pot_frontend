@@ -26,6 +26,13 @@ const Graph = ({
   setSelectedPotholeStatus,
   dummy,
   setDummy,
+  initBillboardBarData,
+  initBillboardPieData,
+  initPotholeBarData,
+  initPotholePieData,
+  city,
+  filterBillboardCity,
+  filterPotholeCity,
 }) => {
   // ]; previous data
   //new data
@@ -58,6 +65,7 @@ const Graph = ({
   ];
 
   const COLORS = ["red", "blue", "green", "navy"];
+  // Approved - green unapproved - red damaged - orange
   const [selectedColor, setSelectedColor] = useState(null);
   const { title } = useParams();
   const categoryData = [
@@ -71,10 +79,19 @@ const Graph = ({
   const barData = isPothole
     ? filteredPotholesBarData
     : filteredBillboardBarData;
+  console.log("Bardata", barData);
+  const finalBarData = barData.filter(
+    (item) => !city || item.city.toLowerCase() === city.toLowerCase()
+  );
+  console.log("FInalDtaa", finalBarData);
   const setStatus = isPothole
     ? setSelectedPotholeStatus
     : setSelectedBillboardStatus;
+  console.log("Billboarstatus", selectedBillboardStatus);
+  console.log("PotholeStatus", selectedPotholeStatus);
 
+  const [pieClick, setPieClick] = useState(false);
+  const preClickData = isPothole ? filterPotholeCity : filterBillboardCity;
   return (
     <>
       {dummy ? (
@@ -115,7 +132,12 @@ const Graph = ({
                 <BarChart
                   width={400}
                   height={300}
-                  data={bardummyData}
+                  data={
+                    category === "Potholes"
+                      ? initPotholeBarData
+                      : initBillboardBarData
+                  }
+                  // data={bardummyData}
                   // data={filteredBillboardBarData}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
@@ -141,8 +163,8 @@ const Graph = ({
                   <Pie
                     data={
                       category === "Potholes"
-                        ? piedummyPotholesData
-                        : piedummyBillboardData
+                        ? initPotholePieData
+                        : initBillboardPieData
                     }
                     // data={billboardPie}
                     // data={pieData}
@@ -216,7 +238,8 @@ const Graph = ({
               <BarChart
                 width={400}
                 height={300}
-                data={barData}
+                data={pieClick ? barData : preClickData}
+
                 // data={filteredBillboardBarData}
               >
                 <CartesianGrid strokeDasharray="3 3" />
@@ -224,7 +247,17 @@ const Graph = ({
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="value" fill={selectedColor} />
+                <Bar
+                  dataKey="value"
+                  fill={selectedColor}
+                  onClick={(data, index) => {
+                    console.log("Clicked Bar Data:", data);
+                    console.log("Month:", data.month);
+                    console.log("Value:", data.value);
+                    console.log("City:", data.city); // if city is included in barData
+                    console.log("Status:", data.status); // if status is included in barData
+                  }}
+                />
               </BarChart>
             </div>
             <div className="pie-chart">
@@ -255,6 +288,7 @@ const Graph = ({
                   label={false}
                   // onClick={(data) => setSelectedBillboardStatus(data.status)}
                   onClick={(data, index) => {
+                    setPieClick(true);
                     setStatus(data.status);
                     setSelectedColor(COLORS[index % COLORS.length]);
                   }}

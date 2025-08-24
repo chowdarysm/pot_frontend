@@ -16,10 +16,12 @@ const ReportDetails = () => {
   // const [selectedStatus, setSelectedStatus] = useState(null);
   const [billboardPie, setBillboardPie] = useState([]);
   const [potholesPie, setPotholesPie] = useState([]);
-  const [selectedBillboardStatus, setSelectedBillboardStatus] =
-    useState("approved");
-  const [selectedPotholeStatus, setSelectedPotholeStatus] = useState("Low");
+  const [selectedBillboardStatus, setSelectedBillboardStatus] = useState();
+  const [selectedPotholeStatus, setSelectedPotholeStatus] = useState();
   const [filteredPotholesData, setFilteredPotholesData] = useState([]);
+  const [billboardBar, setBillboardBar] = useState();
+  const [filterBillboardCity, setFilterBillboardCity] = useState([]);
+  const [filterPotholeCity, setFilterPotholeCity] = useState([]);
   const [dummy, setDummy] = useState(true);
   // const billboardData = [
   //   { city: "Pune", year: 2025, month: "Jun", status: "Approved", value: 400 },
@@ -52,7 +54,17 @@ const ReportDetails = () => {
     { city: "Mumbai", status: "Approved", month: "June", value: 8 },
     { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
   ];
+<<<<<<< HEAD
   
+=======
+  // const dummybillboardData = [
+  //   { city: "Pune", status: "Approved", month: "June", value: 10 },
+  //   { city: "Pune", status: "Approved", month: "July", value: 5 },
+  //   { city: "Pune", status: "Unapproved", month: "June", value: 3 },
+  //   { city: "Mumbai", status: "Approved", month: "June", value: 8 },
+  //   { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
+  // ];
+>>>>>>> 531a705 (changes)
   const potholeData = [
     { city: "Pune", status: "Low", month: "June", value: 15 },
     { city: "Pune", status: "Mid", month: "July", value: 8 },
@@ -60,7 +72,17 @@ const ReportDetails = () => {
     { city: "Mumbai", status: "Low", month: "June", value: 12 },
     { city: "Mumbai", status: "High", month: "July", value: 7 },
   ];
+<<<<<<< HEAD
   
+=======
+  // const dummypotholeData = [
+  //   { city: "Pune", status: "Low", month: "June", value: 15 },
+  //   { city: "Pune", status: "Mid", month: "July", value: 8 },
+  //   { city: "Pune", status: "High", month: "June", value: 5 },
+  //   { city: "Mumbai", status: "Low", month: "June", value: 12 },
+  //   { city: "Mumbai", status: "High", month: "July", value: 7 },
+  // ];
+>>>>>>> 531a705 (changes)
 
   const reportdashData = [
     { id: 1, title: "Billboards", color: "#E1F2CE" },
@@ -95,22 +117,50 @@ const ReportDetails = () => {
   const goToBack = () => {
     navigate(-1);
   };
-  // const generateGraph = (title) => {
-  //   navigate(`/graph/${title}`);
-  // };
+
   const handleInputChange = (e) => {
     setCity(e.target.value);
     console.log("City:-", e.target.value);
-    // setSelectedStatus(null);
   };
   const generateGraph = () => {
     const filteredBillboards = billboardData.filter(
-      (item) => item.city.toLowerCase() === city.toLowerCase()
+      (item) =>
+        (!city || item.city.toLowerCase() === city.toLowerCase()) &&
+        (!selectedBillboardStatus || item.status === selectedBillboardStatus)
+    );
+    const billboardNewBarData = Object.values(
+      filteredBillboards.reduce((acc, item) => {
+        if (!acc[item.month]) {
+          acc[item.month] = {
+            month: item.month,
+            value: 0,
+            city: item.city,
+            status: item.status,
+          };
+        }
+        acc[item.month].value += item.value;
+        return acc;
+      }, {})
     );
 
-    const filteredPotholes = potholeData.filter(
-      (item) => item.city.toLowerCase() === city.toLowerCase()
-    );
+    console.log("billboard filtered", filteredBillboards);
+
+    const filteredPotholes = potholeData
+      .filter((item) => !city || item.city.toLowerCase() === city.toLowerCase()) // only that city
+      .reduce((acc, curr) => {
+        const found = acc.find((item) => item.status === curr.status);
+        if (found) {
+          found.value += curr.value;
+        } else {
+          acc.push({
+            status: curr.status,
+            value: curr.value,
+          });
+        }
+        return acc;
+      }, []);
+
+    console.log(filteredPotholes);
 
     const pieDataBillboard = filteredBillboards.reduce((acc, curr) => {
       const found = acc.find((item) => item.status === curr.status);
@@ -121,6 +171,7 @@ const ReportDetails = () => {
       }
       return acc;
     }, []);
+    console.log(pieDataBillboard);
 
     const pieDataPotholes = filteredPotholes.reduce((acc, curr) => {
       const found = acc.find((item) => item.status === curr.status);
@@ -132,18 +183,76 @@ const ReportDetails = () => {
       return acc;
     }, []);
 
+    //initial bar when city is entered
+    const filteredBillboardBar = Object.values(
+      billboardData
+        .filter(
+          (item) => !city || item.city.toLowerCase() === city.toLowerCase()
+        )
+        .reduce((acc, item) => {
+          if (!acc[item.month])
+            acc[item.month] = { month: item.month, value: 0 };
+          acc[item.month].value += item.value;
+          return acc;
+        }, {})
+    );
+
+    const filteredPotholeBar = Object.values(
+      potholeData
+        .filter(
+          (item) => !city || item.city.toLowerCase() === city.toLowerCase()
+        )
+        .reduce((acc, item) => {
+          if (!acc[item.month])
+            acc[item.month] = { month: item.month, value: 0 };
+          acc[item.month].value += item.value;
+          return acc;
+        }, {})
+    );
+
     setBillboardPie(pieDataBillboard);
     setPotholesPie(pieDataPotholes);
     setFilteredPotholesData(filteredPotholes);
+    setBillboardBar(billboardNewBarData);
+    setFilterBillboardCity(filteredBillboardBar);
+    setFilterPotholeCity(filteredPotholeBar);
+
     setDummy(false);
   };
-  // const filteredBillboards = billboardData.filter(
-  //   (item) => item.city.toLowerCase() === city.toLowerCase()
-  // );
 
-  // const filteredPotholes = potholeData.filter(
-  //   (item) => item.city.toLowerCase() === city.toLowerCase()
-  // );
+  const initbillboardPie = Object.values(
+    billboardData.reduce((acc, item) => {
+      if (!acc[item.status])
+        acc[item.status] = { status: item.status, value: 0 };
+      acc[item.status].value += item.value;
+      return acc;
+    }, {})
+  );
+
+  const initbillboardBar = Object.values(
+    billboardData.reduce((acc, item) => {
+      if (!acc[item.month]) acc[item.month] = { month: item.month, value: 0 };
+      acc[item.month].value += item.value;
+      return acc;
+    }, {})
+  );
+
+  const initpotholePie = Object.values(
+    potholeData.reduce((acc, item) => {
+      if (!acc[item.status])
+        acc[item.status] = { status: item.status, value: 0 };
+      acc[item.status].value += item.value;
+      return acc;
+    }, {})
+  );
+
+  const initpotholeBar = Object.values(
+    potholeData.reduce((acc, item) => {
+      if (!acc[item.month]) acc[item.month] = { month: item.month, value: 0 };
+      acc[item.month].value += item.value;
+      return acc;
+    }, {})
+  );
 
   return (
     <>
@@ -207,7 +316,7 @@ const ReportDetails = () => {
                   onChange={(e) => setYear(e.target.value)}
                 />
               </div>
-              <div className="status-filter">
+              {/* <div className="status-filter">
                 <label
                   htmlFor="status-filter"
                   style={{ fontSize: "1.1rem", fontWeight: "600" }}
@@ -228,7 +337,7 @@ const ReportDetails = () => {
                   <option value="Unapproved">Unapproved</option>
                   <option value="Identified">Identified</option>
                 </select>
-              </div>
+              </div> */}
             </div>
             <div className="apply-filter-btn">
               <button onClick={generateGraph}>Apply Filter</button>
@@ -324,11 +433,19 @@ const ReportDetails = () => {
                         selectedBillboardStatus={selectedBillboardStatus}
                         setSelectedBillboardStatus={setSelectedBillboardStatus}
                         billboardData={billboardData}
+                        // billboardData={billboardBar}
                         potholesData={filteredPotholesData}
                         selectedPotholeStatus={selectedPotholeStatus}
                         setSelectedPotholeStatus={setSelectedPotholeStatus}
                         dummy={dummy}
                         setDummy={setDummy}
+                        initBillboardBarData={initbillboardBar}
+                        initBillboardPieData={initbillboardPie}
+                        initPotholeBarData={initpotholeBar}
+                        initPotholePieData={initpotholePie}
+                        filterBillboardCity={filterBillboardCity}
+                        filterPotholeCity={filterPotholeCity}
+                        city={city}
                       />
                     )}
                   </div>
@@ -343,3 +460,67 @@ const ReportDetails = () => {
 };
 
 export default ReportDetails;
+// const filteredBillboards = billboardData.filter(
+//   (item) => item.city.toLowerCase() === city.toLowerCase()
+// );
+
+// const filteredPotholes = potholeData.filter(
+//   (item) => item.city.toLowerCase() === city.toLowerCase()
+// );
+// const filterednewBillboards = billboardData
+//   .filter(
+//     (item) =>
+//       (!city || item.city.toLowerCase() === city.toLowerCase()) && // city filter
+//       (!selectedBillboardStatus || item.status === selectedBillboardStatus) // status filter
+//   )
+//   .reduce((acc, { month, value }) => {
+
+//     acc[month] = (acc[month] || 0) + value;
+//     return acc;
+//   }, {});
+
+// convert object → array for recharts
+// const billboardNewBarData = Object.entries(filterednewBillboards).map(
+//   ([month, value]) => ({
+//     month,
+//     value,
+//   })
+// );
+
+// billboardData
+//   .filter(
+//     (item) =>
+//       (!city || item.city.toLowerCase() === city.toLowerCase()) && // filter by city input
+//       (!selectedBillboardStatus || item.status === selectedBillboardStatus) // filter by clicked pie slice
+//   )
+//   .reduce((acc, curr) => {
+//     const found = acc.find((item) => item.month === curr.month);
+//     if (found) {
+//       found.value += curr.value;
+//     } else {
+//       acc.push({
+//         month: curr.month,
+//         value: curr.value,
+//         city: curr.city,
+//         status: curr.status,
+//       });
+//     }
+//     return acc;
+//   }, []);
+
+// billboardData.filter(
+//   (item) =>
+//     (!selectedBillboardStatus || item.status === selectedBillboardStatus) &&
+//     (!city || item.city.toLowerCase() === city.toLowerCase())
+// );
+
+// potholeData.filter(
+//   (item) =>
+//     (!city || item.city.toLowerCase() === city.toLowerCase()) &&
+//     (!selectedPotholeStatus || item.status === selectedPotholeStatus)
+// );
+// potholeData.filter(
+//   (item) =>
+//     (!selectedPotholeStatus || item.status === selectedPotholeStatus) &&
+//     (!city || item.city.toLowerCase() === city.toLowerCase())
+// );
