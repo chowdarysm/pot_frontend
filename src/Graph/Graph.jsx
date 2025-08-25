@@ -47,22 +47,6 @@ const Graph = ({
   const filteredPotholesBarData = potholesData.filter(
     (item) => item.status === selectedPotholeStatus
   );
-  const bardummyData = [
-    { month: "Jun", value: 400 },
-    { month: "Jul", value: 300 },
-    { month: "Aug", value: 500 },
-  ];
-  const piedummyBillboardData = [
-    { status: "Approved", value: 400 },
-    { status: "Unapproved", value: 400 },
-    { status: "Damaged", value: 400 },
-  ];
-
-  const piedummyPotholesData = [
-    { status: "low", value: 400 },
-    { status: "mid", value: 400 },
-    { status: "high", value: 400 },
-  ];
 
   const COLORS = ["red", "blue", "green", "navy"];
   // Approved - green unapproved - red damaged - orange
@@ -80,18 +64,56 @@ const Graph = ({
     ? filteredPotholesBarData
     : filteredBillboardBarData;
   console.log("Bardata", barData);
-  const finalBarData = barData.filter(
-    (item) => !city || item.city.toLowerCase() === city.toLowerCase()
-  );
-  console.log("FInalDtaa", finalBarData);
+  console.log("piedata", pieData);
+  // const finalBarData = barData.filter(
+  //   (item) => !city || item.city.toLowerCase() === city.toLowerCase()
+  // );
+
+  // console.log("FInalDtaa", finalBarData);
   const setStatus = isPothole
     ? setSelectedPotholeStatus
     : setSelectedBillboardStatus;
+  console.log("category is", category);
   console.log("Billboarstatus", selectedBillboardStatus);
   console.log("PotholeStatus", selectedPotholeStatus);
-
+  // console.log("Initial Pothole", initPotholeBarData);
   const [pieClick, setPieClick] = useState(false);
   const preClickData = isPothole ? filterPotholeCity : filterBillboardCity;
+  console.log("pothole status", selectedPotholeStatus);
+  // const finalBarData = pieClick
+  //   ? barData.filter(
+  //       (item) =>
+  //         (item.status === selectedBillboardStatus ||
+  //           item.status === selectedPotholeStatus) &&
+  //         (!city || item.city?.toLowerCase() === city.toLowerCase())
+  //     )
+  //   : preClickData;
+  const activeStatus = isPothole
+    ? selectedPotholeStatus
+    : selectedBillboardStatus;
+
+  // const finalBarData = pieClick
+  //   ? barData.filter(
+  //       (item) =>
+  //         item.status === activeStatus &&
+  //         (!city || item.city?.toLowerCase() === city.toLowerCase())
+  //     )
+  //   : preClickData;
+  const finalBarData = pieClick
+    ? barData.filter(
+        (item) =>
+          item.status?.trim().toLowerCase() ===
+            activeStatus?.trim().toLowerCase() &&
+          (!city ||
+            item.city?.trim().toLowerCase() === city?.trim().toLowerCase())
+      )
+    : preClickData;
+  console.log("Active statys", activeStatus);
+  console.log(
+    "All statuses in barData:",
+    barData.map((d) => d.status)
+  );
+  console.log("FInalDtaa", finalBarData);
   return (
     <>
       {dummy ? (
@@ -132,11 +154,7 @@ const Graph = ({
                 <BarChart
                   width={400}
                   height={300}
-                  data={
-                    category === "Potholes"
-                      ? initPotholeBarData
-                      : initBillboardBarData
-                  }
+                  data={isPothole ? initPotholeBarData : initBillboardBarData}
                   // data={bardummyData}
                   // data={filteredBillboardBarData}
                 >
@@ -238,7 +256,8 @@ const Graph = ({
               <BarChart
                 width={400}
                 height={300}
-                data={pieClick ? barData : preClickData}
+                // data={pieClick ? barData : preClickData}
+                data={finalBarData}
 
                 // data={filteredBillboardBarData}
               >
@@ -288,8 +307,14 @@ const Graph = ({
                   label={false}
                   // onClick={(data) => setSelectedBillboardStatus(data.status)}
                   onClick={(data, index) => {
+                    console.log("data status", data.status);
                     setPieClick(true);
-                    setStatus(data.status);
+                    // setStatus(data.status);
+                    if (category === "Potholes") {
+                      setSelectedPotholeStatus(data.status); // set pothole status
+                    } else {
+                      setSelectedBillboardStatus(data.status); // set billboard status
+                    }
                     setSelectedColor(COLORS[index % COLORS.length]);
                   }}
                 >

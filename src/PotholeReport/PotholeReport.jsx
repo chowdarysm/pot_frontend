@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./PotholeReport.css";
 import mapImage from "../assets/images/map-image.jpeg";
+import Maps from "../Maps/Maps";
 
 const PotholeReport = () => {
   const [report, setReport] = useState(null);
@@ -107,7 +108,8 @@ const PotholeReport = () => {
             </div>
           </div>
           <div className="pothole-report-map">
-            <img src={mapImage} alt="Map location" />
+            {/* <img src={mapImage} alt="Map location" /> */}
+            <Maps />
           </div>
         </div>
         {/* <div className="right-pothole-report">

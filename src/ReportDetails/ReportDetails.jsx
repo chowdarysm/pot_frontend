@@ -16,8 +16,8 @@ const ReportDetails = () => {
   // const [selectedStatus, setSelectedStatus] = useState(null);
   const [billboardPie, setBillboardPie] = useState([]);
   const [potholesPie, setPotholesPie] = useState([]);
-  const [selectedBillboardStatus, setSelectedBillboardStatus] = useState();
-  const [selectedPotholeStatus, setSelectedPotholeStatus] = useState();
+  const [selectedBillboardStatus, setSelectedBillboardStatus] = useState("");
+  const [selectedPotholeStatus, setSelectedPotholeStatus] = useState("");
   const [filteredPotholesData, setFilteredPotholesData] = useState([]);
   const [billboardBar, setBillboardBar] = useState();
   const [filterBillboardCity, setFilterBillboardCity] = useState([]);
@@ -54,9 +54,6 @@ const ReportDetails = () => {
     { city: "Mumbai", status: "Approved", month: "June", value: 8 },
     { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
   ];
-<<<<<<< HEAD
-  
-=======
   // const dummybillboardData = [
   //   { city: "Pune", status: "Approved", month: "June", value: 10 },
   //   { city: "Pune", status: "Approved", month: "July", value: 5 },
@@ -64,7 +61,7 @@ const ReportDetails = () => {
   //   { city: "Mumbai", status: "Approved", month: "June", value: 8 },
   //   { city: "Mumbai", status: "Unapproved", month: "July", value: 4 },
   // ];
->>>>>>> 531a705 (changes)
+
   const potholeData = [
     { city: "Pune", status: "Low", month: "June", value: 15 },
     { city: "Pune", status: "Mid", month: "July", value: 8 },
@@ -72,9 +69,7 @@ const ReportDetails = () => {
     { city: "Mumbai", status: "Low", month: "June", value: 12 },
     { city: "Mumbai", status: "High", month: "July", value: 7 },
   ];
-<<<<<<< HEAD
-  
-=======
+
   // const dummypotholeData = [
   //   { city: "Pune", status: "Low", month: "June", value: 15 },
   //   { city: "Pune", status: "Mid", month: "July", value: 8 },
@@ -82,7 +77,6 @@ const ReportDetails = () => {
   //   { city: "Mumbai", status: "Low", month: "June", value: 12 },
   //   { city: "Mumbai", status: "High", month: "July", value: 7 },
   // ];
->>>>>>> 531a705 (changes)
 
   const reportdashData = [
     { id: 1, title: "Billboards", color: "#E1F2CE" },
