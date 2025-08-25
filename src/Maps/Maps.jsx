@@ -4,7 +4,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 const Maps = () => {
   const [address, setAddress] = useState("");
   //79.424903 21.707997
-  const [location, setLocation] = useState({ lat: 79.424903, lng: 21.707997 });
+  const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
 
   //   const getAddressFromLatLon = async () => {
   //     const apiKey = "AIzaSyDmVFC6Me3Z3Easjr0az77hPQPXp5tRIiY";
