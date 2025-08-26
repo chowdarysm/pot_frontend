@@ -109,7 +109,7 @@ const PotholeReport = () => {
           </div>
           <div className="pothole-report-map">
             {/* <img src={mapImage} alt="Map location" /> */}
-            <Maps />
+            <Maps locationString={report.location_text} />
           </div>
         </div>
         {/* <div className="right-pothole-report">

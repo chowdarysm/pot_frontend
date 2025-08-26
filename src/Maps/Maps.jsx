@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-const Maps = () => {
+const Maps = ({ locationString }) => {
   const [address, setAddress] = useState("");
   //79.424903 21.707997
-  const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
+  const locationCoordinates = locationString.split(" ");
+  const latCoord = locationCoordinates[0];
+  const longCoord = locationCoordinates[1];
+  //   const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
+  const [location, setLocation] = useState({ lat: latCoord, lng: longCoord });
 
   //   const getAddressFromLatLon = async () => {
   //     const apiKey = "AIzaSyDmVFC6Me3Z3Easjr0az77hPQPXp5tRIiY";
