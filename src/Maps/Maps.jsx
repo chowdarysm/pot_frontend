@@ -7,6 +7,7 @@ const Maps = ({ locationString }) => {
   const locationCoordinates = locationString.split(" ");
   const latCoord = locationCoordinates[0];
   const longCoord = locationCoordinates[1];
+  console.log("Lat and long", latCoord + " " + longCoord);
   //   const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
   const [location, setLocation] = useState({ lat: latCoord, lng: longCoord });
 
