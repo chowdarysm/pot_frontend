@@ -105,6 +105,11 @@ const Home = () => {
         }
         const data = await response.json();
         console.log("Api data", data);
+        console.log("Location", data.location_text);
+        const locString = data.location_text.split(" ");
+        const lang = locString[0];
+        const long = locString[1];
+        console.log("Lang and long", lang + " " + long);
         setReportRecentUpdates(data.slice(0, 4));
       } catch (err) {
         console.error("Error fetching detailed report:", err);
