@@ -99,6 +99,20 @@ const Graph = ({
   //         (!city || item.city?.toLowerCase() === city.toLowerCase())
   //     )
   //   : preClickData;
+  barData.forEach((item) => {
+    console.log(
+      "barData.status:",
+      `"${item.status}"`,
+      "length:",
+      item.status?.length
+    );
+  });
+  console.log(
+    "activeStatus:",
+    `"${activeStatus}"`,
+    "length:",
+    activeStatus?.length
+  );
   const finalBarData = pieClick
     ? barData.filter(
         (item) =>
