@@ -104,6 +104,7 @@ const Home = () => {
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
         const data = await response.json();
+        console.log("Api data", data);
         setReportRecentUpdates(data.slice(0, 4));
       } catch (err) {
         console.error("Error fetching detailed report:", err);
@@ -398,7 +399,7 @@ const Home = () => {
                       </thead>
                       <tbody>
                         <tr>
-                          <td style={{ border: "none", textAlign: "left" }}>                            
+                          <td style={{ border: "none", textAlign: "left" }}>
                             {item.location_text}
                           </td>
                           <td style={{ border: "none", textAlign: "left" }}>
