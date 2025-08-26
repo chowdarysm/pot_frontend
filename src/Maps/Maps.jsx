@@ -9,7 +9,11 @@ const Maps = ({ locationString }) => {
   const longCoord = parseFloat(locationCoordinates[1]);
   console.log("Lat and long", latCoord + " " + longCoord);
   //   const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
-  const [location, setLocation] = useState({ lat: latCoord, lng: longCoord });
+  const [location, setLocation] = useState(
+    locationCoordinates
+      ? { lat: latCoord, lng: longCoord }
+      : { lat: 75.781211, lng: 21.034964 }
+  );
 
   //   const getAddressFromLatLon = async () => {
   //     const apiKey = "AIzaSyDmVFC6Me3Z3Easjr0az77hPQPXp5tRIiY";
