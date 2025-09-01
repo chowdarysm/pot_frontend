@@ -67,7 +67,7 @@ const Events = () => {
                   reportData.map((item, index) => (
                     <tr key={index}>
                       <td> {new Date(item.created_at).toLocaleDateString('en-GB')}</td>
-                      <td>{item.image_name}</td>
+                      <td>{item.image_name ? item.image_name : item.video_name}</td>
                       <td>{item.location_text || "N/A"}</td>
                       <td> <a
                           href={item.image_url}
