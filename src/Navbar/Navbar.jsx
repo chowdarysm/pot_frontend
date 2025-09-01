@@ -81,6 +81,7 @@ const Navbar = () => {
                 color: "inherit",
                 cursor: "pointer",
               }}
+              to={"/mapview"}
             >
               <li>Map View</li>
             </Link>
