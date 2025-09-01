@@ -60,6 +60,8 @@ const Home = () => {
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
         const data = await response.json();
+        console.log("Pothole data", data);
+        console.log("Pothole data count", data.length);
         setReportData2(data);
       } catch (err) {
         console.error("Error fetching detailed report:", err);
