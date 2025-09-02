@@ -169,7 +169,7 @@ const ReportForm = () => {
             </div>
             <br />
             <div className="city">
-              <label htmlFor="description" style={{ paddingTop: "5px" }}>
+              <label htmlFor="city" style={{ paddingTop: "5px" }}>
                 City
               </label>
               <input
