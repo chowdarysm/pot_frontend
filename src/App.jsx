@@ -41,7 +41,7 @@ function App() {
           <Route path="/report" element={<Report />} />
           <Route path="/form" element={<ReportForm />} />
           <Route path="/billboards" element={<Billboards />} />
-          <Route path="/potholereport/:location" element={<PotholeReport />} />
+          <Route path="/potholereport" element={<PotholeReport />} />
           <Route path="/billboardreport" element={<BillboardReport />} />
           <Route path="/potholes" element={<Potholes />} />
           <Route path="/events" element={<Events />} />
