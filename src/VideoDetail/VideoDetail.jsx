@@ -56,7 +56,11 @@ const VideoDetail = () => {
         <h1>{videoInfo ? videoInfo.video_name : "Video Details"}</h1>
         <div className="video-detail-container">
           {frames.map((frame) => (
-            <div className="video-detail-card" key={frame.id}>
+            <Link
+              to={`/potholereport/${location}`}
+              className="video-detail-card"
+              key={frame.id}
+            >
               <img
                 src={frame.frame_image_url}
                 alt={`Frame ${frame.frame_number}`}
@@ -65,7 +69,7 @@ const VideoDetail = () => {
                 <span>Frame #{frame.frame_number}</span>
                 <span>Filename: {videoInfo ? videoInfo.video_name : ""}</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

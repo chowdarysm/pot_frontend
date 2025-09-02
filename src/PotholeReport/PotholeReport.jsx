@@ -8,7 +8,7 @@ import Maps from "../Maps/Maps";
 const PotholeReport = () => {
   const [report, setReport] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { guid } = useParams();
+  const { guid, location } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -109,7 +109,10 @@ const PotholeReport = () => {
           </div>
           <div className="pothole-report-map">
             {/* <img src={mapImage} alt="Map location" /> */}
-            <Maps locationString={report.location_text} />
+            <Maps
+              cityLocation={location}
+              locationString={report.location_text}
+            />
           </div>
         </div>
         {/* <div className="right-pothole-report">

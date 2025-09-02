@@ -1,37 +1,41 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-const Maps = ({ locationString }) => {
-  const [address, setAddress] = useState("");
+const Maps = ({ locationString, cityLocation }) => {
+  //   const [address, setAddress] = useState("");
   //79.424903 21.707997
-  const locationCoordinates = locationString.split(" ");
-  const longCoord = parseFloat(locationCoordinates[0]);
-  const latCoord = parseFloat(locationCoordinates[1]);
+  // const locationCoordinates = locationString.trim().split(" ");
+  // const cityLocationCoord=locationCoordinates
+  // const longCoord = parseFloat(locationCoordinates[0]);
+  // const latCoord = parseFloat(locationCoordinates[1]);
+  let cityLocationCoord = null;
+  let longCoord = null;
+  let latCoord = null;
+
+  if (
+    locationCoordinates.length === 2 &&
+    !isNaN(parseFloat(locationCoordinates[0])) &&
+    !isNaN(parseFloat(locationCoordinates[1]))
+  ) {
+    // Case: Lat & Lng
+    longCoord = parseFloat(locationCoordinates[0]);
+    latCoord = parseFloat(locationCoordinates[1]);
+  } else if (locationCoordinates.length === 1) {
+    // Case: Single string, assume it's a city name
+    cityLocationCoord = locationCoordinates[0];
+  }
   console.log("Lat and long", latCoord + " " + longCoord);
   //   const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
   const [location, setLocation] = useState(
-    locationCoordinates
+    locationCoordinates.length == 2
       ? { lat: latCoord, lng: longCoord }
       : { lat: 75.781211, lng: 21.034964 }
   );
 
-  //   const getAddressFromLatLon = async () => {
-  //     const apiKey = "AIzaSyDmVFC6Me3Z3Easjr0az77hPQPXp5tRIiY";
-  //     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${apiKey}`;
+  if (cityLocation === "Pune") {
+    setLocation({ lat: 75.781211, lng: 21.034964 });
+  }
 
-  //     try {
-  //       const response = await fetch(url);
-  //       const data = await response.json();
-  //       if (data.status === "OK") {
-  //         setAddress(data.results[0].formatted_address);
-  //       } else {
-  //         setAddress("No address found");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //       setAddress("Error fetching address");
-  //     }
-  //   };
   const containerStyle = {
     width: "100%",
     height: "400px",
