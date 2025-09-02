@@ -57,7 +57,7 @@ const VideoDetail = () => {
         <div className="video-detail-container">
           {frames.map((frame) => (
             <Link
-              to={`/video/${guid}/${location}`}
+              to={`/report/${guid}/${location}`}
               className="video-detail-card"
               key={frame.id}
             >
