@@ -26,6 +26,13 @@ const ReportForm = () => {
     }));
   };
 
+  const handleCityChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
   // Handle file selection
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -56,7 +63,7 @@ const ReportForm = () => {
 
     // Only add category and location for images, as the video endpoint doesn't accept them
     //if (!isVideo) {
-      
+
     //}
 
     try {
@@ -159,6 +166,20 @@ const ReportForm = () => {
               />
             </div>
             <br />
+            <div className="city">
+              <label htmlFor="description" style={{ paddingTop: "5px" }}>
+                Description
+              </label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="City"
+                className="form-input"
+                onChange={handleCityChange}
+                value={formData.city}
+              />
+            </div>
             <div
               className="description"
               style={{ display: "flex", gap: "2rem" }}
