@@ -23,7 +23,8 @@ import Graph from "../Graph/Graph";
   const [filterBillboardCity, setFilterBillboardCity] = useState([]);
   const [filterPotholeCity, setFilterPotholeCity] = useState([]);
   const [dummy, setDummy] = useState(true);
-  const [reportData4, setBillboardStats] = useState([]);
+  const [billboardStatsData, setBillboardStats] = useState([]);
+  const [potholeStatsData, setPotholeStats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -50,6 +51,30 @@ import Graph from "../Graph/Graph";
     };
 
     fetchBillboardStats();
+
+  const fetchPotholeStats = async () => {
+      setIsLoading(true);
+      setError(null); // Reset error on a new fetch
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/get_pothole_stats`
+        );
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("pothole stats", data);
+        setPotholeStats(data);
+      } catch (err) {
+        console.error("Error fetching detailed report:", err);
+        setError(err.message); // Store the error message to display to the user
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPotholeStats();
+
   }, []);
 
   // const billboardData = [
