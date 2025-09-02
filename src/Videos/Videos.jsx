@@ -63,7 +63,7 @@ const Videos = () => {
                 to={`/video/${video.guid}/${video.location_text}`}
                 key={video.guid}
                 className="video-dashboard-card"
-                state={{ cityLocation: video.location_text }}
+                // state={{ cityLocation: video.location_text }}
               >
                 <div className="video-thumbnail-wrapper">
                   <img
