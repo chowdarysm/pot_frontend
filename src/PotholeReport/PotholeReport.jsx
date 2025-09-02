@@ -1,6 +1,6 @@
 // src/PotholeReport/PotholeReport.jsx
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "./PotholeReport.css";
 import mapImage from "../assets/images/map-image.jpeg";
 import Maps from "../Maps/Maps";
@@ -8,8 +8,10 @@ import Maps from "../Maps/Maps";
 const PotholeReport = () => {
   const [report, setReport] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { guid, location } = useParams();
+  const { guid } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const cityLocation = location.state || {};
 
   useEffect(() => {
     const fetchReport = async () => {
@@ -110,7 +112,7 @@ const PotholeReport = () => {
           <div className="pothole-report-map">
             {/* <img src={mapImage} alt="Map location" /> */}
             <Maps
-              cityLocation={location}
+              cityLocation={cityLocation}
               locationString={report.location_text}
             />
           </div>

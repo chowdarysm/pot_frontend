@@ -46,6 +46,11 @@ const VideoDetail = () => {
   if (isLoading) {
     return <p>Loading video details...</p>;
   }
+  const handleNavigate = () => {
+    navigate(`/report${guid}`, {
+      state: { location: location },
+    });
+  };
 
   return (
     <>
@@ -56,8 +61,8 @@ const VideoDetail = () => {
         <h1>{videoInfo ? videoInfo.video_name : "Video Details"}</h1>
         <div className="video-detail-container">
           {frames.map((frame) => (
-            <Link
-              to={`/report/${guid}/${location}`}
+            <div
+              onClick={handleNavigate}
               className="video-detail-card"
               key={frame.id}
             >
@@ -69,7 +74,7 @@ const VideoDetail = () => {
                 <span>Frame #{frame.frame_number}</span>
                 <span>Filename: {videoInfo ? videoInfo.video_name : ""}</span>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
