@@ -5,11 +5,8 @@ const Maps = ({ locationString, cityLocation }) => {
   //   const [address, setAddress] = useState("");
   //79.424903 21.707997\
   const locationCoordinates = null;
-  const locString = " ";
   if (locationString && locationString.includes(" ")) {
     locationCoordinates = locationString.split(" ");
-  } else {
-    locString = locationString;
   }
 
   // const cityLocationCoord=locationCoordinates
