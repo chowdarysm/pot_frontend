@@ -10,8 +10,8 @@ const PotholeReport = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { guid } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
-  const cityLocation = location.state || {};
+  // const location = useLocation();
+  // const cityLocation = location.state || {};
 
   useEffect(() => {
     const fetchReport = async () => {
@@ -112,7 +112,7 @@ const PotholeReport = () => {
           <div className="pothole-report-map">
             {/* <img src={mapImage} alt="Map location" /> */}
             <Maps
-              cityLocation={cityLocation}
+              // cityLocation={cityLocation}
               locationString={report.location_text}
             />
           </div>

@@ -7,11 +7,13 @@ const Maps = ({ locationString, cityLocation }) => {
   let locationCoordinates = [];
   if (locationString && locationString.includes(" ")) {
     locationCoordinates = locationString.split(" ");
+  } else {
+    locationCoordinates = ["75.781211", "21.034964"];
   }
 
   // const cityLocationCoord=locationCoordinates
-  const longCoord = parseFloat(locationCoordinates[0] || 0);
-  const latCoord = parseFloat(locationCoordinates[1] || 0);
+  const longCoord = parseFloat(locationCoordinates[0]);
+  const latCoord = parseFloat(locationCoordinates[1]);
   // let cityLocationCoord = null;
   // let longCoord = null;
   // let latCoord = null;
