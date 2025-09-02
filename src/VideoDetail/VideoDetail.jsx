@@ -56,7 +56,7 @@ const VideoDetail = () => {
       <div className="back-btn">
         <button onClick={goToBack}>Back</button>
       </div>
-      <Maps cityLocation={location} />
+
       <div className="video-detail-page">
         <h1>{videoInfo ? videoInfo.video_name : "Video Details"}</h1>
         <div className="video-detail-container">
@@ -77,6 +77,9 @@ const VideoDetail = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="map-div">
+        <Maps cityLocation={location} />
       </div>
     </>
   );
