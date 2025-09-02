@@ -23,29 +23,24 @@ import Graph from "../Graph/Graph";
   const [filterBillboardCity, setFilterBillboardCity] = useState([]);
   const [filterPotholeCity, setFilterPotholeCity] = useState([]);
   const [dummy, setDummy] = useState(true);
-  const [reportData4, setReportRecentUpdates] = useState([]);
+  const [reportData4, setBillboardStats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-   const fetchRecentUpdates = async () => {
+   const fetchBillboardStats = async () => {
       setIsLoading(true);
       setError(null); // Reset error on a new fetch
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/get_total_processed_reports`
+          `${process.env.REACT_APP_API_URL}/get_billboard_stats`
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Api data", data);
-        data.forEach((item, index) => {
-          if (item.location_text) {            
-            const [lang, long] = item.location_text.split(" ");
-          }
-        });
-        setReportRecentUpdates(data.slice(0, 4));
+        console.log("billboard stats", data);
+        setBillboardStats(data);
       } catch (err) {
         console.error("Error fetching detailed report:", err);
         setError(err.message); // Store the error message to display to the user
@@ -54,8 +49,8 @@ import Graph from "../Graph/Graph";
       }
     };
 
-    fetchRecentUpdates();
-      }, []);
+    fetchBillboardStats();
+  }, []);
 
   // const billboardData = [
   //   { city: "Pune", year: 2025, month: "Jun", status: "Approved", value: 400 },
