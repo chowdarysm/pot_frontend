@@ -13,6 +13,7 @@ const Maps = ({ locationString, cityLocation }) => {
         const lat = parseFloat(coords[1]);
         if (!isNaN(lat) && !isNaN(lng)) {
           setLocation({ lat, lng });
+          console.log("lat and long", lat + " " + lng);
           return;
         }
       }
@@ -53,7 +54,7 @@ const Maps = ({ locationString, cityLocation }) => {
   // } else if (locationCoordinates.length === 1) {
   //   cityLocationCoord = locationCoordinates[0];
   // }
-  console.log("Lat and long", latCoord + " " + longCoord);
+  // console.log("Lat and long", latCoord + " " + longCoord);
   //   const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
   // const [location, setLocation] = useState(
   //   locationCoordinates.length == 2
