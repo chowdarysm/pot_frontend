@@ -60,6 +60,7 @@ const ReportForm = () => {
     submissionData.append("file", file);
     submissionData.append("category", formData.category);
     submissionData.append("location", formData.location);
+    submissionData.append("city", formData.city);
 
     // Only add category and location for images, as the video endpoint doesn't accept them
     //if (!isVideo) {
