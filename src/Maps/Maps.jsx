@@ -4,24 +4,24 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 const Maps = ({ locationString, cityLocation }) => {
   //   const [address, setAddress] = useState("");
   //79.424903 21.707997
-  const locationCoordinates = locationString.trim().split(" ");
+  const locationCoordinates = locationString.split(" ");
   // const cityLocationCoord=locationCoordinates
-  // const longCoord = parseFloat(locationCoordinates[0]);
-  // const latCoord = parseFloat(locationCoordinates[1]);
-  let cityLocationCoord = null;
-  let longCoord = null;
-  let latCoord = null;
+  const longCoord = parseFloat(locationCoordinates[0]);
+  const latCoord = parseFloat(locationCoordinates[1]);
+  // let cityLocationCoord = null;
+  // let longCoord = null;
+  // let latCoord = null;
 
-  if (
-    locationCoordinates.length === 2 &&
-    !isNaN(parseFloat(locationCoordinates[0])) &&
-    !isNaN(parseFloat(locationCoordinates[1]))
-  ) {
-    longCoord = parseFloat(locationCoordinates[0]);
-    latCoord = parseFloat(locationCoordinates[1]);
-  } else if (locationCoordinates.length === 1) {
-    cityLocationCoord = locationCoordinates[0];
-  }
+  // if (
+  //   locationCoordinates.length === 2 &&
+  //   !isNaN(parseFloat(locationCoordinates[0])) &&
+  //   !isNaN(parseFloat(locationCoordinates[1]))
+  // ) {
+  //   longCoord = parseFloat(locationCoordinates[0]);
+  //   latCoord = parseFloat(locationCoordinates[1]);
+  // } else if (locationCoordinates.length === 1) {
+  //   cityLocationCoord = locationCoordinates[0];
+  // }
   console.log("Lat and long", latCoord + " " + longCoord);
   //   const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
   const [location, setLocation] = useState(
@@ -30,7 +30,7 @@ const Maps = ({ locationString, cityLocation }) => {
       : { lat: 75.781211, lng: 21.034964 }
   );
 
-  if (cityLocationCoord === "Pune") {
+  if (cityLocation === "Pune") {
     setLocation({ lat: 75.781211, lng: 21.034964 });
   }
 
