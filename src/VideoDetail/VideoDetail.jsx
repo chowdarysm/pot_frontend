@@ -48,7 +48,7 @@ const VideoDetail = () => {
   }
   const handleNavigate = () => {
     console.log("Videodetail card clicked");
-    navigate(`/report${guid}`, {
+    navigate(`/report/${guid}`, {
       state: { location: location },
     });
   };
