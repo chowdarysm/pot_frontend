@@ -42,7 +42,10 @@ const VideoDetail = () => {
   const goToBack = () => {
     navigate(-1);
   };
-  console.log("frames", frames);
+  useEffect(() => {
+    console.log("frames", frames);
+  }, [frames]);
+
   const handleNavigate = () => {
     console.log("Videodetail card clicked");
     navigate(`/report/${guid}`, {
