@@ -19,6 +19,7 @@ const VideoDetail = () => {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/video_report/${guid}`
         );
+        console.log("Response", response.data);
         if (response.ok) {
           const data = await response.json();
           setVideoInfo(data.video_info);
