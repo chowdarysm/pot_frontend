@@ -79,6 +79,7 @@ const VideoDetail = () => {
         </div>
       </div>
       <div className="map-div">
+        <h1>Map container</h1>
         <Maps cityLocation={location} />
       </div>
     </>
