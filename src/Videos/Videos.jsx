@@ -60,7 +60,7 @@ const Videos = () => {
           <div className="video-grid-container">
             {visibleVideos.map((video) => (
               <Link
-                to={`/video/${video.guid}`}
+                to={`/video/${video.guid}/${video.location_text}`}
                 key={video.guid}
                 className="video-dashboard-card"
                 state={{ cityLocation: video.location_text }}

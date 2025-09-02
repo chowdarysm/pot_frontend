@@ -7,11 +7,11 @@ const VideoDetail = () => {
   const [videoInfo, setVideoInfo] = useState(null);
   const [frames, setFrames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { guid } = useParams();
+  const { guid, location } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
-  const { cityLocation } = location.state || {};
-  console.log("cityLocation is :", cityLocation.location_text);
+  // const location = useLocation();
+  // const { cityLocation } = location.state || {};
+  console.log("cityLocation is :", location);
   useEffect(() => {
     const fetchVideoDetails = async () => {
       setIsLoading(true);
