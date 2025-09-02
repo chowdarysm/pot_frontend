@@ -42,16 +42,15 @@ const VideoDetail = () => {
   const goToBack = () => {
     navigate(-1);
   };
-
-  if (isLoading) {
-    return <p>Loading video details...</p>;
-  }
   const handleNavigate = () => {
     console.log("Videodetail card clicked");
     navigate(`/report/${guid}`, {
       state: { location: location },
     });
   };
+  if (isLoading) {
+    return <p>Loading video details...</p>;
+  }
 
   return (
     <>
