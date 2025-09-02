@@ -48,8 +48,8 @@ function App() {
           <Route path="/videos" element={<Videos />} />
           <Route path="/home" element={<Home />} />
           <Route path="/compliancereport" element={<ComplianceReport />} />
-          <Route path="/video/:guid" element={<VideoDetail />} />
-          <Route path="/report/:guid/:location" element={<PotholeReport />} />
+          <Route path="/video/:guid/:location" element={<VideoDetail />} />
+          <Route path="/report/:guid" element={<PotholeReport />} />
           <Route path="/imagedetails" element={<ImageDetail />} />
           <Route path="/images" element={<Images />} />
           <Route path="/reportdetails" element={<ReportDetails />} />
