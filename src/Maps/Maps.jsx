@@ -6,7 +6,7 @@ const Maps = ({ locationString, cityLocation }) => {
   //79.424903 21.707997\
   const locationCoordinates = null;
   const locString = " ";
-  if (locationString.includes("")) {
+  if (locationString && locationString.includes(" ")) {
     locationCoordinates = locationString.split(" ");
   } else {
     locString = locationString;
