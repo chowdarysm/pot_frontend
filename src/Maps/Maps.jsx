@@ -2,18 +2,43 @@ import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const Maps = ({ locationString, cityLocation }) => {
+  const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
   //   const [address, setAddress] = useState("");
   //79.424903 21.707997\
-  let locationCoordinates = [];
-  if (locationString && locationString.includes(" ")) {
-    locationCoordinates = locationString.split(" ");
-  } else {
-    locationCoordinates = ["75.781211", "21.034964"];
-  }
+  useEffect(() => {
+    if (locationString && locationString.includes(" ")) {
+      const coords = locationString.split(" ");
+      if (coords.length === 2) {
+        const lng = parseFloat(coords[0]);
+        const lat = parseFloat(coords[1]);
+        if (!isNaN(lat) && !isNaN(lng)) {
+          setLocation({ lat, lng });
+          return;
+        }
+      }
+    }
+
+    //videodetails
+    if (cityLocation) {
+      if (cityLocation === "Pune") {
+        setLocation({ lat: 75.781211, lng: 21.034964 });
+      }
+      //  else if (cityLocation === "Mumbai") {
+      //   setLocation({ lat: 19.076, lng: 72.8777 });
+      // }
+    }
+  }, [locationString, cityLocation]);
+
+  // let locationCoordinates = [];
+  // if (locationString && locationString.includes(" ")) {
+  //   locationCoordinates = locationString.split(" ");
+  // } else {
+  //   locationCoordinates = ["75.781211", "21.034964"];
+  // }
 
   // const cityLocationCoord=locationCoordinates
-  const longCoord = parseFloat(locationCoordinates[0]);
-  const latCoord = parseFloat(locationCoordinates[1]);
+  // const longCoord = parseFloat(locationCoordinates[0]);
+  // const latCoord = parseFloat(locationCoordinates[1]);
   // let cityLocationCoord = null;
   // let longCoord = null;
   // let latCoord = null;
@@ -30,15 +55,15 @@ const Maps = ({ locationString, cityLocation }) => {
   // }
   console.log("Lat and long", latCoord + " " + longCoord);
   //   const [location, setLocation] = useState({ lat: 75.781211, lng: 21.034964 });
-  const [location, setLocation] = useState(
-    locationCoordinates.length == 2
-      ? { lat: latCoord, lng: longCoord }
-      : { lat: 75.781211, lng: 21.034964 }
-  );
+  // const [location, setLocation] = useState(
+  //   locationCoordinates.length == 2
+  //     ? { lat: latCoord, lng: longCoord }
+  //     : { lat: 75.781211, lng: 21.034964 }
+  // );
 
-  if (cityLocation === "Pune") {
-    setLocation({ lat: 75.781211, lng: 21.034964 });
-  }
+  // if (cityLocation === "Pune") {
+  //   setLocation({ lat: 75.781211, lng: 21.034964 });
+  // }
 
   const containerStyle = {
     width: "100%",
