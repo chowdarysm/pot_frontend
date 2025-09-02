@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Maps from "../Maps/Maps";
 import "./VideoDetail.css";
 
 const VideoDetail = () => {
@@ -46,12 +47,6 @@ const VideoDetail = () => {
     console.log("frames", frames);
   }, [frames]);
 
-  const handleNavigate = () => {
-    console.log("Videodetail card clicked");
-    navigate(`/report/${guid}`, {
-      state: { location: location },
-    });
-  };
   if (isLoading) {
     return <p>Loading video details...</p>;
   }
@@ -61,6 +56,7 @@ const VideoDetail = () => {
       <div className="back-btn">
         <button onClick={goToBack}>Back</button>
       </div>
+      <Maps cityLocation={location} />
       <div className="video-detail-page">
         <h1>{videoInfo ? videoInfo.video_name : "Video Details"}</h1>
         <div className="video-detail-container">

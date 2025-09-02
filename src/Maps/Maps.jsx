@@ -17,11 +17,9 @@ const Maps = ({ locationString, cityLocation }) => {
     !isNaN(parseFloat(locationCoordinates[0])) &&
     !isNaN(parseFloat(locationCoordinates[1]))
   ) {
-    // Case: Lat & Lng
     longCoord = parseFloat(locationCoordinates[0]);
     latCoord = parseFloat(locationCoordinates[1]);
   } else if (locationCoordinates.length === 1) {
-    // Case: Single string, assume it's a city name
     cityLocationCoord = locationCoordinates[0];
   }
   console.log("Lat and long", latCoord + " " + longCoord);
@@ -32,7 +30,7 @@ const Maps = ({ locationString, cityLocation }) => {
       : { lat: 75.781211, lng: 21.034964 }
   );
 
-  if (cityLocation === "Pune") {
+  if (cityLocationCoord === "Pune") {
     setLocation({ lat: 75.781211, lng: 21.034964 });
   }
 
