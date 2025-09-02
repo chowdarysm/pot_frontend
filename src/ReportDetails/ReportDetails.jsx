@@ -24,6 +24,8 @@ import Graph from "../Graph/Graph";
   const [filterPotholeCity, setFilterPotholeCity] = useState([]);
   const [dummy, setDummy] = useState(true);
   const [reportData4, setReportRecentUpdates] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
    const fetchRecentUpdates = async () => {
@@ -39,12 +41,9 @@ import Graph from "../Graph/Graph";
         const data = await response.json();
         console.log("Api data", data);
         data.forEach((item, index) => {
-          if (item.location_text) {
-            console.log("Location", item.location_text);
+          if (item.location_text) {            
             const [lang, long] = item.location_text.split(" ");
-            console.log(`Item ${index} → Lang: ${lang}, Long: ${long}`);
-          }          
-          console.log("Lang and long", lang + " " + long);
+          }
         });
         setReportRecentUpdates(data.slice(0, 4));
       } catch (err) {
