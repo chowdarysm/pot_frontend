@@ -168,7 +168,7 @@ const ReportForm = () => {
             <br />
             <div className="city">
               <label htmlFor="description" style={{ paddingTop: "5px" }}>
-                Description
+                City
               </label>
               <input
                 type="text"
