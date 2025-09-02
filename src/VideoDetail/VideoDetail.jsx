@@ -62,7 +62,7 @@ const VideoDetail = () => {
         <div className="video-detail-container">
           {frames.map((frame) => (
             <div
-              onClick={handleNavigate}
+              // onClick={handleNavigate}
               className="video-detail-card"
               key={frame.id}
             >
