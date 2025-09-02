@@ -3,8 +3,15 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const Maps = ({ locationString, cityLocation }) => {
   //   const [address, setAddress] = useState("");
-  //79.424903 21.707997
-  const locationCoordinates = locationString.split(" ");
+  //79.424903 21.707997\
+  const locationCoordinates = null;
+  const locString = " ";
+  if (locationString.includes("")) {
+    locationCoordinates = locationString.split(" ");
+  } else {
+    locString = locationString;
+  }
+
   // const cityLocationCoord=locationCoordinates
   const longCoord = parseFloat(locationCoordinates[0]);
   const latCoord = parseFloat(locationCoordinates[1]);
