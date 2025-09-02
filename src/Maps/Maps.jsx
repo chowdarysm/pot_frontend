@@ -22,7 +22,7 @@ const Maps = ({ locationString, cityLocation }) => {
     //videodetails
     if (cityLocation) {
       if (cityLocation === "Pune") {
-        setLocation({ lat: 75.781211, lng: 21.034964 });
+        setLocation({ lat: 21.034964, lng: 75.781211 });
       }
       //  else if (cityLocation === "Mumbai") {
       //   setLocation({ lat: 19.076, lng: 72.8777 });
