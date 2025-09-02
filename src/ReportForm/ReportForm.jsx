@@ -53,7 +53,7 @@ const ReportForm = () => {
     }
 
     setIsProcessing(true);
-
+    console.log("city1", formData.city);
     const isVideo = file.type.startsWith("video/");
     const endpoint = isVideo ? "/upload_video" : "/upload";
     const submissionData = new FormData();
@@ -61,6 +61,7 @@ const ReportForm = () => {
     submissionData.append("category", formData.category);
     submissionData.append("location", formData.location);
     submissionData.append("city", formData.city);
+    console.log("city2", formData.city);
 
     // Only add category and location for images, as the video endpoint doesn't accept them
     //if (!isVideo) {
