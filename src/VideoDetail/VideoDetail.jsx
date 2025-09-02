@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./VideoDetail.css";
 
 const VideoDetail = () => {
@@ -8,12 +9,16 @@ const VideoDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { guid } = useParams();
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const { cityLocation } = location.state || {};
+  console.log("cityLocation is :", cityLocation.location_text);
   useEffect(() => {
     const fetchVideoDetails = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/video_report/${guid}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/video_report/${guid}`
+        );
         if (response.ok) {
           const data = await response.json();
           setVideoInfo(data.video_info);
@@ -51,7 +56,10 @@ const VideoDetail = () => {
         <div className="video-detail-container">
           {frames.map((frame) => (
             <div className="video-detail-card" key={frame.id}>
-              <img src={frame.frame_image_url} alt={`Frame ${frame.frame_number}`} />
+              <img
+                src={frame.frame_image_url}
+                alt={`Frame ${frame.frame_number}`}
+              />
               <div className="video-card-details">
                 <span>Frame #{frame.frame_number}</span>
                 <span>Filename: {videoInfo ? videoInfo.video_name : ""}</span>

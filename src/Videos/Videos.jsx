@@ -63,6 +63,7 @@ const Videos = () => {
                 to={`/video/${video.guid}`}
                 key={video.guid}
                 className="video-dashboard-card"
+                state={{ video }}
               >
                 <div className="video-thumbnail-wrapper">
                   <img
@@ -80,7 +81,7 @@ const Videos = () => {
                     {new Date(video.created_at).toLocaleString()}
                   </p>
                   <p>
-                    <strong>Coordinates:</strong>  {video.location}
+                    <strong>Coordinates:</strong> {video.location}
                   </p>
                   <p>
                     <strong>Location:</strong> {video.location_text}
