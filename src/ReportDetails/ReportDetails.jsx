@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaRoad } from "react-icons/fa";
 import piechartImage from "../assets/images/piechart.png";
 import bargraphImage from "../assets/images/bargraph.png";
@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./ReportDetails.css";
 import Graph from "../Graph/Graph";
 
-const ReportDetails = () => {
+  const ReportDetails = () => {
   const navigate = useNavigate();
   const [issueCategory, setIssueCategory] = useState("");
   const [reportType, setReportType] = useState("");
@@ -23,6 +23,41 @@ const ReportDetails = () => {
   const [filterBillboardCity, setFilterBillboardCity] = useState([]);
   const [filterPotholeCity, setFilterPotholeCity] = useState([]);
   const [dummy, setDummy] = useState(true);
+  const [reportData4, setReportRecentUpdates] = useState([]);
+
+  useEffect(() => {
+   const fetchRecentUpdates = async () => {
+      setIsLoading(true);
+      setError(null); // Reset error on a new fetch
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/get_total_processed_reports`
+        );
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Api data", data);
+        data.forEach((item, index) => {
+          if (item.location_text) {
+            console.log("Location", item.location_text);
+            const [lang, long] = item.location_text.split(" ");
+            console.log(`Item ${index} → Lang: ${lang}, Long: ${long}`);
+          }          
+          console.log("Lang and long", lang + " " + long);
+        });
+        setReportRecentUpdates(data.slice(0, 4));
+      } catch (err) {
+        console.error("Error fetching detailed report:", err);
+        setError(err.message); // Store the error message to display to the user
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRecentUpdates();
+      }, []);
+
   // const billboardData = [
   //   { city: "Pune", year: 2025, month: "Jun", status: "Approved", value: 400 },
   //   {
