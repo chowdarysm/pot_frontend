@@ -47,9 +47,12 @@ const Graph = ({
   const filteredBillboardBarData = billboardData.filter(
     (item) => item.status === selectedBillboardStatus
   );
+  console.log("FilteredBillboarddata in graph", filteredBillboardBarData);
+
   const filteredPotholesBarData = potholesData.filter(
     (item) => item.status === selectedPotholeStatus
   );
+  console.log("FilteredPotholesdaat in graph", filteredPotholesBarData);
   console.log("BillboardStatSData", billboardStatsData);
   console.log("PotholesStatsData", potholeStatsData);
   const COLORS = ["red", "blue", "green", "navy"];
@@ -67,6 +70,8 @@ const Graph = ({
   const barData = isPothole
     ? filteredPotholesBarData
     : filteredBillboardBarData;
+  console.log("FilterePotholesData", filteredPotholesBarData);
+  console.log("FIlteredBillboardData", filteredBillboardBarData);
   console.log("Bardata", barData);
   console.log("piedata", pieData);
   // const finalBarData = barData.filter(
@@ -117,15 +122,56 @@ const Graph = ({
     "length:",
     activeStatus?.length
   );
+  // const finalBarData = pieClick
+  //   ? barData.filter(
+  //       (item) =>
+  //         item.status?.trim().toLowerCase() ===
+  //           activeStatus?.trim().toLowerCase() &&
+  //         (!city ||
+  //           item.city?.trim().toLowerCase() === city?.trim().toLowerCase())
+  //     )
+  //   : preClickData;
+  // const finalBarData = pieClick
+  //   ? barData.filter((item) => {
+  //       const statusMatch =
+  //         item.status?.trim().toLowerCase() ===
+  //         activeStatus?.trim().toLowerCase();
+
+  //       const cityMatch =
+  //         city?.trim().toLowerCase() === item.city?.trim().toLowerCase();
+
+  //       console.log("Checking:", {
+  //         itemStatus: item.status,
+  //         activeStatus,
+  //         statusMatch,
+  //         itemCity: item.city,
+  //         city,
+  //         cityMatch,
+  //       });
+
+  //       return statusMatch && cityMatch;
+  //     })
+  //   : preClickData;
   const finalBarData = pieClick
-    ? barData.filter(
-        (item) =>
-          item.status?.trim().toLowerCase() ===
-            activeStatus?.trim().toLowerCase() &&
-          (!city ||
-            item.city?.trim().toLowerCase() === city?.trim().toLowerCase())
-      )
+    ? barData
+        .filter((item) => {
+          const statusMatch =
+            item.status?.trim().toLowerCase() ===
+            activeStatus?.trim().toLowerCase();
+
+          const cityMatch =
+            city && item.city
+              ? city.trim().toLowerCase() === item.city.trim().toLowerCase()
+              : true; // fallback: ignore city if it's missing
+
+          return statusMatch && cityMatch;
+        })
+        .map((item) => ({
+          ...item,
+          month: item.month || "Unknown", // ✅ ensure month always exists
+        }))
     : preClickData;
+
   console.log("bardata", barData);
   console.log("Active statys", activeStatus);
   console.log(
@@ -279,11 +325,13 @@ const Graph = ({
             Monthwise */}
                 {isPothole ? "Unapproved" : ""} {category} Identified Monthwise
               </p>
+              {console.log("Selected Color:", selectedColor)}
               <BarChart
                 width={isTablet ? 300 : 400}
                 height={300}
                 // data={pieClick ? barData : preClickData}
                 data={finalBarData}
+                // data={category === "Potholes" ? barData : finalBarData}
 
                 // data={filteredBillboardBarData}
               >

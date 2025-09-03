@@ -258,7 +258,8 @@ const ReportDetails = () => {
           return acc;
         }, {})
     );
-
+    console.log("FilteredPothole", filteredPotholeBar);
+    console.log("FilteredBillboard", filteredBillboardBar);
     setBillboardPie(pieDataBillboard);
     setPotholesPie(pieDataPotholes);
     setFilteredPotholesData(filteredPotholes);
@@ -319,6 +320,8 @@ const ReportDetails = () => {
     }, {})
   );
 
+  console.log("FilteredBillboardCity", filterBillboardCity);
+  console.log("FilteredPothole", filterPotholeCity);
   return (
     <>
       <div className="back-btn">
