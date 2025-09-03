@@ -34,6 +34,8 @@ const Graph = ({
   city,
   filterBillboardCity,
   filterPotholeCity,
+  billboardStatsData,
+  potholeStatsData,
 }) => {
   // ]; previous data
   //new data
@@ -48,7 +50,8 @@ const Graph = ({
   const filteredPotholesBarData = potholesData.filter(
     (item) => item.status === selectedPotholeStatus
   );
-
+  console.log("BillboardStatSData", billboardStatsData);
+  console.log("PotholesStatsData", potholeStatsData);
   const COLORS = ["red", "blue", "green", "navy"];
   // Approved - green unapproved - red damaged - orange
   const [selectedColor, setSelectedColor] = useState(null);
@@ -170,7 +173,8 @@ const Graph = ({
                 <BarChart
                   width={isTablet ? 300 : 400}
                   height={300}
-                  data={isPothole ? initPotholeBarData : initBillboardBarData}
+                  // data={isPothole ? initPotholeBarData : initBillboardBarData}
+                  data={isPothole ? potholeStatsData : billboardStatsData}
                   // data={bardummyData}
                   // data={filteredBillboardBarData}
                 >
@@ -195,6 +199,11 @@ const Graph = ({
                 </p>
                 <PieChart width={isTablet ? 300 : 400} height={300}>
                   <Pie
+                    // data={
+                    //   category === "Potholes"
+                    //     ? initPotholePieData
+                    //     : initBillboardPieData
+                    // }
                     data={
                       category === "Potholes"
                         ? initPotholePieData

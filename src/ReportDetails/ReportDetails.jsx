@@ -4,6 +4,7 @@ import piechartImage from "../assets/images/piechart.png";
 import bargraphImage from "../assets/images/bargraph.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./ReportDetails.css";
+
 import Graph from "../Graph/Graph";
 
 const ReportDetails = () => {
@@ -268,8 +269,16 @@ const ReportDetails = () => {
     setDummy(false);
   };
 
+  // const initbillboardPie = Object.values(
+  //   billboardData.reduce((acc, item) => {
+  //     if (!acc[item.status])
+  //       acc[item.status] = { status: item.status, value: 0 };
+  //     acc[item.status].value += item.value;
+  //     return acc;
+  //   }, {})
+  // ); inital billboardPieData default data
   const initbillboardPie = Object.values(
-    billboardData.reduce((acc, item) => {
+    billboardStatsData.reduce((acc, item) => {
       if (!acc[item.status])
         acc[item.status] = { status: item.status, value: 0 };
       acc[item.status].value += item.value;
@@ -285,8 +294,16 @@ const ReportDetails = () => {
     }, {})
   );
 
+  // const initpotholePie = Object.values(
+  //   potholeData.reduce((acc, item) => {
+  //     if (!acc[item.status])
+  //       acc[item.status] = { status: item.status, value: 0 };
+  //     acc[item.status].value += item.value;
+  //     return acc;
+  //   }, {})
+  // ); inital potholePieData default data
   const initpotholePie = Object.values(
-    potholeData.reduce((acc, item) => {
+    potholeStatsData.reduce((acc, item) => {
       if (!acc[item.status])
         acc[item.status] = { status: item.status, value: 0 };
       acc[item.status].value += item.value;
@@ -494,6 +511,8 @@ const ReportDetails = () => {
                         filterBillboardCity={filterBillboardCity}
                         filterPotholeCity={filterPotholeCity}
                         city={city}
+                        billboardStatsData={billboardStatsData}
+                        potholeStatsData={potholeStatsData}
                       />
                     )}
                   </div>
