@@ -126,6 +126,7 @@ const Graph = ({
             item.city?.trim().toLowerCase() === city?.trim().toLowerCase())
       )
     : preClickData;
+  console.log("bardata", barData);
   console.log("Active statys", activeStatus);
   console.log(
     "All statuses in barData:",
