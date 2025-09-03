@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./ReportDetails.css";
 import Graph from "../Graph/Graph";
 
-  const ReportDetails = () => {
+const ReportDetails = () => {
   const navigate = useNavigate();
   const [issueCategory, setIssueCategory] = useState("");
   const [reportType, setReportType] = useState("");
@@ -29,7 +29,7 @@ import Graph from "../Graph/Graph";
   const [error, setError] = useState(null);
 
   useEffect(() => {
-   const fetchBillboardStats = async () => {
+    const fetchBillboardStats = async () => {
       setIsLoading(true);
       setError(null); // Reset error on a new fetch
       try {
@@ -52,7 +52,7 @@ import Graph from "../Graph/Graph";
 
     fetchBillboardStats();
 
-  const fetchPotholeStats = async () => {
+    const fetchPotholeStats = async () => {
       setIsLoading(true);
       setError(null); // Reset error on a new fetch
       try {
@@ -74,9 +74,9 @@ import Graph from "../Graph/Graph";
     };
 
     fetchPotholeStats();
-
   }, []);
-
+  console.log("BillboardStatsData", billboardStatsData);
+  console.log("PotholesStatsData", potholeStatsData);
   // const billboardData = [
   //   { city: "Pune", year: 2025, month: "Jun", status: "Approved", value: 400 },
   //   {
