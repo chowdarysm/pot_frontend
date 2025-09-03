@@ -17,14 +17,20 @@ const ReportForm = () => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("No file chosen");
   const [isProcessing, setIsProcessing] = useState(false);
+  const [error, setError] = useState("");
+  const [cityTouched, setCityTouched] = useState(false);
 
   // Handle text and select input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+    if (name === "city" && value.trim() !== "") {
+      setError("");
+    }
   };
 
   const handleCityChange = (e) => {
@@ -33,6 +39,9 @@ const ReportForm = () => {
       ...prevState,
       [name]: value,
     }));
+    if (value.trim() !== "") {
+      setError("");
+    }
   };
   // Handle file selection
   const handleFileChange = (e) => {
@@ -42,10 +51,22 @@ const ReportForm = () => {
       setFileName(selectedFile.name);
     }
   };
+  //Handle Blur when focus moves from city
+  const handleBlur = (e) => {
+    setCityTouched(true);
+    if (e.target.value.trim() === "") {
+      setError("City is required *");
+    }
+  };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.city.trim() === "") {
+      setError("City is required *");
+    } else {
+      setError("");
+    }
 
     // Basic validation
     if (!file || !formData.category) {
@@ -135,6 +156,33 @@ const ReportForm = () => {
               </select>
             </div>
             <br />
+            <div className="city">
+              <label
+                htmlFor="city"
+                style={{ paddingTop: "5px", paddingRight: "1rem" }}
+              >
+                City
+              </label>
+              <div
+                className="input-city"
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                {cityTouched && error && (
+                  <p style={{ color: "red", paddingBottom: "5px" }}>{error}</p>
+                )}
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  placeholder="City"
+                  className="form-input"
+                  onChange={handleCityChange}
+                  onBlur={handleBlur}
+                  value={formData.city}
+                />
+              </div>
+            </div>
+            <br />
             <div
               className="location"
               style={{ display: "flex", marginTop: "1rem", gap: "3.1rem" }}
@@ -168,23 +216,7 @@ const ReportForm = () => {
               />
             </div>
             <br />
-            <div className="city">
-              <label
-                htmlFor="city"
-                style={{ paddingTop: "5px", paddingRight: "1rem" }}
-              >
-                City
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                placeholder="City"
-                className="form-input"
-                onChange={handleCityChange}
-                value={formData.city}
-              />
-            </div>
+
             <div
               className="description"
               style={{ display: "flex", gap: "2rem" }}
