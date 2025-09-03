@@ -104,5 +104,10 @@ input[type="file"] {
 .city {
   display: flex;
   margin-top: 1rem;
-  gap: 3rem;
+  gap: 4rem;
+}
+@media (min-width: 768px) and (max-width: 1080px) {
+  .city {
+    gap: 4rem;
+  }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import "./Graph.css";
 import {
   BarChart,
@@ -128,6 +129,7 @@ const Graph = ({
     barData.map((d) => d.status)
   );
   console.log("FInalDtaa", finalBarData);
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
   return (
     <>
       {dummy ? (
@@ -166,7 +168,7 @@ const Graph = ({
                   Monthwise
                 </p>
                 <BarChart
-                  width={400}
+                  width={isTablet ? 300 : 400}
                   height={300}
                   data={isPothole ? initPotholeBarData : initBillboardBarData}
                   // data={bardummyData}
@@ -191,7 +193,7 @@ const Graph = ({
                 >
                   {category} Summary Data
                 </p>
-                <PieChart width={400} height={300}>
+                <PieChart width={isTablet ? 300 : 400} height={300}>
                   <Pie
                     data={
                       category === "Potholes"

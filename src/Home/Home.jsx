@@ -9,6 +9,7 @@ import { FaImage } from "react-icons/fa";
 import { GoFileSubmodule } from "react-icons/go";
 import { MdOutlineSupportAgent } from "react-icons/md";
 import React, { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import highwayImage from "../assets/images/highway.png";
 import constructionImage from "../assets/images/construction.png";
 import billboardImage from "../assets/images/billboard-img.png";
@@ -219,6 +220,7 @@ const Home = () => {
       navigate("/images");
     }
   };
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
   return (
     <>
       <div className="homepage-container">
@@ -251,10 +253,12 @@ const Home = () => {
           <div className="home-data-stats">
             <div className="home-proccessed-data">
               <div
+                className="processed-data"
                 style={{
                   padding: "10px",
                   // backgroundColor: "#35b9c7",
                   // color: "white",
+                  fontSize: isTablet ? "1.2rem" : "2rem",
                   fontWeight: "700",
                   borderRadius: "20px",
                 }}
@@ -266,7 +270,7 @@ const Home = () => {
                   style={{
                     textAlign: "right",
 
-                    fontSize: "2.5rem",
+                    fontSize: isTablet ? "1.6rem" : "2.5rem",
                     fontWeight: "700",
                     color: "green",
                     // textAlign: "right",
@@ -279,7 +283,7 @@ const Home = () => {
               <div className="road-scan">
                 <h3
                   style={{
-                    fontSize: "2rem",
+                    fontSize: isTablet ? "1.2rem" : "2rem",
                     fontWeight: "700",
                     textAlign: "right",
                   }}
@@ -288,7 +292,7 @@ const Home = () => {
                 </h3>
                 <p
                   style={{
-                    fontSize: "2.5rem",
+                    fontSize: isTablet ? "1.6rem" : "2.5rem",
                     fontWeight: "700",
                     color: "blue",
                     textAlign: "right",
@@ -300,7 +304,7 @@ const Home = () => {
               <div className="ticket-review">
                 <h3
                   style={{
-                    fontSize: "2rem",
+                    fontSize: isTablet ? "1.2rem" : "2rem",
                     fontWeight: "700",
                     textAlign: "right",
                   }}
@@ -309,7 +313,7 @@ const Home = () => {
                 </h3>
                 <p
                   style={{
-                    fontSize: "2.5rem",
+                    fontSize: isTablet ? "1.6rem" : "2.5rem",
                     fontWeight: "700",
                     color: "red",
                     textAlign: "right",
