@@ -53,7 +53,7 @@ const ReportForm = () => {
       return;
     }
 
-    setIsProcessing(true);    
+    setIsProcessing(true);
     const isVideo = file.type.startsWith("video/");
     const endpoint = isVideo ? "/upload_video" : "/upload";
     const submissionData = new FormData();
@@ -169,7 +169,10 @@ const ReportForm = () => {
             </div>
             <br />
             <div className="city">
-              <label htmlFor="city" style={{ paddingTop: "5px" }}>
+              <label
+                htmlFor="city"
+                style={{ paddingTop: "5px", paddingRight: "1rem" }}
+              >
                 City
               </label>
               <input
