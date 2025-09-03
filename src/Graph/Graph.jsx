@@ -279,7 +279,7 @@ const Graph = ({
                 {isPothole ? "Unapproved" : ""} {category} Identified Monthwise
               </p>
               <BarChart
-                width={400}
+                width={isTablet ? 300 : 400}
                 height={300}
                 // data={pieClick ? barData : preClickData}
                 data={finalBarData}
@@ -315,7 +315,7 @@ const Graph = ({
               >
                 {category} Summary Data
               </p>
-              <PieChart width={400} height={300}>
+              <PieChart width={isTablet ? 300 : 400} height={300}>
                 <Pie
                   // data={
                   //   category === "Potholes" ? piePotholesData : pieBillboardData
