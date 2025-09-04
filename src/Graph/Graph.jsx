@@ -330,7 +330,8 @@ const Graph = ({
                 width={isTablet ? 300 : 400}
                 height={300}
                 // data={pieClick ? barData : preClickData}
-                data={finalBarData}
+                // data={finalBarData}
+                data={isPothole ? potholeStatsData : billboardStatsData}
                 // data={category === "Potholes" ? barData : finalBarData}
 
                 // data={filteredBillboardBarData}
