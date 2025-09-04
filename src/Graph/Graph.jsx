@@ -71,9 +71,10 @@ const Graph = ({
   ];
   const isPothole = category === "Potholes";
   const pieData = isPothole ? potholesPie : billboardPie;
-  const barData = isPothole
-    ? filteredPotholesBarData
-    : filteredBillboardBarData;
+  // const barData = isPothole
+  //   ? filteredPotholesBarData
+  //   : filteredBillboardBarData;
+  const barData = isPothole ? potholeStatsData : billboardStatsData;
   console.log("FilterePotholesData", filteredPotholesBarData);
   console.log("FIlteredBillboardData", filteredBillboardBarData);
   console.log("Bardata", barData);
