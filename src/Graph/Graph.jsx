@@ -226,7 +226,8 @@ const Graph = ({
                   width={isTablet ? 300 : 400}
                   height={300}
                   // data={isPothole ? initPotholeBarData : initBillboardBarData}
-                  data={isPothole ? potholeStatsData : billboardStatsData}
+                  // data={isPothole ? potholeStatsData : billboardStatsData}
+                  data={barData}
                   // data={bardummyData}
                   // data={filteredBillboardBarData}
                 >
