@@ -172,7 +172,7 @@ const Graph = ({
         })
         .map((item) => ({
           ...item,
-          month: item.month || "Unknown", // ✅ ensure month always exists
+          month: item.month || "Unknown",
         }))
     : preClickData;
 
@@ -377,7 +377,7 @@ const Graph = ({
                   // data={billboardPie}
                   // data={pieData}
                   data={
-                    category === "potholes" ? initpotholePie : initbillboardPie
+                    category === "Potholes" ? initpotholePie : initbillboardPie
                   }
                   cx="50%"
                   cy="50%"
