@@ -36,6 +36,8 @@ const Graph = ({
   filterPotholeCity,
   billboardStatsData,
   potholeStatsData,
+  initbillboardPie,
+  initpotholePie,
 }) => {
   // ]; previous data
   //new data
@@ -371,7 +373,10 @@ const Graph = ({
                   //   category === "Potholes" ? piePotholesData : pieBillboardData
                   // }
                   // data={billboardPie}
-                  data={pieData}
+                  // data={pieData}
+                  data={
+                    category === "potholes" ? initpotholePie : initbillboardPie
+                  }
                   cx="50%"
                   cy="50%"
                   labelLine={false}

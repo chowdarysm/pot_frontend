@@ -516,6 +516,8 @@ const ReportDetails = () => {
                         city={city}
                         billboardStatsData={billboardStatsData}
                         potholeStatsData={potholeStatsData}
+                        initpotholePie={initpotholePie}
+                        initbillboardPie={initbillboardPie}
                       />
                     )}
                   </div>
