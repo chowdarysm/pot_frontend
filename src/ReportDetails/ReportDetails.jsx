@@ -306,7 +306,11 @@ const ReportDetails = () => {
         )
         .reduce((acc, item) => {
           if (!acc[item.month])
-            acc[item.month] = { month: item.month, value: 0 };
+            acc[item.month] = {
+              month: item.month,
+              value: 0,
+              status: item.status,
+            };
           acc[item.month].value += item.value;
           return acc;
         }, {})
