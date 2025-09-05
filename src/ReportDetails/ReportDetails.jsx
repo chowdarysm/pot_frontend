@@ -211,26 +211,26 @@ const ReportDetails = () => {
 
     console.log(filteredPotholes);
 
-    const pieDataBillboard = filteredBillboards.reduce((acc, curr) => {
-      const found = acc.find((item) => item.status === curr.status);
-      if (found) {
-        found.value += curr.value;
-      } else {
-        acc.push({ status: curr.status, value: curr.value });
-      }
-      return acc;
-    }, []);
+    // const pieDataBillboard = filteredBillboards.reduce((acc, curr) => {
+    //   const found = acc.find((item) => item.status === curr.status);
+    //   if (found) {
+    //     found.value += curr.value;
+    //   } else {
+    //     acc.push({ status: curr.status, value: curr.value });
+    //   }
+    //   return acc;
+    // }, []);
     console.log("pieBillboard", pieDataBillboard);
 
-    const pieDataPotholes = filteredPotholes.reduce((acc, curr) => {
-      const found = acc.find((item) => item.status === curr.status);
-      if (found) {
-        found.value += curr.value;
-      } else {
-        acc.push({ status: curr.status, value: curr.value });
-      }
-      return acc;
-    }, []);
+    // const pieDataPotholes = filteredPotholes.reduce((acc, curr) => {
+    //   const found = acc.find((item) => item.status === curr.status);
+    //   if (found) {
+    //     found.value += curr.value;
+    //   } else {
+    //     acc.push({ status: curr.status, value: curr.value });
+    //   }
+    //   return acc;
+    // }, []);
     console.log("piePothole", pieDataPotholes);
 
     //initial bar when city is entered
@@ -258,6 +258,16 @@ const ReportDetails = () => {
           return acc;
         }, {})
     );
+    const pieDataBillboard = filteredBillboardBar.reduce((acc, curr) => {
+      const found = acc.find((item) => item.status === curr.status);
+      if (found) {
+        found.value += curr.value;
+      } else {
+        acc.push({ status: curr.status, value: curr.value });
+      }
+      return acc;
+    }, []);
+    console.log("PieBillboardData");
     //  console.log("FilteredBillboardBar",filteredBillboardBar);
     // const filteredPotholeBar = Object.values(
     //   potholeData
@@ -283,6 +293,16 @@ const ReportDetails = () => {
           return acc;
         }, {})
     );
+    const pieDataPotholes = filteredPotholeBar.reduce((acc, curr) => {
+      const found = acc.find((item) => item.status === curr.status);
+      if (found) {
+        found.value += curr.value;
+      } else {
+        acc.push({ status: curr.status, value: curr.value });
+      }
+      return acc;
+    }, []);
+    console.log("pieDataPotholes", pieDataPotholes);
     console.log("FilteredPothole", filteredPotholeBar);
     console.log("FilteredBillboard", filteredBillboardBar);
     setBillboardPie(pieDataBillboard);
