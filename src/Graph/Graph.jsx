@@ -59,6 +59,8 @@ const Graph = ({
   console.log("PotholesStatsData", potholeStatsData);
   console.log("BillboardStatsPie", initbillboardPie);
   console.log("PotholesStatsPie", initpotholePie);
+  console.log("FilteredBillboardBarCity", filterBillboardCity);
+  console.log("FilteredPotholebarcity", filterPotholeCity);
   const COLORS = ["red", "blue", "green", "navy"];
   // Approved - green unapproved - red damaged - orange
   const [selectedColor, setSelectedColor] = useState(null);
