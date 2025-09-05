@@ -220,7 +220,7 @@ const ReportDetails = () => {
     //   }
     //   return acc;
     // }, []);
-    console.log("pieBillboard", pieDataBillboard);
+    // console.log("pieBillboard", pieDataBillboard);
 
     // const pieDataPotholes = filteredPotholes.reduce((acc, curr) => {
     //   const found = acc.find((item) => item.status === curr.status);
@@ -231,7 +231,7 @@ const ReportDetails = () => {
     //   }
     //   return acc;
     // }, []);
-    console.log("piePothole", pieDataPotholes);
+    // console.log("piePothole", pieDataPotholes);
 
     //initial bar when city is entered
     // const filteredBillboardBar = Object.values(
@@ -267,7 +267,7 @@ const ReportDetails = () => {
       }
       return acc;
     }, []);
-    console.log("PieBillboardData");
+    console.log("PieBillboardData", pieDataBillboard);
     //  console.log("FilteredBillboardBar",filteredBillboardBar);
     // const filteredPotholeBar = Object.values(
     //   potholeData
