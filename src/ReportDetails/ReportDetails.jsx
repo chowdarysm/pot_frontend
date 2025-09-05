@@ -294,6 +294,7 @@ const ReportDetails = () => {
       return acc;
     }, {})
   );
+  console.log("initBillboardbar", initbillboardBar);
 
   // const initpotholePie = Object.values(
   //   potholeData.reduce((acc, item) => {

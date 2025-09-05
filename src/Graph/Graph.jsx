@@ -177,7 +177,7 @@ const Graph = ({
         }))
     : preClickData;
 
-  console.log("bardata", barData);
+   console.log("bardata", barData);
   console.log("Active statys", activeStatus);
   console.log(
     "All statuses in barData:",
