@@ -233,8 +233,20 @@ const ReportDetails = () => {
     }, []);
 
     //initial bar when city is entered
+    // const filteredBillboardBar = Object.values(
+    //   billboardData
+    //     .filter(
+    //       (item) => !city || item.city.toLowerCase() === city.toLowerCase()
+    //     )
+    //     .reduce((acc, item) => {
+    //       if (!acc[item.month])
+    //         acc[item.month] = { month: item.month, value: 0 };
+    //       acc[item.month].value += item.value;
+    //       return acc;
+    //     }, {})
+    // );
     const filteredBillboardBar = Object.values(
-      billboardData
+      billboardStatsData
         .filter(
           (item) => !city || item.city.toLowerCase() === city.toLowerCase()
         )
@@ -245,9 +257,21 @@ const ReportDetails = () => {
           return acc;
         }, {})
     );
-
+    //  console.log("FilteredBillboardBar",filteredBillboardBar);
+    // const filteredPotholeBar = Object.values(
+    //   potholeData
+    //     .filter(
+    //       (item) => !city || item.city.toLowerCase() === city.toLowerCase()
+    //     )
+    //     .reduce((acc, item) => {
+    //       if (!acc[item.month])
+    //         acc[item.month] = { month: item.month, value: 0 };
+    //       acc[item.month].value += item.value;
+    //       return acc;
+    //     }, {})
+    // );
     const filteredPotholeBar = Object.values(
-      potholeData
+      potholeStatsData
         .filter(
           (item) => !city || item.city.toLowerCase() === city.toLowerCase()
         )
