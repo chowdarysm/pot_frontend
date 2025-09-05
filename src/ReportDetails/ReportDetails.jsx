@@ -253,11 +253,29 @@ const ReportDetails = () => {
         )
         .reduce((acc, item) => {
           if (!acc[item.month])
-            acc[item.month] = { month: item.month, value: 0 };
+            acc[item.month] = {
+              month: item.month,
+              value: 0,
+              status: item.status,
+            };
           acc[item.month].value += item.value;
           return acc;
         }, {})
     );
+    // const filteredPotholes = potholeData
+    // .filter((item) => !city || item.city.toLowerCase() === city.toLowerCase()) // only that city
+    // .reduce((acc, curr) => {
+    //   const found = acc.find((item) => item.status === curr.status);
+    //   if (found) {
+    //     found.value += curr.value;
+    //   } else {
+    //     acc.push({
+    //       status: curr.status,
+    //       value: curr.value,
+    //     });
+    //   }
+    //   return acc;
+    // }, []);
     const pieDataBillboard = filteredBillboardBar.reduce((acc, curr) => {
       const found = acc.find((item) => item.status === curr.status);
       if (found) {
