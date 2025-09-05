@@ -381,10 +381,10 @@ const Graph = ({
                   //   category === "Potholes" ? piePotholesData : pieBillboardData
                   // }
                   // data={billboardPie}
-                  // data={pieData}
-                  data={
-                    category === "Potholes" ? initpotholePie : initbillboardPie
-                  }
+                  data={pieData}
+                  // data={
+                  //   category === "Potholes" ? initpotholePie : initbillboardPie
+                  // }
                   cx="50%"
                   cy="50%"
                   labelLine={false}
