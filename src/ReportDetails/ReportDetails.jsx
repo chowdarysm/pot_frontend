@@ -287,8 +287,15 @@ const ReportDetails = () => {
     }, {})
   );
 
+  // const initbillboardBar = Object.values(
+  //   billboardData.reduce((acc, item) => {
+  //     if (!acc[item.month]) acc[item.month] = { month: item.month, value: 0 };
+  //     acc[item.month].value += item.value;
+  //     return acc;
+  //   }, {})
+  // );
   const initbillboardBar = Object.values(
-    billboardData.reduce((acc, item) => {
+    billboardStatsData.reduce((acc, item) => {
       if (!acc[item.month]) acc[item.month] = { month: item.month, value: 0 };
       acc[item.month].value += item.value;
       return acc;
@@ -313,8 +320,15 @@ const ReportDetails = () => {
     }, {})
   );
 
+  // const initpotholeBar = Object.values(
+  //   potholeData.reduce((acc, item) => {
+  //     if (!acc[item.month]) acc[item.month] = { month: item.month, value: 0 };
+  //     acc[item.month].value += item.value;
+  //     return acc;
+  //   }, {})
+  // );
   const initpotholeBar = Object.values(
-    potholeData.reduce((acc, item) => {
+    potholeStatsData.reduce((acc, item) => {
       if (!acc[item.month]) acc[item.month] = { month: item.month, value: 0 };
       acc[item.month].value += item.value;
       return acc;

@@ -177,7 +177,7 @@ const Graph = ({
         }))
     : preClickData;
 
-   console.log("bardata", barData);
+  console.log("bardata", barData);
   console.log("Active statys", activeStatus);
   console.log(
     "All statuses in barData:",
@@ -227,7 +227,8 @@ const Graph = ({
                   height={300}
                   // data={isPothole ? initPotholeBarData : initBillboardBarData}
                   // data={isPothole ? potholeStatsData : billboardStatsData}
-                  data={barData}
+                  // data={barData}
+                  data={isPothole ? initPotholeBarData : initBillboardBarData}
                   // data={bardummyData}
                   // data={filteredBillboardBarData}
                 >
