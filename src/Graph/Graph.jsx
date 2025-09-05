@@ -340,7 +340,8 @@ const Graph = ({
                 height={300}
                 // data={pieClick ? barData : preClickData}
                 // data={finalBarData}
-                data={isPothole ? potholeStatsData : billboardStatsData}
+                // data={isPothole ? potholeStatsData : billboardStatsData}
+                data={isPothole ? filterPotholeCity : filterBillboardCity}
                 // data={category === "Potholes" ? barData : finalBarData}
 
                 // data={filteredBillboardBarData}
