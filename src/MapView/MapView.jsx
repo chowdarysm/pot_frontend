@@ -40,26 +40,29 @@ const MapView = () => {
           Map View for all types of Category Identified
         </h1>
         <div className="map-table-view">
-          <GoogleMap
-            mapContainerStyle={{ width: "70%" }}
-            style
-            center={center}
-            zoom={6}
-          >
-            {locations.map((loc, index) => (
-              <Marker
-                key={index}
-                position={{ lat: loc.lat, lng: loc.lng }}
-                icon={{
-                  url:
-                    loc.category === "billboard"
-                      ? "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                      : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
-                  scaledSize: new window.google.maps.Size(40, 40),
-                }}
-              />
-            ))}
-          </GoogleMap>
+          <div className="g-map">
+            <GoogleMap
+              mapContainerStyle={{ width: "100%" }}
+              style
+              center={center}
+              zoom={6}
+            >
+              {locations.map((loc, index) => (
+                <Marker
+                  key={index}
+                  position={{ lat: loc.lat, lng: loc.lng }}
+                  icon={{
+                    url:
+                      loc.category === "billboard"
+                        ? "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                        : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                    scaledSize: new window.google.maps.Size(40, 40),
+                  }}
+                />
+              ))}
+            </GoogleMap>
+          </div>
+
           <div className="map-table" style={{ marginTop: "20px" }}>
             <table
               style={{
