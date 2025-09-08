@@ -50,31 +50,38 @@ const MapView = () => {
             />
           ))}
         </GoogleMap>
-        <div className="map-table">
+        <div className="map-table" style={{ marginTop: "20px" }}>
           <table
-            border="1"
-            cellpadding="8"
-            cellspacing="0"
-            style="border-collapse: collapse; font-family: Arial, sans-serif;"
+            style={{
+              borderCollapse: "collapse",
+              fontFamily: "Arial, sans-serif",
+              border: "1px solid #ccc",
+            }}
           >
-            <tr>
-              <td>
-                <img
-                  src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                  alt="Blue Marker"
-                />
-              </td>
-              <td>Billboard</td>
-            </tr>
-            <tr>
-              <td>
-                <img
-                  src="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
-                  alt="Red Marker"
-                />
-              </td>
-              <td>Pothole</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                  <img
+                    src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                    alt="Blue Marker"
+                  />
+                </td>
+                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                  Billboard
+                </td>
+              </tr>
+              <tr>
+                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                  <img
+                    src="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                    alt="Red Marker"
+                  />
+                </td>
+                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                  Pothole
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
