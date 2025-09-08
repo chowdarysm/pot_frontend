@@ -43,7 +43,7 @@ const MapView = () => {
         <div className="map-table-view">
           <div className="g-map">
             <GoogleMap
-              mapContainerStyle={{ width: "100%" }}
+              mapContainerStyle={{ width: "100%", height: "100vh" }}
               style
               center={center}
               zoom={6}

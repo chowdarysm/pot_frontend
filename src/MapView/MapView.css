@@ -1,8 +1,13 @@
+.map-view {
+  width: 95%;
+  margin: 1rem auto;
+}
 .map-table-view {
-  width: 80%;
+  width: 100%;
   display: flex;
-  gap: 1.2rem;
+  justify-content: space-between;
+  /* gap: 1.2rem; */
 }
 .g-map {
-  width: 70%;
+  width: 80%;
 }
