@@ -37,75 +37,113 @@ const MapView = () => {
             textAlign: "center",
           }}
         >
-          Map View
+          Map View for all types of Category Identified
         </h1>
-        <GoogleMap
-          mapContainerStyle={{ width: "100%", height: "500px" }}
-          style
-          center={center}
-          zoom={6}
-        >
-          {locations.map((loc, index) => (
-            <Marker
-              key={index}
-              position={{ lat: loc.lat, lng: loc.lng }}
-              icon={{
-                url:
-                  loc.category === "billboard"
-                    ? "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                    : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
-                scaledSize: new window.google.maps.Size(40, 40),
-              }}
-            />
-          ))}
-        </GoogleMap>
-        <div className="map-table" style={{ marginTop: "20px" }}>
-          <table
-            style={{
-              borderCollapse: "collapse",
-              fontFamily: "Arial, sans-serif",
-              border: "1px solid #ccc",
-            }}
+        <div className="map-table-view">
+          <GoogleMap
+            mapContainerStyle={{ width: "70%" }}
+            style
+            center={center}
+            zoom={6}
           >
-            <tbody>
-              <tr>
-                <td
-                  style={{
-                    padding: "8px",
-                    border: "1px solid #ccc",
-                    textAlign: "center",
-                    verticalAlign: "middle",
-                  }}
-                >
-                  <img
-                    src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                    alt="Blue Marker"
-                  />
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  Billboard
-                </td>
-              </tr>
-              <tr>
-                <td
-                  style={{
-                    padding: "8px",
-                    border: "1px solid #ccc",
-                    textAlign: "center",
-                    verticalAlign: "middle",
-                  }}
-                >
-                  <img
-                    src="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
-                    alt="Red Marker"
-                  />
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  Pothole
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            {locations.map((loc, index) => (
+              <Marker
+                key={index}
+                position={{ lat: loc.lat, lng: loc.lng }}
+                icon={{
+                  url:
+                    loc.category === "billboard"
+                      ? "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                      : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                  scaledSize: new window.google.maps.Size(40, 40),
+                }}
+              />
+            ))}
+          </GoogleMap>
+          <div className="map-table" style={{ marginTop: "20px" }}>
+            <table
+              style={{
+                borderCollapse: "collapse",
+                fontFamily: "Arial, sans-serif",
+                border: "1px solid #ccc",
+              }}
+            >
+              <tbody>
+                <tr>
+                  <td
+                    style={{
+                      padding: "8px",
+                      border: "1px solid #ccc",
+                      textAlign: "center",
+                      verticalAlign: "middle",
+                    }}
+                  >
+                    <img
+                      src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                      alt="Blue Marker"
+                    />
+                  </td>
+                  <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                    Billboard
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    style={{
+                      padding: "8px",
+                      border: "1px solid #ccc",
+                      textAlign: "center",
+                      verticalAlign: "middle",
+                    }}
+                  >
+                    <img
+                      src="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                      alt="Red Marker"
+                    />
+                  </td>
+                  <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                    Pothole
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    style={{
+                      padding: "8px",
+                      border: "1px solid #ccc",
+                      textAlign: "center",
+                      verticalAlign: "middle",
+                    }}
+                  >
+                    <img
+                      src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                      alt="Yellow Marker"
+                    />
+                  </td>
+                  <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                    Construction Sites
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    style={{
+                      padding: "8px",
+                      border: "1px solid #ccc",
+                      textAlign: "center",
+                      verticalAlign: "middle",
+                    }}
+                  >
+                    <img
+                      src="https://maps.google.com/mapfiles/ms/icons/orange-dot.png"
+                      alt="Orange Marker"
+                    />
+                  </td>
+                  <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                    Missing Guadrails
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>
