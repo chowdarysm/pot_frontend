@@ -27,26 +27,58 @@ const MapView = () => {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    <GoogleMap
-      mapContainerStyle={{ width: "100%", height: "500px" }}
-      style
-      center={center}
-      zoom={6}
-    >
-      {locations.map((loc, index) => (
-        <Marker
-          key={index}
-          position={{ lat: loc.lat, lng: loc.lng }}
-          icon={{
-            url:
-              loc.category === "billboard"
-                ? "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
-            scaledSize: new window.google.maps.Size(40, 40),
-          }}
-        />
-      ))}
-    </GoogleMap>
+    <>
+      <div className="map-view">
+        <h1>Map View</h1>
+        <GoogleMap
+          mapContainerStyle={{ width: "100%", height: "500px" }}
+          style
+          center={center}
+          zoom={6}
+        >
+          {locations.map((loc, index) => (
+            <Marker
+              key={index}
+              position={{ lat: loc.lat, lng: loc.lng }}
+              icon={{
+                url:
+                  loc.category === "billboard"
+                    ? "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                    : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                scaledSize: new window.google.maps.Size(40, 40),
+              }}
+            />
+          ))}
+        </GoogleMap>
+        <div className="map-table">
+          <table
+            border="1"
+            cellpadding="8"
+            cellspacing="0"
+            style="border-collapse: collapse; font-family: Arial, sans-serif;"
+          >
+            <tr>
+              <td>
+                <img
+                  src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                  alt="Blue Marker"
+                />
+              </td>
+              <td>Billboard</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  src="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                  alt="Red Marker"
+                />
+              </td>
+              <td>Pothole</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </>
   );
 };
 
