@@ -29,7 +29,16 @@ const MapView = () => {
   return (
     <>
       <div className="map-view">
-        <h1>Map View</h1>
+        <h1
+          style={{
+            fontSize: "2rem",
+            fontWeight: "800",
+            padding: "1.2rem",
+            textAlign: "center",
+          }}
+        >
+          Map View
+        </h1>
         <GoogleMap
           mapContainerStyle={{ width: "100%", height: "500px" }}
           style
@@ -60,7 +69,14 @@ const MapView = () => {
           >
             <tbody>
               <tr>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                <td
+                  style={{
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                    textAlign: "center",
+                    verticalAlign: "middle",
+                  }}
+                >
                   <img
                     src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                     alt="Blue Marker"
@@ -71,7 +87,14 @@ const MapView = () => {
                 </td>
               </tr>
               <tr>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
+                <td
+                  style={{
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                    textAlign: "center",
+                    verticalAlign: "middle",
+                  }}
+                >
                   <img
                     src="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
                     alt="Red Marker"
