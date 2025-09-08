@@ -67,6 +67,7 @@ const MapView = () => {
           <div className="map-table" style={{ marginTop: "20px" }}>
             <table
               style={{
+                width: "100%",
                 borderCollapse: "collapse",
                 fontFamily: "Arial, sans-serif",
                 border: "1px solid #ccc",
