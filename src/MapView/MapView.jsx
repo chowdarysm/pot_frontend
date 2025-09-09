@@ -1,5 +1,9 @@
 import React from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import billIcon from "../assets/images/billmappng.png";
+import potIcon from "../assets/images/potmap.png";
+import guardIcon from "../assets/images/guardmap.png";
+import constIcon from "../assets/images/construction.png";
 import "./MapView.css";
 
 const center = {
@@ -54,9 +58,10 @@ const MapView = () => {
                   position={{ lat: loc.lat, lng: loc.lng }}
                   icon={{
                     url:
-                      loc.category === "billboard"
-                        ? "https://maps.google.com/mapfiles/ms/icons/pink-dot.png"
-                        : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                      // loc.category === "billboard"
+                      //   ? "https://maps.google.com/mapfiles/ms/icons/pink-dot.png"
+                      //   : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                      loc.category === "billboard" ? billIcon : potIcon,
                     scaledSize: new window.google.maps.Size(40, 40),
                   }}
                 />
@@ -83,10 +88,7 @@ const MapView = () => {
                       verticalAlign: "middle",
                     }}
                   >
-                    <img
-                      src="https://maps.google.com/mapfiles/ms/icons/pink-dot.png"
-                      alt="Blue Marker"
-                    />
+                    <img src={billIcon} alt="Blue Marker" />
                   </td>
                   <td style={{ padding: "8px", border: "1px solid #ccc" }}>
                     Billboard
@@ -101,10 +103,7 @@ const MapView = () => {
                       verticalAlign: "middle",
                     }}
                   >
-                    <img
-                      src="https://maps.google.com/mapfiles/ms/icons/red-dot.png"
-                      alt="Red Marker"
-                    />
+                    <img src={potIcon} alt="Red Marker" />
                   </td>
                   <td style={{ padding: "8px", border: "1px solid #ccc" }}>
                     Pothole
@@ -119,10 +118,7 @@ const MapView = () => {
                       verticalAlign: "middle",
                     }}
                   >
-                    <img
-                      src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
-                      alt="Yellow Marker"
-                    />
+                    <img src={constIcon} alt="Yellow Marker" />
                   </td>
                   <td style={{ padding: "8px", border: "1px solid #ccc" }}>
                     Construction Sites
@@ -137,10 +133,7 @@ const MapView = () => {
                       verticalAlign: "middle",
                     }}
                   >
-                    <img
-                      src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
-                      alt="Orange Marker"
-                    />
+                    <img src={guardIcon} alt="Orange Marker" />
                   </td>
                   <td style={{ padding: "8px", border: "1px solid #ccc" }}>
                     Missing Guadrails
