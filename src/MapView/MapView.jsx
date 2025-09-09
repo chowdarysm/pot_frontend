@@ -1,6 +1,6 @@
 import React from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import billIcon from "../assets/images/billmappng.png";
+import billIcon from "../assets/images/billmap.png";
 import potIcon from "../assets/images/potmap.png";
 import guardIcon from "../assets/images/guardmap.png";
 import constIcon from "../assets/images/constmap.png";
