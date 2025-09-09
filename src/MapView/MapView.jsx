@@ -3,7 +3,7 @@ import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import billIcon from "../assets/images/billmappng.png";
 import potIcon from "../assets/images/potmap.png";
 import guardIcon from "../assets/images/guardmap.png";
-import constIcon from "../assets/images/construction.png";
+import constIcon from "../assets/images/constmap.png";
 import "./MapView.css";
 
 const center = {
@@ -90,7 +90,7 @@ const MapView = () => {
                       verticalAlign: "middle",
                     }}
                   >
-                    <img src={billIcon} alt="Blue Marker" />
+                    <img width={40} src={billIcon} alt="Blue Marker" />
                   </td>
                   <td style={{ padding: "8px", border: "1px solid #ccc" }}>
                     Billboard
@@ -105,7 +105,7 @@ const MapView = () => {
                       verticalAlign: "middle",
                     }}
                   >
-                    <img src={potIcon} alt="Red Marker" />
+                    <img width={40} src={potIcon} alt="Red Marker" />
                   </td>
                   <td style={{ padding: "8px", border: "1px solid #ccc" }}>
                     Pothole
@@ -120,7 +120,7 @@ const MapView = () => {
                       verticalAlign: "middle",
                     }}
                   >
-                    <img src={constIcon} alt="Yellow Marker" />
+                    <img width={40} src={constIcon} alt="Yellow Marker" />
                   </td>
                   <td style={{ padding: "8px", border: "1px solid #ccc" }}>
                     Construction Sites
@@ -135,7 +135,7 @@ const MapView = () => {
                       verticalAlign: "middle",
                     }}
                   >
-                    <img src={guardIcon} alt="Orange Marker" />
+                    <img width={40} src={guardIcon} alt="Orange Marker" />
                   </td>
                   <td style={{ padding: "8px", border: "1px solid #ccc" }}>
                     Missing Guadrails
