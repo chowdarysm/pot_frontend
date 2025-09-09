@@ -55,7 +55,7 @@ const MapView = () => {
                   icon={{
                     url:
                       loc.category === "billboard"
-                        ? "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                        ? "https://maps.google.com/mapfiles/ms/icons/pink-dot.png"
                         : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
                     scaledSize: new window.google.maps.Size(40, 40),
                   }}
@@ -84,7 +84,7 @@ const MapView = () => {
                     }}
                   >
                     <img
-                      src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                      src="https://maps.google.com/mapfiles/ms/icons/pink-dot.png"
                       alt="Blue Marker"
                     />
                   </td>
