@@ -62,7 +62,9 @@ const MapView = () => {
                       //   ? "https://maps.google.com/mapfiles/ms/icons/pink-dot.png"
                       //   : "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
                       loc.category === "billboard" ? billIcon : potIcon,
-                    scaledSize: new window.google.maps.Size(40, 40),
+                    // scaledSize: new window.google.maps.Size(40, 40),
+                    scaledSize: new window.google.maps.Size(20, 20), // match Google icons
+                    anchor: new window.google.maps.Point(10, 20),
                   }}
                 />
               ))}
