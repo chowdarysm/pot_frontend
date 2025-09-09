@@ -38,7 +38,7 @@ const MapView = () => {
             textAlign: "center",
           }}
         >
-          Map View for all types of Category Identified
+          Map View of all Identified Categories
         </h1>
         <div className="map-table-view">
           <div className="g-map">
@@ -138,7 +138,7 @@ const MapView = () => {
                     }}
                   >
                     <img
-                      src="https://maps.google.com/mapfiles/ms/icons/orange-dot.png"
+                      src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
                       alt="Orange Marker"
                     />
                   </td>
