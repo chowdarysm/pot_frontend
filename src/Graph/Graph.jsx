@@ -332,7 +332,7 @@ const Graph = ({
               >
                 {/* {category === "Potholes" ? "Unapproved" : ""} {category} Identified
             Monthwise */}
-                {isPothole ? "Unapproved" : ""} {category} Identified Monthwise
+                {category} Identified Monthwise
               </p>
               {console.log("Selected Color:", selectedColor)}
               <BarChart
