@@ -493,9 +493,7 @@ const ReportDetails = () => {
               <button onClick={generateGraph}>Apply Filter</button>
               <button
                 onClick={() => {
-                  if (!dummy) {
-                    navigate(-1);
-                  }
+                  navigate(0);
                 }}
               >
                 Reset
