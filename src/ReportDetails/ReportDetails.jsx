@@ -493,7 +493,7 @@ const ReportDetails = () => {
               <button onClick={generateGraph}>Apply Filter</button>
               <button
                 onClick={() => {
-                  navigate(0);
+                  window.location.reload();
                 }}
               >
                 Reset
