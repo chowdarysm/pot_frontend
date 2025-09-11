@@ -221,8 +221,7 @@ const Graph = ({
                 >
                   {/* {category === "Potholes" ? "Unapproved" : ""} {category} Identified
             Monthwise */}
-                  {isPothole ? "Unapproved" : ""} {category} Identified
-                  Monthwise
+                  {category} Identified Monthwise
                 </p>
                 <BarChart
                   width={isTablet ? 300 : 400}
