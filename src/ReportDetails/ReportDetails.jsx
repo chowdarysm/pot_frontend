@@ -491,6 +491,15 @@ const ReportDetails = () => {
             </div>
             <div className="apply-filter-btn">
               <button onClick={generateGraph}>Apply Filter</button>
+              <button
+                onClick={() => {
+                  if (!dummy) {
+                    navigate(-1);
+                  }
+                }}
+              >
+                Reset
+              </button>
             </div>
           </div>
           <div className="report-sort">
