@@ -26,6 +26,7 @@ const Images = () => {
         setIsLoading(false);
       }
     };
+    console.log("ImageData:", images);
     fetchImages();
   }, []);
 
@@ -33,16 +34,16 @@ const Images = () => {
     // Navigate to the specific report detail page for the clicked image
     navigate(`/report/${guid}`);
   };
-  
+
   const handleViewMore = () => {
     // Increase the number of visible images by 5
-    setVisibleCount(prevCount => prevCount + 5);
+    setVisibleCount((prevCount) => prevCount + 5);
   };
 
   const goToBack = () => {
     navigate(-1);
   };
-  
+
   // Create a slice of the images array to only show the visible ones
   const visibleImages = images.slice(0, visibleCount);
 
@@ -59,7 +60,7 @@ const Images = () => {
             <option value="newest">Newest first</option>
           </select>
         </div>
-        
+
         {isLoading ? (
           <p>Loading images...</p>
         ) : (
@@ -73,7 +74,9 @@ const Images = () => {
               >
                 <img src={item.image_url} alt={item.image_name} />
                 <div className="image-card-details">
-                  <span>Timestamp: {new Date(item.created_at).toLocaleString()}</span>
+                  <span>
+                    Timestamp: {new Date(item.created_at).toLocaleString()}
+                  </span>
                   <span>Location: {item.location_text || "N/A"}</span>
                   <span>Status: {item.status}</span>
                 </div>
