@@ -247,7 +247,8 @@ const Graph = ({
                 >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
+                  {/* <YAxis /> */}
+                  <YAxis domain={[0, "dataMax + 10"]} />
                   <Tooltip />
                   <Legend />
                   <Bar dataKey="value" fill="#0000FF">
@@ -371,7 +372,8 @@ const Graph = ({
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
-                <YAxis />
+                {/* <YAxis /> */}
+                <YAxis domain={[0, "dataMax + 10"]} />
                 <Tooltip />
                 <Legend />
 
