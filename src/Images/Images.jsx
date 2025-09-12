@@ -75,6 +75,7 @@ const Images = () => {
               >
                 <img src={item.image_url} alt={item.image_name} />
                 <div className="image-card-details">
+                  <span>Filename: {item.image_name}</span>
                   <span>
                     Timestamp: {new Date(item.created_at).toLocaleString()}
                   </span>
