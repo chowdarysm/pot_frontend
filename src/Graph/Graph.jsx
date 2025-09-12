@@ -250,6 +250,13 @@ const Graph = ({
                   <Tooltip />
                   <Legend />
                   <Bar dataKey="value" fill="#0000FF" />
+                  <LabelList
+                    dataKey="value"
+                    position="top"
+                    fill="#000"
+                    fontSize={12}
+                    fontWeight="600"
+                  />
                 </BarChart>
               </div>
               <div className="pie-chart">
@@ -365,6 +372,14 @@ const Graph = ({
                 <YAxis />
                 <Tooltip />
                 <Legend />
+                <LabelList
+                  dataKey="value"
+                  position="top"
+                  fill="#000"
+                  fontSize={12}
+                  fontWeight="600"
+                />
+
                 <Bar
                   dataKey="value"
                   fill={selectedColor || "#0000FF"}
