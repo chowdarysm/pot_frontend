@@ -294,7 +294,36 @@ const Graph = ({
                     fill="#8884d8"
                     dataKey="value"
                     nameKey="status"
-                    label
+                    label={({
+                      cx,
+                      cy,
+                      midAngle,
+                      innerRadius,
+                      outerRadius,
+                      percent,
+                      index,
+                      value,
+                    }) => {
+                      const RADIAN = Math.PI / 180;
+                      const radius =
+                        innerRadius + (outerRadius - innerRadius) / 2;
+                      const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                      const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                      return (
+                        <text
+                          x={x}
+                          y={y}
+                          fill="#fff"
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={12}
+                          fontWeight="600"
+                        >
+                          {value}
+                        </text>
+                      );
+                    }}
                     // onClick={(data) => setSelectedBillboardStatus(data.status)}
                     // onClick={(data) => setStatus(data.status)}
                   >
