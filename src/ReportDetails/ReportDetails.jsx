@@ -492,7 +492,7 @@ const ReportDetails = () => {
             <div className="apply-filter-btn">
               <button onClick={generateGraph}>Apply Filter</button>
               <button
-                onClick={() => {
+                onClick={(e) => {
                   e.preventDefault();
                   window.location.reload();
                 }}
