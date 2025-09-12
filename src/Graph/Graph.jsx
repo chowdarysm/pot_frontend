@@ -13,6 +13,7 @@ import {
   PieChart,
   Pie,
   Cell,
+  LabelList,
 } from "recharts";
 
 const Graph = ({
