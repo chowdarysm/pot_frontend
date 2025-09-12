@@ -65,12 +65,12 @@ const Graph = ({
   // const COLORS = ["red", "blue", "green", "navy"];
   const STATUS_COLORS = {
     // Billboard statuses
-    Approved: "#28a745", // green
+    Approved: "#99BB55", // green
     Unapproved: "#BF504E", // red
     Damaged: "#FFA500", // orange
 
     // Pothole statuses
-    Low: "#28a745", // green
+    Low: "#99BB55", // green
     Mid: "#4F81BD", // blue
     High: "#BF504E", // red
   };
