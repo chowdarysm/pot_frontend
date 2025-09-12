@@ -66,13 +66,13 @@ const Graph = ({
   const STATUS_COLORS = {
     // Billboard statuses
     Approved: "#28a745", // green
-    Unapproved: "#FF0000", // red
+    Unapproved: "#BF504E", // red
     Damaged: "#FFA500", // orange
 
     // Pothole statuses
     Low: "#28a745", // green
-    Mid: "#0000FF", // blue
-    High: "#FF0000", // red
+    Mid: "#4F81BD", // blue
+    High: "#BF504E", // red
   };
   // Approved - green unapproved - red damaged - orange
   const [selectedColor, setSelectedColor] = useState(null);
