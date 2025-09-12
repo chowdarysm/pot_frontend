@@ -46,6 +46,7 @@ const Images = () => {
 
   // Create a slice of the images array to only show the visible ones
   const visibleImages = images.slice(0, visibleCount);
+  console.log("VisibleImages", visibleImages);
 
   return (
     <>
