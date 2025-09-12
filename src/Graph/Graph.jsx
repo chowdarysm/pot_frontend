@@ -249,14 +249,15 @@ const Graph = ({
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="value" fill="#0000FF" />
-                  <LabelList
-                    dataKey="value"
-                    position="top"
-                    fill="#000"
-                    fontSize={12}
-                    fontWeight="600"
-                  />
+                  <Bar dataKey="value" fill="#0000FF">
+                    <LabelList
+                      dataKey="value"
+                      position="top"
+                      fill="#000"
+                      fontSize={12}
+                      fontWeight="600"
+                    />
+                  </Bar>
                 </BarChart>
               </div>
               <div className="pie-chart">
@@ -372,13 +373,6 @@ const Graph = ({
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <LabelList
-                  dataKey="value"
-                  position="top"
-                  fill="#000"
-                  fontSize={12}
-                  fontWeight="600"
-                />
 
                 <Bar
                   dataKey="value"
@@ -392,7 +386,15 @@ const Graph = ({
                     console.log("");
                     // if status is included in barData
                   }}
-                />
+                >
+                  <LabelList
+                    dataKey="value"
+                    position="top"
+                    fill="#000"
+                    fontSize={12}
+                    fontWeight="600"
+                  />
+                </Bar>
               </BarChart>
             </div>
             <div className="pie-chart">
