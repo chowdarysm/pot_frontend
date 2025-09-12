@@ -251,7 +251,7 @@ const Graph = ({
                   <YAxis domain={[0, "dataMax + 4"]} />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="value" fill="#0000FF">
+                  <Bar dataKey="value" fill="#4F81BD">
                     <LabelList
                       dataKey="value"
                       position="top"
