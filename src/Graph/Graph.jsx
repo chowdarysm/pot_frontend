@@ -249,7 +249,7 @@ const Graph = ({
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="value" fill="red" />
+                  <Bar dataKey="value" fill="#0000FF" />
                 </BarChart>
               </div>
               <div className="pie-chart">
