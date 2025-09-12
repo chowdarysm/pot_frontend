@@ -294,7 +294,7 @@ const Graph = ({
                     fill="#8884d8"
                     dataKey="value"
                     nameKey="status"
-                    label={false}
+                    label
                     // onClick={(data) => setSelectedBillboardStatus(data.status)}
                     // onClick={(data) => setStatus(data.status)}
                   >
@@ -435,6 +435,7 @@ const Graph = ({
                   fill="#8884d8"
                   dataKey="value"
                   nameKey="status"
+                  label
                   // label={false}
                   // onClick={(data) => setSelectedBillboardStatus(data.status)}
                   onClick={(data, index) => {
