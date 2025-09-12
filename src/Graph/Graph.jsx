@@ -437,7 +437,8 @@ const Graph = ({
                     } else {
                       setSelectedBillboardStatus(data.status); // set billboard status
                     }
-                    setSelectedColor(COLORS[index % COLORS.length]);
+                    // setSelectedColor(COLORS[index % COLORS.length]);
+                    setSelectedColor(STATUS_COLORS[data.status] || "#8884d8");
                   }}
                 >
                   {/* {(category === "Potholes"
