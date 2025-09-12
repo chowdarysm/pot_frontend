@@ -426,7 +426,7 @@ const Graph = ({
                   fill="#8884d8"
                   dataKey="value"
                   nameKey="status"
-                  label={false}
+                  // label={false}
                   // onClick={(data) => setSelectedBillboardStatus(data.status)}
                   onClick={(data, index) => {
                     console.log("data status", data.status);
