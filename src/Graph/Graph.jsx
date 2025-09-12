@@ -302,6 +302,9 @@ const Graph = ({
                         key={`cell-${index}`}
                         // fill={COLORS[index % COLORS.length]}
                         fill={STATUS_COLORS[entry.status] || "#8884d8"}
+                        onClick={() => {
+                          console.log("Billboard slice data", entry);
+                        }}
                       />
                     ))}
                   </Pie>
@@ -370,7 +373,9 @@ const Graph = ({
                     console.log("Month:", data.month);
                     console.log("Value:", data.value);
                     console.log("City:", data.city); // if city is included in barData
-                    console.log("Status:", data.status); // if status is included in barData
+                    console.log("Status:", data.status);
+                    console.log("");
+                    // if status is included in barData
                   }}
                 />
               </BarChart>
