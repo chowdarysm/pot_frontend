@@ -388,12 +388,28 @@ const Graph = ({
                     // if status is included in barData
                   }}
                 >
-                  <LabelList
+                  {/* <LabelList
                     dataKey="value"
                     position="top"
                     fill="#000"
                     fontSize={12}
                     fontWeight="600"
+                  /> */}
+                  <LabelList
+                    dataKey="value"
+                    position="top"
+                    content={({ x, y, value }) => (
+                      <text
+                        x={x}
+                        y={y - 5}
+                        fill="#000"
+                        fontSize={12}
+                        fontWeight="600"
+                        textAnchor="middle"
+                      >
+                        {value}
+                      </text>
+                    )}
                   />
                 </Bar>
               </BarChart>
