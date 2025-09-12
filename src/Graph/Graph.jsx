@@ -61,7 +61,18 @@ const Graph = ({
   console.log("PotholesStatsPie", initpotholePie);
   console.log("FilteredBillboardBarCity", filterBillboardCity);
   console.log("FilteredPotholebarcity", filterPotholeCity);
-  const COLORS = ["red", "blue", "green", "navy"];
+  // const COLORS = ["red", "blue", "green", "navy"];
+  const STATUS_COLORS = {
+    // Billboard statuses
+    Approved: "#28a745", // green
+    Unapproved: "#FF0000", // red
+    Damaged: "#FFA500", // orange
+
+    // Pothole statuses
+    Low: "#28a745", // green
+    Mid: "#0000FF", // blue
+    High: "#FF0000", // red
+  };
   // Approved - green unapproved - red damaged - orange
   const [selectedColor, setSelectedColor] = useState(null);
   const { title } = useParams();
@@ -289,7 +300,8 @@ const Graph = ({
                     {billboardPie.map((entry, index) => (
                       <Cell
                         key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
+                        // fill={COLORS[index % COLORS.length]}
+                        fill={STATUS_COLORS[entry.status] || "#8884d8"}
                       />
                     ))}
                   </Pie>
@@ -352,7 +364,7 @@ const Graph = ({
                 <Legend />
                 <Bar
                   dataKey="value"
-                  fill={selectedColor}
+                  fill={selectedColor || "#0000FF"}
                   onClick={(data, index) => {
                     console.log("Clicked Bar Data:", data);
                     console.log("Month:", data.month);
@@ -423,7 +435,8 @@ const Graph = ({
                   {pieData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
+                      // fill={COLORS[index % COLORS.length]}
+                      fill={STATUS_COLORS[entry.status] || "#8884d8"}
                     />
                   ))}
                 </Pie>
