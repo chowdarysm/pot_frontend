@@ -420,7 +420,7 @@ const Graph = ({
 
                 <Bar
                   dataKey="value"
-                  fill={selectedColor || "#0000FF"}
+                  fill={selectedColor || "#4F81BD"}
                   onClick={(data, index) => {
                     console.log("Clicked Bar Data:", data);
                     console.log("Month:", data.month);
