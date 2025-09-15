@@ -360,7 +360,10 @@ const Graph = ({
                     ))}
                   </Pie>
                   <Tooltip />
-                  <Legend />
+                  {/* <Legend /> */}
+                  <Legend
+                    formatter={(value) => (value === "value" ? "Month" : value)}
+                  />
                 </PieChart>
               </div>
             </div>
@@ -416,7 +419,10 @@ const Graph = ({
                 {/* <YAxis /> */}
                 <YAxis domain={[0, "dataMax + 4"]} />
                 <Tooltip />
-                <Legend />
+                {/* <Legend /> */}
+                <Legend
+                  formatter={(value) => (value === "value" ? "Month" : value)}
+                />
 
                 <Bar
                   dataKey="value"
