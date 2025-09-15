@@ -336,13 +336,25 @@ const Graph = ({
                   fill={COLORS[index % COLORS.length]}
                 />
               ))} */}
-                    {billboardPie.map((entry, index) => (
+                    {/* {billboardPie.map((entry, index) => (
                       <Cell
                         key={`cell-${index}`}
                         // fill={COLORS[index % COLORS.length]}
                         fill={STATUS_COLORS[entry.status] || "#8884d8"}
                         onClick={() => {
                           console.log("Billboard slice data", entry);
+                        }}
+                      />
+                    ))} */}
+                    {(category === "Potholes"
+                      ? initPotholePieData
+                      : initBillboardPieData
+                    ).map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={STATUS_COLORS[entry.status] || "#8884d8"}
+                        onClick={() => {
+                          console.log("Slice data", entry);
                         }}
                       />
                     ))}
