@@ -264,6 +264,16 @@ const Graph = ({
                       dataKey="value"
                       position="top"
                       fill="#000"
+                      onClick={(data, index) => {
+                        console.log("Clicked Bar Data:", data);
+                        console.log("Month:", data.month);
+                        console.log("Year:", data.year);
+                        console.log("Value:", data.value);
+                        console.log("City:", data.city); // if city is included in barData
+                        console.log("Status:", data.status);
+                        console.log("");
+                        // if status is included in barData
+                      }}
                       fontSize={12}
                       fontWeight="600"
                     />
@@ -440,6 +450,7 @@ const Graph = ({
                   onClick={(data, index) => {
                     console.log("Clicked Bar Data:", data);
                     console.log("Month:", data.month);
+                    console.log("Year:", data.year);
                     console.log("Value:", data.value);
                     console.log("City:", data.city); // if city is included in barData
                     console.log("Status:", data.status);
