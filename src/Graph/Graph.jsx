@@ -233,7 +233,7 @@ const Graph = ({
                 >
                   {/* {category === "Potholes" ? "Unapproved" : ""} {category} Identified
             Monthwise */}
-                  {category} Identified Monthwise
+                  {category} Identified Monthwise in
                 </p>
                 <BarChart
                   width={isTablet ? 300 : 400}
@@ -252,7 +252,11 @@ const Graph = ({
                   <Tooltip />
                   {/* <Legend /> */}
                   <Legend
-                    formatter={(value) => (value === "value" ? "Month" : value)}
+                    formatter={(value) =>
+                      value === "value"
+                        ? `No. of ${category} Identified`
+                        : value
+                    }
                   />
 
                   <Bar dataKey="value" fill="#4F81BD">
@@ -425,7 +429,9 @@ const Graph = ({
                 <Tooltip />
                 {/* <Legend /> */}
                 <Legend
-                  formatter={(value) => (value === "value" ? "Month" : value)}
+                  formatter={(value) =>
+                    value === "value" ? `No. of ${category} Identified` : value
+                  }
                 />
 
                 <Bar
